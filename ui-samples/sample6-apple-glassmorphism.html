@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نمط آبل الزجاجي (Apple Glassmorphism) | د. م. عبدالمجيد البطاطي</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Readex Pro', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            apple: {
+              gray: '#86868b',
+              dark: '#1d1d1f',
+              light: '#f5f5f7',
+              blue: '#0071e3',
+              blueHover: '#0077ed',
+            }
+          },
+          boxShadow: {
+            'apple-glass': '0 20px 40px -15px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.5) inset',
+            'apple-card': '0 12px 32px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.02)',
+            'apple-float': '0 24px 48px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.7) inset',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Readex Pro', sans-serif;
+      background-color: #f5f5f7;
+      color: #1d1d1f;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Apple Frosted Glass Materials */
+    .apple-glass {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+    }
+
+    .apple-glass-dark {
+      background: rgba(24, 24, 27, 0.75);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .apple-pill-nav {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: saturate(200%) blur(20px);
+      -webkit-backdrop-filter: saturate(200%) blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .apple-ambient-mesh {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: 
+        radial-gradient(circle at 10% 15%, rgba(198, 224, 255, 0.5) 0%, transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(220, 252, 231, 0.6) 0%, transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(254, 243, 199, 0.45) 0%, transparent 50%),
+        #f5f5f7;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .card-hover {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+    }
+  </style>
+</head>
+<body class="selection:bg-apple-blue selection:text-white">
+
+  <!-- Ambient Apple Wallpaper -->
+  <div class="apple-ambient-mesh"></div>
+
+  <!-- VisionOS / macOS Floating Island Nav -->
+  <div class="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
+    <nav class="apple-pill-nav rounded-full px-5 py-2.5 flex items-center gap-6 max-w-4xl w-full justify-between">
+      
+      <!-- Brand Monogram -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-full bg-apple-dark text-white flex items-center justify-center font-bold text-sm tracking-tighter shadow-sm group-hover:scale-105 transition">
+          ع.ب
+        </div>
+        <div class="hidden sm:block text-right">
+          <span class="text-xs font-bold text-apple-dark block leading-none">د. م. عبدالمجيد البطاطي</span>
+          <span class="text-[10px] text-apple-gray">استشاري معتمد | SCE #201226</span>
+        </div>
+      </a>
+
+      <!-- Center Links (Apple Segmented Style) -->
+      <div class="hidden md:flex items-center gap-1 bg-black/5 p-1 rounded-full text-xs font-medium text-neutral-600">
+        <a href="#hero" class="px-3.5 py-1.5 rounded-full bg-white text-apple-dark font-semibold shadow-sm transition">الرئيسية</a>
+        <a href="#bento" class="px-3.5 py-1.5 rounded-full hover:text-apple-dark transition">عن المسيرة</a>
+        <a href="#books" class="px-3.5 py-1.5 rounded-full hover:text-apple-dark transition">المؤلفات (11)</a>
+        <a href="#articles" class="px-3.5 py-1.5 rounded-full hover:text-apple-dark transition">المقالات</a>
+        <a href="#projects" class="px-3.5 py-1.5 rounded-full hover:text-apple-dark transition">المشاريع</a>
+      </div>
+
+      <!-- Quick Action Pill -->
+      <div class="flex items-center gap-2">
+        <a href="../extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-4 py-1.5 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white text-xs font-semibold shadow-sm transition active:scale-95 flex items-center gap-1.5">
+          <span>السيرة الذاتية</span>
+          <svg class="w-3 h-3 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <main class="max-w-6xl mx-auto px-5 pt-36 pb-20 space-y-16">
+    
+    <div class="text-center max-w-3xl mx-auto space-y-5">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-glass text-xs font-semibold text-neutral-700 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>مستشار هندسي واستراتيجي • باحث دكتوراه • محكم معتمد</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-gradient leading-[1.15]">
+        رؤية هندسية رصينة، <br class="hidden sm:inline">
+        وفكر إداري يصنع الاستدامة.
+      </h1>
+
+      <p class="text-apple-gray text-base sm:text-lg font-normal leading-relaxed max-w-2xl mx-auto">
+        أكثر من أربعة عقود من قيادة المشاريع التنموية الكبرى، حوكمة المنظمات والشركات العائلية، وتأليف الأبحاث العلمية المعتمدة في المملكة العربية السعودية.
+      </p>
+
+      <div class="flex justify-center gap-3 pt-2">
+        <a href="#books" class="px-6 py-2.5 rounded-full bg-apple-dark text-white text-xs sm:text-sm font-semibold hover:bg-black shadow-md transition active:scale-95">
+          استكشاف الأبحاث والكتب
+        </a>
+        <a href="#contact" class="px-6 py-2.5 rounded-full apple-glass text-apple-dark text-xs sm:text-sm font-semibold hover:bg-white shadow-sm transition active:scale-95">
+          التواصل المباشر
+        </a>
+      </div>
+    </div>
+
+    <!-- Apple-Style Bento Grid (شبكة بينتو المميزة) -->
+    <section id="bento" class="space-y-4">
+      <div class="flex justify-between items-baseline px-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-apple-gray">أبرز المحطات والرؤى</span>
+        <span class="text-xs text-apple-gray">Bento Grid Layout</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+        
+        <!-- Bento 1: Large Profile Card (7 Cols) -->
+        <div class="md:col-span-7 apple-glass rounded-3xl p-7 card-hover flex flex-col justify-between relative overflow-hidden">
+          <div class="flex flex-col sm:flex-row gap-6 items-center">
+            <div class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden shadow-md flex-shrink-0 border-2 border-white/80">
+              <img src="../extracted_data/brand_assets/home_1.JPG" alt="د. م. عبدالمجيد البطاطي" class="w-full h-full object-cover object-top">
+            </div>
+            <div class="space-y-2 text-center sm:text-right">
+              <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 inline-block">
+                الهيئة السعودية للمهندسين
+              </span>
+              <h2 class="text-xl sm:text-2xl font-bold text-apple-dark">د. م. عبدالمجيد البطاطي</h2>
+              <p class="text-xs text-apple-gray leading-relaxed">
+                مهندس استشاري معتمد (عضوية 201226)، حاصل على ماجستير إدارة الأعمال (MBA) من جامعة ويلز ببريطانيا، باحث دكتوراه في الأداء المؤسسي والحوكمة، ومحكم معتمد من وزارة العدل.
+              </p>
+              <div class="pt-2 flex flex-wrap gap-2 justify-center sm:justify-start">
+                <span class="px-2.5 py-1 rounded-lg bg-black/5 text-[11px] font-medium text-neutral-700">MBA Wales UK</span>
+                <span class="px-2.5 py-1 rounded-lg bg-black/5 text-[11px] font-medium text-neutral-700">CBA Delaware USA</span>
+                <span class="px-2.5 py-1 rounded-lg bg-black/5 text-[11px] font-medium text-neutral-700">بكالوريوس هندسة ميكانيكية</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-6 pt-5 border-t border-black/5 flex flex-wrap justify-between items-center text-xs text-apple-gray gap-2">
+            <span>📍 جدة، منطقة مكة المكرمة</span>
+            <a href="../extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="text-apple-blue font-semibold hover:underline flex items-center gap-1">
+              <span>عرض السيرة الذاتية الكاملة</span>
+              <span>←</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 2: Metric Highlights (5 Cols) -->
+        <div class="md:col-span-5 grid grid-rows-2 gap-4">
+          
+          <!-- Metric Card 1: Books & Studies -->
+          <div class="apple-glass rounded-3xl p-6 card-hover flex justify-between items-center">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-apple-gray">الإنتاج المعرفي</span>
+              <div class="text-3xl sm:text-4xl font-extrabold text-apple-dark tracking-tight">11 مؤلفاً</div>
+              <p class="text-xs text-apple-gray">أبحاث وكتب محكّمة متاحة للتحميل المباشر</p>
+            </div>
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-700 flex items-center justify-center text-2xl shadow-inner">
+              📚
+            </div>
+          </div>
+
+          <!-- Metric Card 2: Field Experience -->
+          <div class="apple-glass rounded-3xl p-6 card-hover flex justify-between items-center">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-apple-gray">الخبرة الميدانية والاستشارية</span>
+              <div class="text-3xl sm:text-4xl font-extrabold text-apple-dark tracking-tight">+40 عاماً</div>
+              <p class="text-xs text-apple-gray">في البنى التحتية، السدود، والتطوير المؤسسي</p>
+            </div>
+            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-apple-blue flex items-center justify-center text-2xl shadow-inner">
+              ⚙️
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bento 3: Major Infrastructure Project (4 Cols) -->
+        <div class="md:col-span-4 apple-glass rounded-3xl p-6 card-hover space-y-4">
+          <div class="h-44 rounded-2xl overflow-hidden relative shadow-inner">
+            <img src="../extracted_data/events_and_media/images/event_02/1 (80).jpg" class="w-full h-full object-cover" alt="سد أم الخير">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <span class="absolute bottom-3 right-3 text-white font-bold text-xs">سد وقناة أم الخير</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-apple-dark">مشاريع درء أخطار السيول بجدة</h3>
+            <p class="text-xs text-apple-gray mt-1 leading-relaxed">
+              إدارة وتنفيذ مشاريع تصريف مياه الأمطار وسدود الحماية الاستراتيجية بشرق جدة بمتابعة وزارة الشؤون البلدية والقروية.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bento 4: Environmental Projects Board (4 Cols) -->
+        <div class="md:col-span-4 apple-glass rounded-3xl p-6 card-hover space-y-4">
+          <div class="h-44 rounded-2xl overflow-hidden relative shadow-inner">
+            <img src="../extracted_data/events_and_media/images/event_15/1 (1).jpg" class="w-full h-full object-cover" alt="معرض البيئة">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <span class="absolute bottom-3 right-3 text-white font-bold text-xs">جمعية المشاريع البيئية</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-apple-dark">الاستدامة والمسؤولية البيئية</h3>
+            <p class="text-xs text-apple-gray mt-1 leading-relaxed">
+              عضوية مجلس إدارة جمعية التعاون للمشاريع البيئية وقيادة مبادرات التوعية المجتمعية والحد من التلوث.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bento 5: Thought Leadership & Opinion (4 Cols) -->
+        <div class="md:col-span-4 apple-glass rounded-3xl p-6 card-hover flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-lg">
+              ✍️
+            </div>
+            <span class="text-xs font-semibold text-apple-gray">أحدث المقالات</span>
+            <h3 class="text-base font-bold text-apple-dark leading-snug">«التعليم يبني الحضارات ويصنع التاريخ»</h3>
+            <p class="text-xs text-apple-gray leading-relaxed">
+              طرح فكري حول ركائز النهضة التعليمية: الإنسان، المكان، والمنهج، ومكانة المعلم في الحفاظ على النسيج المجتمعي.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-black/5">
+            <a href="#articles" class="text-xs font-semibold text-apple-blue hover:underline">قراءة المقال الكامل ←</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Interactive Publications Carousel / Showcase -->
+    <section id="books" class="space-y-6 pt-10">
+      <div class="flex justify-between items-end px-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-apple-gray">المكتبة الرقمية</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-apple-dark mt-1">الكتب والأبحاث المحكّمة</h2>
+        </div>
+        <span class="text-xs text-apple-gray hidden sm:inline">جميع الملفات متوفرة بصيغة PDF عالية الدقة</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- Book 1 -->
+        <div class="apple-glass rounded-3xl p-5 card-hover flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-48 rounded-2xl bg-white/60 flex items-center justify-center p-3 shadow-inner">
+              <img src="../extracted_data/books/covers/01_one.jpg" class="h-full object-contain" alt="">
+            </div>
+            <span class="text-[10px] font-mono text-apple-gray">25 نوفمبر 2018 | مؤتمر دولي</span>
+            <h4 class="font-bold text-sm text-apple-dark">ورقة عمل المؤتمر العاشر للتسامح والسلام</h4>
+            <p class="text-xs text-apple-gray leading-relaxed">
+              عرض قُدم بأكاديمية طيبة وجامعة عين شمس بالقاهرة تحت رعاية نخبة أكاديمية دولية.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-black/5 flex justify-between items-center">
+            <a href="../extracted_data/books/pdfs/01_ورقة_عمل_قدمت_في_المؤتمر_العاش.pdf" target="_blank" class="px-4 py-1.5 rounded-full bg-apple-dark text-white text-xs font-semibold hover:bg-black transition">
+              تحميل PDF ↓
+            </a>
+            <span class="text-[11px] text-apple-gray">ورقة محكمة</span>
+          </div>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="apple-glass rounded-3xl p-5 card-hover flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-48 rounded-2xl bg-white/60 flex items-center justify-center p-3 shadow-inner">
+              <img src="../extracted_data/books/covers/10_ten.png" class="h-full object-contain" alt="">
+            </div>
+            <span class="text-[10px] font-mono text-apple-gray">دراسة استراتيجية</span>
+            <h4 class="font-bold text-sm text-apple-dark">تأمين مستقبل المنشآت والشركات العائلية</h4>
+            <p class="text-xs text-apple-gray leading-relaxed">
+              حوكمة الكيانات الأسرية وميثاق العائلة لضمان انتقال الثروة والإدارة بسلاسة عبر الأجيال.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-black/5 flex justify-between items-center">
+            <a href="../extracted_data/books/pdfs/10_تأمين_مستقبل_المنشآت_العائلية.pdf" target="_blank" class="px-4 py-1.5 rounded-full bg-apple-dark text-white text-xs font-semibold hover:bg-black transition">
+              تحميل PDF ↓
+            </a>
+            <span class="text-[11px] text-apple-gray">دراسة حوكمة</span>
+          </div>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="apple-glass rounded-3xl p-5 card-hover flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-48 rounded-2xl bg-white/60 flex items-center justify-center p-3 shadow-inner">
+              <img src="../extracted_data/books/covers/02_two.jpg" class="h-full object-contain" alt="">
+            </div>
+            <span class="text-[10px] font-mono text-apple-gray">إصدار باللغة الإنجليزية</span>
+            <h4 class="font-bold text-sm text-apple-dark">Causes of Corrupt Behaviour in Organisations</h4>
+            <p class="text-xs text-apple-gray leading-relaxed">
+              تحليل شامل للسلوك المؤسسي وأطر الرقابة الإدارية لتعزيز الشفافية في بيئات العمل.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-black/5 flex justify-between items-center">
+            <a href="../extracted_data/books/pdfs/02_Causes_of_Corrupt_Behaviour_in.pdf" target="_blank" class="px-4 py-1.5 rounded-full bg-apple-dark text-white text-xs font-semibold hover:bg-black transition">
+              تحميل PDF ↓
+            </a>
+            <span class="text-[11px] text-apple-gray">English Edition</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Minimal Apple Footer & Direct Contact Card -->
+    <section id="contact" class="apple-glass rounded-3xl p-8 sm:p-12 text-center space-y-6">
+      <div class="w-12 h-12 rounded-full bg-apple-blue/10 text-apple-blue flex items-center justify-center text-xl mx-auto">
+        ✉️
+      </div>
+      <div class="space-y-2">
+        <h3 class="text-2xl font-bold text-apple-dark">للتواصل والاستشارات المهنية والتحكيم</h3>
+        <p class="text-apple-gray text-xs sm:text-sm max-w-md mx-auto">
+          مستعد لتقديم الاستشارات الإدارية والهندسية، وإدارة جلسات التحكيم المعتمدة، والمشاركة في المؤتمرات والندوات.
+        </p>
+      </div>
+      
+      <div class="flex flex-wrap justify-center gap-3 pt-2">
+        <a href="tel:0505626375" class="px-5 py-2.5 rounded-full bg-apple-dark text-white text-xs font-semibold hover:bg-black transition flex items-center gap-2">
+          <span>📞</span>
+          <span>0505626375</span>
+        </a>
+        <a href="mailto:info@asalbatati.net" class="px-5 py-2.5 rounded-full apple-pill-nav text-apple-dark text-xs font-semibold hover:bg-white transition flex items-center gap-2">
+          <span>✉️</span>
+          <span>info@asalbatati.net</span>
+        </a>
+        <a href="mailto:a.albatati@asalbatati.net" class="px-5 py-2.5 rounded-full apple-pill-nav text-apple-dark text-xs font-semibold hover:bg-white transition flex items-center gap-2">
+          <span>✉️</span>
+          <span>a.albatati@asalbatati.net</span>
+        </a>
+      </div>
+
+      <div class="pt-8 border-t border-black/5 text-[11px] text-apple-gray flex flex-col sm:flex-row justify-between items-center gap-2">
+        <span>جميع الحقوق محفوظة © 2026 د. م. عبدالمجيد بن سعيد البطاطي</span>
+        <span>تصميم مستوحى من لغة آبل (Apple Glassmorphism & Bento Design)</span>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

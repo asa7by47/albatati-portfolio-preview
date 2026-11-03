@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معاينة النماذج الـ 5 لتصميم محفظة د. م. عبدالمجيد البطاطي</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Cairo', sans-serif; background-color: #0f172a; color: #f8fafc; }
+    .active-style-btn {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      border-color: #60a5fa;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Controller Bar -->
+  <header class="bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-4 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center gap-3">
+        <span class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center font-black text-white text-base">5</span>
+        <div>
+          <h1 class="text-base font-bold text-white">نماذج تصميم محفظة: د. م. عبدالمجيد البطاطي</h1>
+          <p class="text-xs text-slate-400">اختر من بين 5 أنماط بصرية متكاملة لاتخاذ القرار</p>
+        </div>
+      </div>
+
+      <!-- Styles Switcher -->
+      <div class="flex flex-wrap gap-2 justify-center text-xs font-bold">
+        <button onclick="loadSample('sample7-apple-dark-pro.html', this)" class="style-btn active-style-btn px-3.5 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 transition">
+           آبل برو تيتانيوم (Apple Dark Pro)
+        </button>
+        <button onclick="loadSample('sample6-apple-glassmorphism.html', this)" class="style-btn px-3.5 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 transition">
+           آبل زجاجي ناصع (Apple Bento Light)
+        </button>
+        <button onclick="loadSample('sample1-royal-executive.html', this)" class="style-btn px-3.5 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 transition">
+          1. الفخامة التنفيذية (Royal Gold)
+        </button>
+        <button onclick="loadSample('sample2-editorial-minimal.html', this)" class="style-btn px-3.5 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 transition">
+          2. التحريري المعاصر (Editorial)
+        </button>
+        <button onclick="loadSample('sample3-engineering-tech.html', this)" class="style-btn px-3.5 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 transition">
+          3. الهندسي التقني (Tech Blue)
+        </button>
+        <button onclick="loadSample('sample4-modern-glassmorphic.html', this)" class="style-btn px-3.5 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 transition">
+          4. الزجاجي التفاعلي (Glass 2026)
+        </button>
+        <button onclick="loadSample('sample5-contemporary-heritage.html', this)" class="style-btn px-3.5 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 transition">
+          5. الأصالة والتراث (Arabesque)
+        </button>
+      </div>
+
+      <!-- Device & Fullscreen controls -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex bg-slate-800 p-1 rounded-lg border border-slate-700 text-xs">
+          <button onclick="setViewport('100%')" class="px-2.5 py-1 rounded bg-slate-700 text-white font-medium">شاشة كاملة</button>
+          <button onclick="setViewport('768px')" class="px-2.5 py-1 rounded hover:bg-slate-700 text-slate-300 font-medium">تابلت</button>
+          <button onclick="setViewport('390px')" class="px-2.5 py-1 rounded hover:bg-slate-700 text-slate-300 font-medium">جوال</button>
+        </div>
+        <a id="open-tab-btn" href="sample7-apple-dark-pro.html" target="_blank" class="px-3 py-1.5 rounded-lg bg-blue-600/20 border border-blue-500/40 text-blue-400 text-xs font-semibold hover:bg-blue-600 hover:text-white transition">
+          فتح في نافذة كاملة ↗
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Live Preview Iframe Container -->
+  <main class="flex-1 p-3 sm:p-6 flex flex-col items-center justify-center bg-slate-950">
+    <div id="preview-wrapper" class="w-full h-[85vh] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl transition-all duration-300 bg-white">
+      <iframe id="preview-frame" src="sample7-apple-dark-pro.html" class="w-full h-full border-0"></iframe>
+    </div>
+  </main>
+
+  <script>
+    function loadSample(url, btn) {
+      document.getElementById('preview-frame').src = url;
+      document.getElementById('open-tab-btn').href = url;
+      
+      document.querySelectorAll('.style-btn').forEach(b => {
+        b.classList.remove('active-style-btn');
+      });
+      btn.classList.add('active-style-btn');
+    }
+
+    function setViewport(width) {
+      const wrapper = document.getElementById('preview-wrapper');
+      wrapper.style.width = width;
+    }
+  </script>
+
+</body>
+</html>

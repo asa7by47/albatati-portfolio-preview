@@ -1,0 +1,59 @@
+{
+  "name": {
+    "arabic": "عبدالمجيد بن سعيد بن طالب البطاطي",
+    "english": "Abdulmajeed Saeed Albatati",
+    "honorific_ar": "د. م. عبدالمجيد البطاطي",
+    "honorific_en": "Eng. Dr. Abdulmajeed Albatati"
+  },
+  "titles": [
+    "عضو مجلس إدارة جمعية التعاون للمشاريع البيئية",
+    "مهندس استشاري معتمد من الهيئة السعودية للمهندسين (رقم: 201226)",
+    "محكم معتمد من وزارة العدل",
+    "مدير ومستشار إدارة وتطوير استراتيجي"
+  ],
+  "phone": "0505626375",
+  "country_code": "+966",
+  "emails": [
+    "info@asalbatati.net",
+    "a.albatati@asalbatati.net",
+    "abdulmajeed@asalbatati.net"
+  ],
+  "location": {
+    "city": "جدة (Jeddah)",
+    "region": "منطقة مكة المكرمة",
+    "country": "المملكة العربية السعودية (Saudi Arabia)"
+  },
+  "academic_qualifications": [
+    {
+      "degree": "دراسة دكتوراه في إدارة الأعمال",
+      "institution": "أكاديمية اعمل بيزنس",
+      "topic": "الأداء المؤسسي والتطويري لجمعيات المتقاعدين وعلاقته بالرضا والالتزام بالعضوية - دراسة تطبيقية على جمعية متقاعدي منطقة مكة المكرمة"
+    },
+    {
+      "degree": "شهادة مهندس استشاري معتمد",
+      "institution": "الهيئة السعودية للمهندسين",
+      "details": "عضوية رقم 201226"
+    },
+    {
+      "degree": "CBA (Certified Business Administrator)",
+      "institution": "Institute of Business Administration, Delaware USA",
+      "year": "2002"
+    },
+    {
+      "degree": "M.B.A. (Master of Business Administration)",
+      "institution": "University of Wales, UK",
+      "year": "1998"
+    },
+    {
+      "degree": "بكالوريوس هندسة ميكانيكية (B.Sc. Mechanical Engineering)",
+      "institution": "جامعة الرياض (الملك سعود)",
+      "grade": "جيد جداً",
+      "year": "1977/1978"
+    },
+    {
+      "degree": "الثانوية العامة",
+      "institution": "مدارس الفلاح الثانوية بجدة",
+      "year": "1972"
+    }
+  ]
+}

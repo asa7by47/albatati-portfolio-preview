@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "key": "one",
+    "title": "ورقة عمل قدمت في المؤتمر العاشر الدولي للتسامح والسلام بالقاهرة",
+    "date": "25/11/2018",
+    "description": "قد تم تقديم هذا العرض في المؤتمر الدولي العاشر للتسامح والسلام\n\nالمنعقد لمدة يومين 24 ، 25 نوفمبر 2018 م في اكاديمية طيبة\n\nالمعادي بجوار مستشفى النيل بدراوي بالقاهرة وبفندق فور سيزون\n\nبالجيزة- القاهرة تحت رعاية أ.د نظمي عبدالحميد نائب رئيس جامعة\n\nعين شمس لشئون خدمة المجتمع وتنمية البيئة ورئيس المؤتمر الدكتور\n\nحمدي قنديل رئيس منظمة التسامح والسلام.",
+    "cover_image": "books/covers/01_one.jpg",
+    "pdf_file": "books/pdfs/01_ورقة_عمل_قدمت_في_المؤتمر_العاش.pdf"
+  },
+  {
+    "id": 2,
+    "key": "two",
+    "title": "Causes of Corrupt Behaviour in Organisations",
+    "date": "01/01/2015",
+    "description": "",
+    "cover_image": "books/covers/02_two.jpg",
+    "pdf_file": "books/pdfs/02_Causes_of_Corrupt_Behaviour_in.pdf"
+  },
+  {
+    "id": 3,
+    "key": "three",
+    "title": "ربط استراتيجية المؤسسة بثقافة العمل",
+    "date": "06/08/2011",
+    "description": "",
+    "cover_image": "books/covers/03_three.png",
+    "pdf_file": "books/pdfs/03_ربط_استراتيجية_المؤسسة_بثقافة.pdf"
+  },
+  {
+    "id": 4,
+    "key": "four",
+    "title": "الطرق العلمية لتحديد الاهداف والاحتياجات والخطط المالية",
+    "date": "01/11/2010",
+    "description": "",
+    "cover_image": "books/covers/04_four.jpg",
+    "pdf_file": "books/pdfs/04_الطرق_العلمية_لتحديد_الاهداف_و.pdf"
+  },
+  {
+    "id": 5,
+    "key": "five",
+    "title": "النموذج الفكري لهيكل الرؤية المؤسسي",
+    "date": "26/03/2010",
+    "description": "",
+    "cover_image": "books/covers/05_five.jpg",
+    "pdf_file": "books/pdfs/05_النموذج_الفكري_لهيكل_الرؤية_ال.pdf"
+  },
+  {
+    "id": 6,
+    "key": "six",
+    "title": "التطوير الإداري للتخطيط العمراني بأمانة محافظة جدة",
+    "date": "01/03/2010",
+    "description": "",
+    "cover_image": "books/covers/06_six.jpg",
+    "pdf_file": "books/pdfs/06_التطوير_الإداري_للتخطيط_العمرا.pdf"
+  },
+  {
+    "id": 7,
+    "key": "seven",
+    "title": "منهج السعودة في القطاع الخاص",
+    "date": "07/09/2009",
+    "description": "",
+    "cover_image": "books/covers/07_seven.jpg",
+    "pdf_file": "books/pdfs/07_منهج_السعودة_في_القطاع_الخاص.pdf"
+  },
+  {
+    "id": 8,
+    "key": "eight",
+    "title": "من أعلام حضرموت - الشيخ حسن قحطان النقيب",
+    "date": "26/02/2009",
+    "description": "",
+    "cover_image": "books/covers/08_eight.jpg",
+    "pdf_file": "books/pdfs/08_من_أعلام_حضرموت_-_الشيخ_حسن_قح.pdf"
+  },
+  {
+    "id": 9,
+    "key": "nine",
+    "title": "الـطـريــق إلــى الـنـظام الـحـاكم لـلـشركـات الـحـاكـمـيــة\n                الـمـؤسـســيـة.",
+    "date": "08/07/2008",
+    "description": "",
+    "cover_image": "books/covers/09_nine.jpg",
+    "pdf_file": "books/pdfs/09_الـطـريــق_إلــى_الـنـظام_الـح.pdf"
+  },
+  {
+    "id": 10,
+    "key": "ten",
+    "title": "تأمين مستقبل المنشآت العائلية التجارية في المملكة العربية\n                السعودية",
+    "date": "08/07/2008",
+    "description": "",
+    "cover_image": "books/covers/10_ten.png",
+    "pdf_file": "books/pdfs/10_تأمين_مستقبل_المنشآت_العائلية.pdf"
+  },
+  {
+    "id": 11,
+    "key": "eleven",
+    "title": "تــوطـيـن الـوظـائــف .... إستراتيجية ومـنـهــج",
+    "date": "07/07/2008",
+    "description": "",
+    "cover_image": "books/covers/11_eleven.jpg",
+    "pdf_file": "books/pdfs/11_تــوطـيـن_الـوظـائــف__إستراتي.pdf"
+  }
+]

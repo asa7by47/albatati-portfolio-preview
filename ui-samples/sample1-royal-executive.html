@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نمط 1: الفخامة التنفيذية والأكاديمية | د. م. عبدالمجيد البطاطي</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            amiri: ['Amiri', 'serif'],
+            cairo: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            royal: {
+              950: '#041710',
+              900: '#08281d',
+              800: '#0e3d2e',
+              700: '#155541',
+              DEFAULT: '#0b4433',
+            },
+            gold: {
+              100: '#fdf9ee',
+              300: '#e8d4a2',
+              DEFAULT: '#c5a059',
+              600: '#a37e38',
+              700: '#836327',
+            },
+            ivory: '#fcfbfa'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Cairo', sans-serif; background-color: #fbfaf8; }
+    h1, h2, h3, .font-serif-ar { font-family: 'Amiri', serif; }
+    .gold-gradient { background: linear-gradient(135deg, #d8b76e 0%, #aa843b 100%); }
+    .gold-border { border-color: rgba(197, 160, 89, 0.35); }
+    .gold-text-glow { text-shadow: 0 0 20px rgba(197, 160, 89, 0.25); }
+  </style>
+</head>
+<body class="text-stone-800 antialiased selection:bg-gold selection:text-white">
+
+  <!-- Top Bar -->
+  <header class="bg-royal-950 text-stone-300 border-b border-gold/30 text-xs py-2 px-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <span>📍 المملكة العربية السعودية - جدة</span>
+        <span class="hidden md:inline">|</span>
+        <span class="hidden md:inline">✉️ info@asalbatati.net</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-gold">الهيئة السعودية للمهندسين: 201226</span>
+        <span>|</span>
+        <a href="../extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="hover:text-gold transition">تحميل السيرة الذاتية (PDF)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="bg-royal-900 sticky top-0 z-50 shadow-xl border-b border-gold/20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <div class="w-11 h-11 rounded-full gold-gradient flex items-center justify-center text-royal-950 font-bold text-lg shadow-lg">
+          ع.ب
+        </div>
+        <div>
+          <a href="#" class="text-white text-xl font-bold tracking-tight font-serif-ar">د. م. عبدالمجيد البطاطي</a>
+          <p class="text-gold-300 text-xs">مستشار هندسي وإداري | محكم معتمد</p>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm text-stone-200">
+        <a href="#about" class="hover:text-gold transition">نبذة شخصية</a>
+        <a href="#credentials" class="hover:text-gold transition">المؤهلات والمناصب</a>
+        <a href="#books" class="hover:text-gold transition">الكتب والأبحاث</a>
+        <a href="#articles" class="hover:text-gold transition">المقالات والدراسات</a>
+        <a href="#projects" class="hover:text-gold transition">المشاريع والمبادرات</a>
+        <a href="#contact" class="px-5 py-2 rounded-full gold-gradient text-royal-950 font-bold hover:shadow-lg transition">تواصل معي</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-b from-royal-900 via-royal-800 to-royal-950 text-white py-20 px-6 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#c5a059 1px, transparent 1px); background-size: 28px 28px;"></div>
+    
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/40 bg-gold/10 text-gold-300 text-sm">
+          <span>👑</span>
+          <span>خبرة تتجاوز 40 عاماً في الإدارة الهندسية والاستراتيجية</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight gold-text-glow">
+          عبدالمجيد بن سعيد <br>
+          <span class="text-gold font-normal">بن طالب البطاطي</span>
+        </h1>
+        <p class="text-stone-300 text-lg leading-relaxed max-w-2xl">
+          مهندس استشاري معتمد، وباحث دكتوراه في إدارة الأعمال، ومحكم معتمد بوزارة العدل، وعضو مجلس إدارة جمعية التعاون للمشاريع البيئية. مسيرة حافلة بقيادة أضخم المشاريع التنموية والحلول الهندسية وإثراء المكتبة الإدارية بالأبحاث والمؤلفات.
+        </p>
+
+        <!-- Metrics -->
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-gold/20 max-w-lg">
+          <div>
+            <div class="text-3xl font-bold text-gold font-serif-ar">+11</div>
+            <div class="text-xs text-stone-300 mt-1">كتاباً وبحثاً علمياً</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-gold font-serif-ar">+40</div>
+            <div class="text-xs text-stone-300 mt-1">عاماً من الخبرة</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-gold font-serif-ar">20+</div>
+            <div class="text-xs text-stone-300 mt-1">مشروعاً ومبادرة وطنية</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href="#books" class="px-7 py-3.5 rounded-lg gold-gradient text-royal-950 font-bold shadow-xl hover:opacity-95 transition">استعراض المؤلفات والأبحاث</a>
+          <a href="#about" class="px-7 py-3.5 rounded-lg border border-gold/40 text-stone-200 hover:bg-gold/10 transition">السيرة المهنية</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative">
+          <div class="absolute -inset-4 rounded-2xl gold-gradient opacity-30 blur-xl"></div>
+          <div class="relative rounded-2xl overflow-hidden border-2 border-gold/60 shadow-2xl w-72 sm:w-84 bg-royal-950">
+            <img src="../extracted_data/brand_assets/home_1.JPG" alt="د. م. عبدالمجيد البطاطي" class="w-full h-auto object-cover object-top">
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-royal-950 via-royal-950/80 to-transparent p-5 text-center">
+              <span class="text-xs font-semibold uppercase tracking-wider text-gold">المملكة العربية السعودية</span>
+              <p class="text-sm font-serif-ar text-white mt-1">عضو مجلس إدارة جمعية المشاريع البيئية</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research & Books Showcase -->
+  <section id="books" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-gold font-bold text-sm tracking-widest uppercase">الإنتاج العلمي والفكري</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-royal-950 mt-2">الكتب والأبحاث المحكّمة</h2>
+      <div class="w-20 h-1 gold-gradient mx-auto my-4 rounded-full"></div>
+      <p class="text-stone-600 text-sm sm:text-base">دراسات ومؤلفات تطبيقية في الحوكمة، السلوك المؤسسي، التوطين والاستراتيجيات المنشورة دولياً ومحلياً.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Book 1 -->
+      <div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition flex flex-col group">
+        <div class="h-64 bg-stone-100 flex items-center justify-center p-4 border-b border-stone-100 relative overflow-hidden">
+          <img src="../extracted_data/books/covers/01_one.jpg" alt="المؤتمر الدولي العاشر للتسامح" class="max-h-full object-contain group-hover:scale-105 transition duration-300">
+          <span class="absolute top-3 right-3 bg-royal-900 text-gold text-xs px-2.5 py-1 rounded-md font-semibold">بحث مؤتمر</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-xs text-stone-600">25 نوفمبر 2018 | القاهرة</span>
+            <h3 class="text-lg font-bold text-royal-950 mt-1 mb-2 font-serif-ar leading-snug">ورقة عمل المؤتمر العاشر الدولي للتسامح والسلام</h3>
+            <p class="text-stone-600 text-xs leading-relaxed line-clamp-3">
+              عرض علمي قُدم في المؤتمر الدولي العاشر للتسامح والسلام بأكاديمية طيبة وجامعة عين شمس بحضور نخبة أكاديمية دولية.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-stone-100 flex justify-between items-center">
+            <a href="../extracted_data/books/pdfs/01_ورقة_عمل_قدمت_في_المؤتمر_العاش.pdf" target="_blank" class="text-royal-800 font-bold text-xs hover:text-gold flex items-center gap-1">
+              <span>تحميل البحث (PDF)</span>
+              <span>↓</span>
+            </a>
+            <span class="text-xs text-stone-600">ورقة عمل</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition flex flex-col group">
+        <div class="h-64 bg-stone-100 flex items-center justify-center p-4 border-b border-stone-100 relative overflow-hidden">
+          <img src="../extracted_data/books/covers/02_two.jpg" alt="Causes of Corrupt Behaviour" class="max-h-full object-contain group-hover:scale-105 transition duration-300">
+          <span class="absolute top-3 right-3 bg-royal-900 text-gold text-xs px-2.5 py-1 rounded-md font-semibold">كتاب إنجليزي</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-xs text-stone-600">01 يناير 2015</span>
+            <h3 class="text-lg font-bold text-royal-950 mt-1 mb-2 font-serif-ar leading-snug">Causes of Corrupt Behaviour in Organisations</h3>
+            <p class="text-stone-600 text-xs leading-relaxed line-clamp-3">
+              دراسة تحليلية موسعة لأسباب ومحفزات السلوك السلبي في بيئات العمل المؤسسية ووضع أطر النزاهة والرقابة الإدارية.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-stone-100 flex justify-between items-center">
+            <a href="../extracted_data/books/pdfs/02_Causes_of_Corrupt_Behaviour_in.pdf" target="_blank" class="text-royal-800 font-bold text-xs hover:text-gold flex items-center gap-1">
+              <span>تحميل الكتاب (PDF)</span>
+              <span>↓</span>
+            </a>
+            <span class="text-xs text-stone-600">إصدار دولي</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition flex flex-col group">
+        <div class="h-64 bg-stone-100 flex items-center justify-center p-4 border-b border-stone-100 relative overflow-hidden">
+          <img src="../extracted_data/books/covers/10_ten.png" alt="تأمين مستقبل المنشآت العائلية" class="max-h-full object-contain group-hover:scale-105 transition duration-300">
+          <span class="absolute top-3 right-3 bg-royal-900 text-gold text-xs px-2.5 py-1 rounded-md font-semibold">حوكمة واستراتيجية</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-xs text-stone-600">دراسة متخصصة</span>
+            <h3 class="text-lg font-bold text-royal-950 mt-1 mb-2 font-serif-ar leading-snug">تأمين مستقبل المنشآت والشركات العائلية السعودية</h3>
+            <p class="text-stone-600 text-xs leading-relaxed line-clamp-3">
+              أطر ميثاق العائلة وحوكمة الشركات العائلية في المملكة لضمان انتقال القيادة بسلاسة واستدامة النشاط الاقتصادي عبر الأجيال.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-stone-100 flex justify-between items-center">
+            <a href="../extracted_data/books/pdfs/10_تأمين_مستقبل_المنشآت_العائلية.pdf" target="_blank" class="text-royal-800 font-bold text-xs hover:text-gold flex items-center gap-1">
+              <span>تحميل البحث (PDF)</span>
+              <span>↓</span>
+            </a>
+            <span class="text-xs text-stone-600">دراسة حوكمة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-royal-950 text-stone-400 py-12 px-6 border-t border-gold/30">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 text-xs">
+      <div>
+        <p class="text-stone-200 font-bold text-sm">د. م. عبدالمجيد البطاطي</p>
+        <p class="mt-1">جميع الحقوق محفوظة © 2026 | النمط 1: الفخامة التنفيذية والأكاديمية</p>
+      </div>
+      <div class="flex gap-6">
+        <a href="#about" class="hover:text-gold">نبذة</a>
+        <a href="#books" class="hover:text-gold">الكتب</a>
+        <a href="#articles" class="hover:text-gold">المقالات</a>
+        <a href="#contact" class="hover:text-gold">التواصل</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

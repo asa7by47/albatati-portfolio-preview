@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نمط 2: النمط التحريري المعاصر | د. م. عبدالمجيد البطاطي</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['IBM Plex Sans Arabic', 'sans-serif'],
+          },
+          colors: {
+            accent: {
+              DEFAULT: '#b45309',
+              light: '#f59e0b',
+              dark: '#92400e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'IBM Plex Sans Arabic', sans-serif; background-color: #fafaf9; }
+    .editorial-border { border-bottom: 2px solid #1c1917; }
+  </style>
+</head>
+<body class="text-stone-900 antialiased">
+
+  <!-- Minimal Nav -->
+  <header class="border-b border-stone-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-baseline">
+      <div>
+        <a href="#" class="text-xl font-bold tracking-tight text-stone-900">عبدالمجيد البطاطي</a>
+        <span class="text-xs text-stone-600 block">مستشار إداري وهندسي | باحث وكاتب</span>
+      </div>
+      <nav class="hidden md:flex gap-8 text-sm font-medium text-stone-600">
+        <a href="#about" class="hover:text-stone-900 transition">نبذة</a>
+        <a href="#articles" class="hover:text-stone-900 transition">المقالات</a>
+        <a href="#books" class="hover:text-stone-900 transition">المؤلفات والأبحاث</a>
+        <a href="#media" class="hover:text-stone-900 transition">الأرشيف الصحفي</a>
+        <a href="#contact" class="hover:text-accent transition">تواصل</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Editorial Hero -->
+  <main class="max-w-6xl mx-auto px-6 pt-16 pb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pb-20 border-b border-stone-200">
+      
+      <div class="lg:col-span-8 space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-accent bg-amber-50 px-3 py-1 rounded border border-amber-200">
+          منصة فكرية واستشارية
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-stone-950 leading-tight">
+          «التعليم يبني الحضارات، والإدارة الرشيدة تحفظ التنمية وتصنع المستقبل»
+        </h1>
+        <p class="text-stone-600 text-lg leading-relaxed font-light">
+          صفحة توثيقية للأعمال الاستشارية، الأبحاث المحكّمة، والمقالات المنشورة في التنمية الحضرية، إدارة المنظمات، والحوكمة بقلم المهندس الاستشاري <strong>عبدالمجيد بن سعيد البطاطي</strong>.
+        </p>
+
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href="../extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-5 py-2.5 bg-stone-900 text-white text-sm font-semibold rounded hover:bg-stone-800 transition">
+            تحميل السيرة المهنية (PDF)
+          </a>
+          <a href="#articles" class="px-5 py-2.5 bg-stone-100 text-stone-800 text-sm font-semibold rounded border border-stone-300 hover:bg-stone-200 transition">
+            قراءة أحدث المقالات
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4">
+        <div class="bg-stone-100 p-2 border border-stone-200 rounded-lg shadow-sm">
+          <img src="../extracted_data/brand_assets/home_1.JPG" alt="عبدالمجيد البطاطي" class="w-full grayscale hover:grayscale-0 transition duration-500 rounded">
+          <div class="p-3 text-xs text-stone-500 text-center font-mono">
+            جدة | المملكة العربية السعودية
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Articles Section (Editorial Layout) -->
+    <section id="articles" class="py-16 border-b border-stone-200">
+      <div class="flex justify-between items-baseline mb-10">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-stone-900">أحدث المقالات والدراسات المنشورة</h2>
+          <p class="text-xs text-stone-500 mt-1">كتابات متخصصة في الشأن العام والتعليم والتخطيط المؤسسي</p>
+        </div>
+        <a href="#" class="text-xs font-semibold text-accent hover:underline">عرض جميع المقالات (8) ←</a>
+      </div>
+
+      <div class="divide-y divide-stone-200">
+        <!-- Article 1 -->
+        <article class="py-8 group grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
+          <span class="md:col-span-2 text-xs font-mono text-stone-600">26 أبريل 2016</span>
+          <div class="md:col-span-8">
+            <h3 class="text-xl font-bold text-stone-900 group-hover:text-accent transition">
+              <a href="#">التعليم يبني الحضارات ويصنع التاريخ</a>
+            </h3>
+            <p class="text-stone-600 text-sm mt-2 leading-relaxed">
+              الشعوب التي استطاعت أن تبني لها حضارة وتاريخاً تفتخر به كان العلم نبراساً لها وهدفاً لأبنائها... مناقشة منظومة التعليم القائمة على الإنسان والمكان والمنهج ودور المعلم الركيزي في بناء الأجيال.
+            </p>
+          </div>
+          <div class="md:col-span-2 text-left">
+            <span class="text-xs font-medium text-stone-600 group-hover:text-stone-900">قراءة المقال →</span>
+          </div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="py-8 group grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
+          <span class="md:col-span-2 text-xs font-mono text-stone-600">14 نوفمبر 2015</span>
+          <div class="md:col-span-8">
+            <h3 class="text-xl font-bold text-stone-900 group-hover:text-accent transition">
+              <a href="#">إلى معالي وزير الإسكان مع التحية</a>
+            </h3>
+            <p class="text-stone-600 text-sm mt-2 leading-relaxed">
+              رؤية تخطيطية ونقد بنّاء لآليات استيعاب الاحتياج السكني بالمملكة، وتأكيد على ضرورة ربط مشاريع الإسكان بالبنية التحتية المتكاملة وجودة الحياة العمرانية.
+            </p>
+          </div>
+          <div class="md:col-span-2 text-left">
+            <span class="text-xs font-medium text-stone-600 group-hover:text-stone-900">قراءة المقال →</span>
+          </div>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="py-8 group grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
+          <span class="md:col-span-2 text-xs font-mono text-stone-600">12 أكتوبر 2015</span>
+          <div class="md:col-span-8">
+            <h3 class="text-xl font-bold text-stone-900 group-hover:text-accent transition">
+              <a href="#">المنفعة العامة والمنفعة الخاصة</a>
+            </h3>
+            <p class="text-stone-600 text-sm mt-2 leading-relaxed">
+              معايير الموازنة بين مصلحة المستثمر والتطوير الشامل للمجتمع، واستعراض لأهمية تطبيق أحدث مبادئ الحوكمة في الشراكات بين القطاعين العام والخاص.
+            </p>
+          </div>
+          <div class="md:col-span-2 text-left">
+            <span class="text-xs font-medium text-stone-600 group-hover:text-stone-900">قراءة المقال →</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Books Minimal List -->
+    <section id="books" class="py-16">
+      <div class="flex justify-between items-baseline mb-10">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-stone-900">الكتب والأبحاث (11 عنواناً)</h2>
+          <p class="text-xs text-stone-500 mt-1">أوراق علمية، كتب منشورة، ومحاضرات محكّمة متاحة للتحميل المباشر</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 bg-white border border-stone-200 rounded flex gap-5 items-center">
+          <img src="../extracted_data/books/covers/06_six.jpg" class="w-16 h-24 object-cover shadow border border-stone-200" alt="التطوير الإداري">
+          <div class="space-y-1">
+            <span class="text-xs font-mono text-stone-600">دراسة عمرانية</span>
+            <h4 class="font-bold text-sm text-stone-900">التطوير الإداري للتخطيط العمراني</h4>
+            <a href="../extracted_data/books/pdfs/06_التطوير_الإداري_للتخطيط_العمرا.pdf" target="_blank" class="text-xs text-accent font-semibold hover:underline block pt-1">
+              تحميل الكتاب (PDF) ↓
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 bg-white border border-stone-200 rounded flex gap-5 items-center">
+          <img src="../extracted_data/books/covers/07_seven.jpg" class="w-16 h-24 object-cover shadow border border-stone-200" alt="السعودة">
+          <div class="space-y-1">
+            <span class="text-xs font-mono text-stone-600">توطين واستراتيجية</span>
+            <h4 class="font-bold text-sm text-stone-900">منهج السعودة في القطاع الخاص</h4>
+            <a href="../extracted_data/books/pdfs/07_منهج_السعودة_في_القطاع_الخاص.pdf" target="_blank" class="text-xs text-accent font-semibold hover:underline block pt-1">
+              تحميل الكتاب (PDF) ↓
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-stone-200 py-10 bg-white text-xs text-stone-600">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+      <p>© 2026 عبدالمجيد البطاطي. النمط 2: التحريري المعاصر.</p>
+      <p>info@asalbatati.net | 0505626375</p>
+    </div>
+  </footer>
+
+</body>
+</html>

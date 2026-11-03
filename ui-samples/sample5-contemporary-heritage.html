@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نمط 5: الأصالة العربية والتراث المعاصر | د. م. عبدالمجيد البطاطي</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            ruqaa: ['Aref Ruqaa', 'serif'],
+            cairo: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            sand: {
+              50: '#faf7f2',
+              100: '#f5eee3',
+              200: '#ebd9c3',
+              300: '#dec09d',
+              400: '#d1a478',
+              500: '#c58b59',
+              800: '#6b3f21',
+              900: '#432613',
+              950: '#2a160a',
+            },
+            amberOchre: '#b8860b',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Cairo', sans-serif; background-color: #faf7f2; color: #2a160a; }
+    h1, h2, .font-heritage { font-family: 'Aref Ruqaa', serif; }
+    .arabesque-border {
+      border: 1px solid #dec09d;
+      box-shadow: 0 0 0 4px #faf7f2, 0 0 0 5px #dec09d;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Heritage Top Bar -->
+  <header class="bg-sand-950 text-sand-200 py-3 px-6 text-xs border-b-2 border-amberOchre">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <span class="font-heritage text-sm text-sand-300">بسم الله الرحمن الرحيم</span>
+      <div class="flex gap-4">
+        <span>المملكة العربية السعودية - مكة المكرمة وجدة</span>
+        <span>|</span>
+        <span>هاتف: 0505626375</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-sand-900 text-sand-100 py-5 px-6 shadow-md sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div>
+        <span class="text-2xl font-bold font-heritage tracking-wide text-amberOchre block">عبدالمجيد بن سعيد البطاطي</span>
+        <span class="text-xs text-sand-300">مستشار الإدارة والهندسة | محكّم معتمد بوزارة العدل</span>
+      </div>
+      <div class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#about" class="hover:text-amberOchre transition">الترجمة والمسيرة</a>
+        <a href="#books" class="hover:text-amberOchre transition">المصنفات والأبحاث</a>
+        <a href="#articles" class="hover:text-amberOchre transition">المقالات والآراء</a>
+        <a href="#legacy" class="hover:text-amberOchre transition">خدمة المجتمع والبيئة</a>
+        <a href="#contact" class="hover:text-amberOchre transition">المراسلة</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Banner with Arabesque Accent -->
+  <main class="max-w-6xl mx-auto px-6 py-16">
+    <div class="bg-sand-100 arabesque-border rounded-xl p-8 sm:p-12 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        <div class="md:col-span-8 space-y-5">
+          <span class="text-xs font-bold text-sand-800 bg-sand-200 px-3 py-1 rounded">سيرة أصيلة وعطاء مستمر</span>
+          <h1 class="text-4xl sm:text-5xl font-bold text-sand-950 leading-tight">
+            د. م. عبدالمجيد بن سعيد بن طالب البطاطي
+          </h1>
+          <p class="text-sand-900 text-base leading-relaxed">
+            من أعلام التخطيط الهندسي والإداري، كرس مسيرته المهنية التي تمتد لأكثر من أربعين عاماً في خدمة المنظومة التنموية، وحوكمة واستقرار المنشآت والشركات العائلية، وتوثيق التجارب الوطنية والإنسانية الرائدة.
+          </p>
+
+          <div class="pt-4 flex flex-wrap gap-4">
+            <a href="../extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-6 py-3 bg-sand-900 text-sand-100 font-bold text-sm rounded shadow hover:bg-sand-950 transition">
+              تحميل السيرة الذاتية (PDF)
+            </a>
+            <a href="#books" class="px-6 py-3 border border-sand-800 text-sand-900 font-bold text-sm rounded hover:bg-sand-200 transition">
+              تصفح المصنفات والمؤلفات
+            </a>
+          </div>
+        </div>
+
+        <div class="md:col-span-4 flex justify-center">
+          <div class="p-3 bg-white arabesque-border rounded-lg shadow-lg">
+            <img src="../extracted_data/brand_assets/home_1.JPG" alt="د. عبدالمجيد البطاطي" class="w-64 h-auto object-cover rounded">
+            <div class="text-center mt-3 font-heritage text-sm text-sand-900">
+              جدة - المملكة العربية السعودية
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Featured Books Section -->
+    <section id="books" class="space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <h2 class="text-3xl font-bold text-sand-950">المؤلفات والأبحاث التوثيقية</h2>
+        <p class="text-sand-800 text-sm">عناوين متخصصة في تأمين مستقبل الشركات العائلية وأعلام المجتمع والحوكمة</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="bg-white p-6 rounded-lg arabesque-border space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-44 bg-sand-50 rounded flex items-center justify-center p-2">
+              <img src="../extracted_data/books/covers/08_eight.jpg" class="h-full object-contain" alt="من أعلام حضرموت">
+            </div>
+            <span class="text-xs text-sand-600 block">توثيق وسير</span>
+            <h3 class="font-bold text-base text-sand-950 font-heritage">من أعلام حضرموت - الشيخ حسن قحطان البطاطي</h3>
+            <p class="text-xs text-sand-800 leading-relaxed">
+              سيرة توثيقية لمسيرة البر والإحسان وأثر الشخصيات القيادية في البناء الاجتماعي والاقتصادي.
+            </p>
+          </div>
+          <a href="../extracted_data/books/pdfs/08_من_أعلام_حضرموت_-_الشيخ_حسن_قح.pdf" target="_blank" class="block text-center py-2 bg-sand-100 hover:bg-sand-200 text-sand-900 font-bold text-xs rounded border border-sand-300 transition">
+            تحميل الكتاب (PDF)
+          </a>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg arabesque-border space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-44 bg-sand-50 rounded flex items-center justify-center p-2">
+              <img src="../extracted_data/books/covers/10_ten.png" class="h-full object-contain" alt="تأمين المنشآت العائلية">
+            </div>
+            <span class="text-xs text-sand-600 block">حوكمة واستدامة</span>
+            <h3 class="font-bold text-base text-sand-950 font-heritage">تأمين مستقبل المنشآت والشركات العائلية</h3>
+            <p class="text-xs text-sand-800 leading-relaxed">
+              رؤية إدارية وقانونية لحماية الكيانات الاقتصادية الأسرية من التفكك وتعزيز حوكمتها في السوق السعودي.
+            </p>
+          </div>
+          <a href="../extracted_data/books/pdfs/10_تأمين_مستقبل_المنشآت_العائلية.pdf" target="_blank" class="block text-center py-2 bg-sand-100 hover:bg-sand-200 text-sand-900 font-bold text-xs rounded border border-sand-300 transition">
+            تحميل البحث (PDF)
+          </a>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg arabesque-border space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-44 bg-sand-50 rounded flex items-center justify-center p-2">
+              <img src="../extracted_data/books/covers/09_nine.jpg" class="h-full object-contain" alt="الطريق إلى النظام">
+            </div>
+            <span class="text-xs text-sand-600 block">إدارة وتنظيم</span>
+            <h3 class="font-bold text-base text-sand-950 font-heritage">الطريق إلى النظام والحوكمة المؤسسية</h3>
+            <p class="text-xs text-sand-800 leading-relaxed">
+              أدوات تأسيس اللوائح الداخلية والأنظمة الإدارية الفاعلة للمنظمات الربحية وغير الربحية.
+            </p>
+          </div>
+          <a href="../extracted_data/books/pdfs/09_الـطـريــق_إلــى_الـنـظام_الـح.pdf" target="_blank" class="block text-center py-2 bg-sand-100 hover:bg-sand-200 text-sand-900 font-bold text-xs rounded border border-sand-300 transition">
+            تحميل الكتاب (PDF)
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-sand-950 text-sand-300 py-10 px-6 border-t-2 border-amberOchre text-center text-xs space-y-2">
+    <p class="font-heritage text-base text-sand-200">د. م. عبدالمجيد البطاطي - النمط 5: الأصالة العربية والتراث المعاصر</p>
+    <p>info@asalbatati.net | المملكة العربية السعودية</p>
+  </footer>
+
+</body>
+</html>
