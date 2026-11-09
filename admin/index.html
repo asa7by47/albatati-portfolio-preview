@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم الإدارية | د. م. عبدالمجيد البطاطي</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Readex+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Readex Pro', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="text-slate-800 antialiased p-3 sm:p-6 lg:p-8">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ============================================== -->
+  <!-- 1. LOGIN SCREEN (WHEN LOGGED OUT)              -->
+  <!-- ============================================== -->
+  <div id="login-screen" class="min-h-[85vh] flex items-center justify-center p-4">
+    <div class="glass-card bg-white/90 rounded-3xl max-w-md w-full p-8 sm:p-10 shadow-xl space-y-6 text-center border border-white">
+      
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 text-white flex items-center justify-center text-3xl font-black shadow-lg mx-auto">
+        🔐
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-black text-slate-900">لوحة التحكم الإدارية</h2>
+        <p class="text-xs text-slate-500 mt-1">منصة د. م. عبدالمجيد البطاطي</p>
+      </div>
+
+      <form id="login-form" class="space-y-4 text-right">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1.5">كلمة مرور المدير</label>
+          <input type="password" id="login-password" required placeholder="أدخل كلمة المرور (الافتراضية: admin)" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white">
+        </div>
+
+        <button type="submit" id="btn-login" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition active:scale-[0.98]">
+          دخول لوحة التحكم
+        </button>
+      </form>
+
+      <div class="pt-2 text-center">
+        <a href="../" class="text-xs text-emerald-700 hover:underline">← العودة إلى الموقع الرئيسي</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- 2. DASHBOARD INTERFACE (WHEN LOGGED IN)        -->
+  <!-- ============================================== -->
+  <div id="dashboard-screen" class="max-w-7xl mx-auto space-y-6 hidden">
+    
+    <!-- Top Header Bar -->
+    <header class="glass-card rounded-2xl p-4 sm:px-8 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+      
+      <div class="flex items-center gap-3 w-full md:w-auto justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+            ⚙️
+          </div>
+          <div>
+            <h1 class="text-base font-bold text-slate-900">لوحة التحكم وإدارة المحتوى</h1>
+            <p class="text-[11px] text-emerald-800 font-medium">المدير العام: د. م. عبدالمجيد البطاطي</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+        <a href="../" target="_blank" class="px-4 py-2 rounded-xl glass-pill hover:bg-white text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition">
+          <span>معاينة الموقع لايف</span>
+          <span>↗</span>
+        </a>
+
+        <button onclick="adminLogout()" class="px-4 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold transition flex items-center gap-1.5">
+          <span>تسجيل الخروج</span>
+          <span>🚪</span>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- Sidebar Navigation -->
+      <aside class="lg:col-span-3 glass-card rounded-2xl p-3 shadow-sm space-y-1">
+        <button onclick="switchAdminTab('overview')" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-right text-xs font-bold transition flex items-center justify-between" data-tab="overview">
+          <span>📊 نظرة عامة وإحصائيات</span>
+          <span id="badge-messages-count" class="bg-emerald-100 text-emerald-800 text-[10px] px-2 py-0.5 rounded-full hidden">0</span>
+        </button>
+
+        <button onclick="switchAdminTab('books')" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-right text-xs font-bold transition flex items-center justify-between" data-tab="books">
+          <span>📚 إدارة الكتب والأبحاث</span>
+          <span id="count-books" class="text-slate-400 font-mono text-[11px]">11</span>
+        </button>
+
+        <button onclick="switchAdminTab('articles')" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-right text-xs font-bold transition flex items-center justify-between" data-tab="articles">
+          <span>✍️ إدارة المقالات</span>
+          <span id="count-articles" class="text-slate-400 font-mono text-[11px]">8</span>
+        </button>
+
+        <button onclick="switchAdminTab('subjects')" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-right text-xs font-bold transition flex items-center justify-between" data-tab="subjects">
+          <span>💡 مواضيع وقضايا رأي</span>
+          <span id="count-subjects" class="text-slate-400 font-mono text-[11px]">8</span>
+        </button>
+
+        <button onclick="switchAdminTab('events')" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-right text-xs font-bold transition flex items-center justify-between" data-tab="events">
+          <span>🏗️ المشاريع والألبومات</span>
+          <span id="count-events" class="text-slate-400 font-mono text-[11px]">21</span>
+        </button>
+
+        <button onclick="switchAdminTab('messages')" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-right text-xs font-bold transition flex items-center justify-between" data-tab="messages">
+          <span>✉️ رسائل واستشارات الزوار</span>
+          <span id="count-inbox" class="bg-rose-500 text-white text-[10px] px-2 py-0.5 rounded-full">1</span>
+        </button>
+
+        <button onclick="switchAdminTab('profile')" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-right text-xs font-bold transition flex items-center justify-between" data-tab="profile">
+          <span>👤 البيانات الشخصية والـ CV</span>
+        </button>
+
+        <button onclick="switchAdminTab('settings')" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-right text-xs font-bold transition flex items-center justify-between" data-tab="settings">
+          <span>⚙️ إعدادات المنصة والأمان</span>
+        </button>
+      </aside>
+
+      <!-- Main Admin Workspace -->
+      <main class="lg:col-span-9 space-y-6">
+
+        <!-- ============================================== -->
+        <!-- 1. OVERVIEW TAB                                -->
+        <!-- ============================================== -->
+        <div id="admin-tab-overview" class="admin-panel glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">نظرة عامة على محتوى المنصة</h2>
+              <p class="text-xs text-slate-500 mt-0.5">ملخص حي لجميع البيانات والمشاريع والرسائل الواردة</p>
+            </div>
+          </div>
+
+          <!-- Stats Widgets Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="p-4 rounded-2xl bg-white/80 border border-slate-200/80 shadow-xs space-y-1">
+              <span class="text-xs font-medium text-slate-500">الكتب والأبحاث</span>
+              <div id="dash-books-count" class="text-2xl font-black text-emerald-700">11</div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/80 border border-slate-200/80 shadow-xs space-y-1">
+              <span class="text-xs font-medium text-slate-500">المقالات المنشورة</span>
+              <div id="dash-articles-count" class="text-2xl font-black text-emerald-700">8</div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/80 border border-slate-200/80 shadow-xs space-y-1">
+              <span class="text-xs font-medium text-slate-500">المشاريع وسدود جدة</span>
+              <div id="dash-events-count" class="text-2xl font-black text-emerald-700">21</div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/80 border border-slate-200/80 shadow-xs space-y-1">
+              <span class="text-xs font-medium text-slate-500">استشارات الزوار</span>
+              <div id="dash-messages-count" class="text-2xl font-black text-emerald-700">1</div>
+            </div>
+          </div>
+
+          <!-- Latest Inquiries Box -->
+          <div class="space-y-3 pt-2">
+            <div class="flex justify-between items-center">
+              <h3 class="text-sm font-bold text-slate-900">أحدث رسائل الاستشارات الواردة:</h3>
+              <button onclick="switchAdminTab('messages')" class="text-xs text-emerald-700 font-bold hover:underline">عرض الكل ←</button>
+            </div>
+            <div id="overview-messages-list" class="space-y-2">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 2. BOOKS MANAGER                               -->
+        <!-- ============================================== -->
+        <div id="admin-tab-books" class="admin-panel glass-card rounded-3xl p-6 sm:p-8 space-y-6 hidden">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">إدارة الكتب والأبحاث العلمية</h2>
+              <p class="text-xs text-slate-500">إضافة وتعديل وحذف أوراق العمل، الأبحاث المحكّمة، والكتب الأصلية</p>
+            </div>
+            <button onclick="openBookModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition flex items-center gap-1.5">
+              <span>+ إضافة كتاب أو بحث جديد</span>
+            </button>
+          </div>
+
+          <!-- Books Table -->
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white/70">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-50/80 border-b border-slate-200 text-slate-600 font-bold">
+                <tr>
+                  <th class="p-3.5">الغلاف</th>
+                  <th class="p-3.5">عنوان الكتاب / البحث</th>
+                  <th class="p-3.5">تاريخ النشر</th>
+                  <th class="p-3.5">ملف PDF</th>
+                  <th class="p-3.5 text-center">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="admin-books-table" class="divide-y divide-slate-100">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 3. ARTICLES MANAGER                            -->
+        <!-- ============================================== -->
+        <div id="admin-tab-articles" class="admin-panel glass-card rounded-3xl p-6 sm:p-8 space-y-6 hidden">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">إدارة المقالات والدراسات</h2>
+              <p class="text-xs text-slate-500">نشر وتعديل وحذف المقالات الفكرية في الصحف</p>
+            </div>
+            <button onclick="openArticleModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition flex items-center gap-1.5">
+              <span>+ كتابة مقال جديد</span>
+            </button>
+          </div>
+
+          <!-- Articles Table -->
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white/70">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-50/80 border-b border-slate-200 text-slate-600 font-bold">
+                <tr>
+                  <th class="p-3.5">عنوان المقال</th>
+                  <th class="p-3.5">تاريخ النشر</th>
+                  <th class="p-3.5">مقتطف من المحتوى</th>
+                  <th class="p-3.5 text-center">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="admin-articles-table" class="divide-y divide-slate-100">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 4. SUBJECTS MANAGER                            -->
+        <!-- ============================================== -->
+        <div id="admin-tab-subjects" class="admin-panel glass-card rounded-3xl p-6 sm:p-8 space-y-6 hidden">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">إدارة مواضيع وقضايا الرأي</h2>
+              <p class="text-xs text-slate-500">طروحات وقضايا المجتمع والخدمات والتطوير</p>
+            </div>
+            <button onclick="openSubjectModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition flex items-center gap-1.5">
+              <span>+ إضافة موضوع رأي جديد</span>
+            </button>
+          </div>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white/70">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-50/80 border-b border-slate-200 text-slate-600 font-bold">
+                <tr>
+                  <th class="p-3.5">العنوان</th>
+                  <th class="p-3.5">العنوان الفرعي</th>
+                  <th class="p-3.5">التاريخ</th>
+                  <th class="p-3.5 text-center">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="admin-subjects-table" class="divide-y divide-slate-100">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 5. EVENTS & GALLERIES MANAGER                  -->
+        <!-- ============================================== -->
+        <div id="admin-tab-events" class="admin-panel glass-card rounded-3xl p-6 sm:p-8 space-y-6 hidden">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">إدارة المشاريع الميدانية والألبومات المصورة</h2>
+              <p class="text-xs text-slate-500">مشاريع السدود ودرء السيول والمعارض البيئية والزيارات الوزارية</p>
+            </div>
+            <button onclick="openEventModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition flex items-center gap-1.5">
+              <span>+ إضافة مشروع / ألبوم جديد</span>
+            </button>
+          </div>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white/70">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-50/80 border-b border-slate-200 text-slate-600 font-bold">
+                <tr>
+                  <th class="p-3.5">الصورة</th>
+                  <th class="p-3.5">اسم المشروع / الفعالية</th>
+                  <th class="p-3.5">التاريخ</th>
+                  <th class="p-3.5">عدد الصور</th>
+                  <th class="p-3.5 text-center">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="admin-events-table" class="divide-y divide-slate-100">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 6. INBOX / MESSAGES                            -->
+        <!-- ============================================== -->
+        <div id="admin-tab-messages" class="admin-panel glass-card rounded-3xl p-6 sm:p-8 space-y-6 hidden">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">صندوق رسائل واستشارات الزوار</h2>
+            <p class="text-xs text-slate-500">الطلبات والاستفسارات المرسلة عبر نموذج التواصل بالموقع</p>
+          </div>
+
+          <div id="admin-messages-list" class="space-y-3">
+            <!-- Loaded dynamically -->
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 7. PROFILE & QUALIFICATIONS                    -->
+        <!-- ============================================== -->
+        <div id="admin-tab-profile" class="admin-panel glass-card rounded-3xl p-6 sm:p-8 space-y-6 hidden">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">البيانات الشخصية والمؤهلات الأكاديمية</h2>
+            <p class="text-xs text-slate-500">تحديث الأسماء الرسمية، النبذة، روابط السيرة الذاتية والمؤهلات</p>
+          </div>
+
+          <form id="profile-form" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">الاسم باللغة العربية</label>
+                <input type="text" id="prof-name-ar" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">الاسم باللغة الإنجليزية</label>
+                <input type="text" id="prof-name-en" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">صورة البروفايل الشخصية</label>
+              <div class="flex gap-2">
+                <input type="text" id="prof-photo" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
+                <label class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold cursor-pointer transition flex items-center gap-1 flex-shrink-0">
+                  <span>رفع صورة</span>
+                  <input type="file" onchange="uploadFileDirect(this, 'prof-photo')" class="hidden" accept="image/*">
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">الملخص والنبذة المهنية (عن الدكتور)</label>
+              <textarea id="prof-summary" rows="3" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">المناصب وعضويات مجالس الإدارة (سطر لكل منصب)</label>
+              <textarea id="prof-titles" rows="4" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white font-mono"></textarea>
+            </div>
+
+            <button type="submit" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition">
+              حفظ البيانات الشخصية
+            </button>
+          </form>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 8. SETTINGS & SECURITY                         -->
+        <!-- ============================================== -->
+        <div id="admin-tab-settings" class="admin-panel glass-card rounded-3xl p-6 sm:p-8 space-y-6 hidden">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">إعدادات المنصة والأمان</h2>
+            <p class="text-xs text-slate-500">تحديث عنوان الموقع، أرقام التواصل، وكلمة مرور لوحة التحكم</p>
+          </div>
+
+          <form id="settings-form" class="space-y-4 max-w-xl">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">عنوان المنصة الرئيسي (Title)</label>
+              <input type="text" id="set-site-title" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">الشعار النصي البارز في الـ Hero</label>
+              <input type="text" id="set-hero-tagline" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">النبذة التعريفية في الـ Hero</label>
+              <textarea id="set-hero-bio" rows="2" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white"></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">البريد الإلكتروني الرسمي للتواصل</label>
+                <input type="email" id="set-contact-email" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">رقم الهاتف الرسمي</label>
+                <input type="text" id="set-phone" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">العنوان والمقر الجغرافي</label>
+              <input type="text" id="set-address" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
+            </div>
+
+            <div class="pt-4 border-t border-slate-200">
+              <label class="block text-xs font-semibold text-slate-700 mb-1">تغيير كلمة مرور المدير (اتركها فارغة إن لم ترغب في التغيير)</label>
+              <input type="password" id="set-new-password" placeholder="أدخل كلمة المرور الجديدة" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
+            </div>
+
+            <button type="submit" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition">
+              حفظ وتطبيق الإعدادات
+            </button>
+          </form>
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ADD / EDIT BOOK                         -->
+  <!-- ============================================== -->
+  <div id="modal-book" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="glass-card bg-white/95 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-4 animate-slide-up">
+      <div class="flex justify-between items-center">
+        <h3 id="modal-book-title" class="text-base font-bold text-slate-900">إضافة كتاب أو بحث</h3>
+        <button onclick="closeBookModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-sm font-bold">✕</button>
+      </div>
+
+      <form id="form-book" class="space-y-3.5">
+        <input type="hidden" id="book-edit-id">
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">عنوان الكتاب أو البحث *</label>
+          <input type="text" id="book-title" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">تاريخ النشر أو تقديم البحث</label>
+          <input type="text" id="book-date" placeholder="مثال: 25/11/2018 أو 2018" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">نبذة وملخص البحث</label>
+          <textarea id="book-desc" rows="3" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">صورة الغلاف</label>
+          <div class="flex gap-2">
+            <input type="text" id="book-cover" placeholder="/extracted_data/books/covers/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500">
+            <label class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold cursor-pointer transition flex items-center gap-1 flex-shrink-0">
+              <span>رفع غلاف</span>
+              <input type="file" onchange="uploadFileDirect(this, 'book-cover')" class="hidden" accept="image/*">
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">ملف البحث PDF</label>
+          <div class="flex gap-2">
+            <input type="text" id="book-pdf" placeholder="/extracted_data/books/pdfs/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500">
+            <label class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold cursor-pointer transition flex items-center gap-1 flex-shrink-0">
+              <span>رفع PDF</span>
+              <input type="file" onchange="uploadFileDirect(this, 'book-pdf')" class="hidden" accept=".pdf">
+            </label>
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeBookModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-semibold">إلغاء</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow">حفظ الكتاب</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ADD / EDIT ARTICLE                      -->
+  <!-- ============================================== -->
+  <div id="modal-article" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="glass-card bg-white/95 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl space-y-4 animate-slide-up max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center">
+        <h3 id="modal-article-title" class="text-base font-bold text-slate-900">كتابة مقال</h3>
+        <button onclick="closeArticleModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-sm font-bold">✕</button>
+      </div>
+
+      <form id="form-article" class="space-y-3.5">
+        <input type="hidden" id="article-edit-id">
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">عنوان المقال *</label>
+          <input type="text" id="article-title" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">تاريخ النشر</label>
+          <input type="text" id="article-date" placeholder="مثال: 26/04/2016" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">صورة مصاحبة للمقال</label>
+          <div class="flex gap-2">
+            <input type="text" id="article-image" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500">
+            <label class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold cursor-pointer transition flex items-center gap-1 flex-shrink-0">
+              <span>رفع صورة</span>
+              <input type="file" onchange="uploadFileDirect(this, 'article-image')" class="hidden" accept="image/*">
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">نص المقال كاملاً *</label>
+          <textarea id="article-content" rows="8" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 leading-relaxed"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeArticleModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-semibold">إلغاء</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow">حفظ المقال</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/admin.js"></script>
+</body>
+</html>

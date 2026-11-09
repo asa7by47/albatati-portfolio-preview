@@ -538,10 +538,11 @@ app.use('/uploads', express.static(UPLOADS_DIR));
 
 // Serve public website files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 // Admin SPA route
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
+  res.sendFile(path.join(__dirname, 'admin', 'index.html'));
 });
 
 // Fallback route for SPA & 404 handler

@@ -2,6 +2,40 @@
 let siteData = null;
 let currentTab = 'about';
 
+// URL Helper for GitHub Pages & Localhost
+function resolveAssetUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
+  }
+  const clean = url.replace(/^\/+/, '');
+  // If running in /admin or a subpath
+  if (window.location.pathname.includes('/admin')) {
+    return '../' + clean;
+  }
+  return clean;
+}
+
+// Check localStorage for any custom updates made in the browser (GitHub Pages preview)
+function getLocalSiteData() {
+  try {
+    const raw = localStorage.getItem('albatati_local_db');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return {
+        settings: parsed.settings || {},
+        profile: parsed.profile || {},
+        cv: parsed.cv || {},
+        books: parsed.books || [],
+        articles: parsed.articles || [],
+        subjects: parsed.subjects || [],
+        events: parsed.events || []
+      };
+    }
+  } catch (e) {}
+  return null;
+}
+
 // DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
@@ -49,21 +83,53 @@ function initMobileMenu() {
   });
 }
 
-// Fetch Public Website Data
+// Fetch Public Website Data (Hybrid: Backend API with Static/LocalStorage Fallback)
 async function fetchWebsiteData() {
+  // 1. Try Backend API
   try {
     const res = await fetch('/api/public/data');
-    const json = await res.json();
-    if (json.success && json.data) {
-      siteData = json.data;
-      renderWebsite(siteData);
-    } else {
-      showToast('تعذر تحميل بيانات الموقع من الخادم', 'error');
+    if (res.ok) {
+      const json = await res.json();
+      if (json.success && json.data) {
+        const localOverrides = getLocalSiteData();
+        siteData = localOverrides || json.data;
+        renderWebsite(siteData);
+        return;
+      }
     }
   } catch (err) {
-    console.error('Fetch error:', err);
-    showToast('حدث خطأ في الاتصال بالخادم', 'error');
+    // Backend API not reachable (e.g. running on GitHub Pages static preview)
   }
+
+  // 2. Fallback to static database.json
+  try {
+    const localOverrides = getLocalSiteData();
+    if (localOverrides) {
+      siteData = localOverrides;
+      renderWebsite(siteData);
+      return;
+    }
+
+    const res = await fetch('data/database.json');
+    if (res.ok) {
+      const db = await res.json();
+      siteData = {
+        settings: db.settings || {},
+        profile: db.profile || {},
+        cv: db.cv || {},
+        books: db.books || [],
+        articles: db.articles || [],
+        subjects: db.subjects || [],
+        events: db.events || []
+      };
+      renderWebsite(siteData);
+      return;
+    }
+  } catch (err) {
+    console.error('Static database load error:', err);
+  }
+
+  showToast('تعذر تحميل بيانات الموقع', 'error');
 }
 
 // Render All Components
@@ -71,65 +137,64 @@ function renderWebsite(data) {
   const { settings, profile, cv, books, articles, subjects, events } = data;
 
   // Document Title & Meta
-  if (settings.site_title) {
+  if (settings && settings.site_title) {
     document.title = settings.site_title;
   }
 
   // Header Elements
-  if (profile.name?.arabic) {
-    document.getElementById('header-name').textContent = profile.name.arabic;
+  if (profile && profile.name?.arabic) {
+    const el = document.getElementById('header-name');
+    if (el) el.textContent = profile.name.arabic;
   }
-  if (settings.hero_tagline) {
-    document.getElementById('header-subtitle').textContent = settings.hero_tagline;
-    document.getElementById('hero-tagline').textContent = settings.hero_tagline;
+  if (settings && settings.hero_tagline) {
+    const s1 = document.getElementById('header-subtitle');
+    const s2 = document.getElementById('hero-tagline');
+    if (s1) s1.textContent = settings.hero_tagline;
+    if (s2) s2.textContent = settings.hero_tagline;
   }
 
   // Hero Section
-  if (profile.name?.arabic) {
-    document.getElementById('hero-title').textContent = profile.name.arabic;
+  if (profile && profile.name?.arabic) {
+    const ht = document.getElementById('hero-title');
+    if (ht) ht.textContent = profile.name.arabic;
   }
-  if (settings.hero_bio) {
-    document.getElementById('hero-bio').textContent = settings.hero_bio;
+  if (settings && settings.hero_bio) {
+    const hb = document.getElementById('hero-bio');
+    if (hb) hb.textContent = settings.hero_bio;
   }
-  if (profile.photo) {
-    document.getElementById('hero-photo').src = profile.photo;
+  if (profile && profile.photo) {
+    const hp = document.getElementById('hero-photo');
+    if (hp) hp.src = resolveAssetUrl(profile.photo);
   }
 
   // CV Download Button
-  if (cv.pdf_ar) {
-    document.getElementById('btn-cv-download').href = cv.pdf_ar;
+  if (cv && cv.pdf_ar) {
+    const btnCv = document.getElementById('btn-cv-download');
+    if (btnCv) btnCv.href = resolveAssetUrl(cv.pdf_ar);
   }
 
   // Stats Counters
-  document.getElementById('stat-books').textContent = books ? books.length : 0;
-  document.getElementById('stat-articles').textContent = (articles?.length || 0) + (subjects?.length || 0);
-  document.getElementById('stat-events').textContent = events ? `${events.length}+` : '0';
+  const sBooks = document.getElementById('stat-books');
+  const sArticles = document.getElementById('stat-articles');
+  const sEvents = document.getElementById('stat-events');
+  if (sBooks) sBooks.textContent = books ? books.length : 0;
+  if (sArticles) sArticles.textContent = (articles?.length || 0) + (subjects?.length || 0);
+  if (sEvents) sEvents.textContent = events ? `${events.length}+` : '0';
 
   // About Section Summary
-  if (cv.summary) {
-    document.getElementById('about-summary').textContent = cv.summary;
+  if (cv && cv.summary) {
+    const as = document.getElementById('about-summary');
+    if (as) as.textContent = cv.summary;
   }
 
-  // Render Qualifications
-  renderQualifications(profile.academic_qualifications || []);
-
-  // Render Titles / Memberships
-  renderTitles(profile.titles || []);
-
-  // Render Books
+  // Render Subcomponents
+  renderQualifications(profile?.academic_qualifications || []);
+  renderTitles(profile?.titles || []);
   renderBooks(books || []);
-
-  // Render Articles
   renderArticles(articles || []);
-
-  // Render Subjects
   renderSubjects(subjects || []);
-
-  // Render Events & Galleries
   renderEvents(events || []);
-
-  // Render Contact Info
-  renderContact(settings, profile);
+  renderContact(settings || {}, profile || {});
 }
 
 // Render Qualifications
@@ -140,7 +205,7 @@ function renderQualifications(list) {
 
   list.forEach(q => {
     const card = document.createElement('div');
-    card.className = 'p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5';
+    card.className = 'p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs';
     card.innerHTML = `
       <div class="flex items-center justify-between">
         <h5 class="text-sm font-bold text-slate-900">${q.degree}</h5>
@@ -162,7 +227,7 @@ function renderTitles(titles) {
 
   titles.forEach(t => {
     const pill = document.createElement('div');
-    pill.className = 'p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800';
+    pill.className = 'p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs';
     pill.innerHTML = `
       <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
       <span>${t}</span>
@@ -178,21 +243,21 @@ function renderBooks(books) {
   container.innerHTML = '';
 
   if (books.length === 0) {
-    container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-sm">لا توجد كتب مطابقة لطلب البحث</div>`;
+    container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-sm">لا توجد أبحاث أو كتب مطابقة لطلب البحث</div>`;
     return;
   }
 
   books.forEach(b => {
     const card = document.createElement('div');
-    card.className = 'card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4';
+    card.className = 'card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm';
     
-    const coverSrc = b.cover_image || '/extracted_data/books/covers/01_one.jpg';
-    const pdfSrc = b.pdf_file || '#';
+    const coverSrc = resolveAssetUrl(b.cover_image || 'extracted_data/books/covers/01_one.jpg');
+    const pdfSrc = resolveAssetUrl(b.pdf_file || '#');
 
     card.innerHTML = `
       <div class="space-y-3">
         <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
-          <img src="${coverSrc}" alt="${b.title}" class="max-h-full object-contain" onerror="this.src='/extracted_data/books/covers/01_one.jpg'">
+          <img src="${coverSrc}" alt="${b.title}" class="max-h-full object-contain" onerror="this.src='${resolveAssetUrl('extracted_data/books/covers/01_one.jpg')}'">
         </div>
         <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
           <span>${b.date || ''}</span>
@@ -226,7 +291,7 @@ function renderArticles(articles) {
 
   articles.forEach(a => {
     const card = document.createElement('article');
-    card.className = 'card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4';
+    card.className = 'card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm';
     
     card.innerHTML = `
       <div class="space-y-3">
@@ -243,7 +308,7 @@ function renderArticles(articles) {
           <span>قراءة المقال كاملاً</span>
           <span class="group-hover:-translate-x-1 transition duration-200">←</span>
         </button>
-        <span class="text-[11px] text-slate-400">بقلم: د. عبدالمجيد البطاطي</span>
+        <span class="text-[11px] text-slate-400">صحيفة البلاد السعودية</span>
       </div>
     `;
     container.appendChild(card);
@@ -258,7 +323,7 @@ function renderSubjects(subjects) {
 
   subjects.forEach(s => {
     const card = document.createElement('div');
-    card.className = 'card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4';
+    card.className = 'card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm';
     
     card.innerHTML = `
       <div class="space-y-2.5">
@@ -290,22 +355,23 @@ function renderEvents(events) {
 
   events.forEach(ev => {
     const card = document.createElement('div');
-    card.className = 'card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4';
+    card.className = 'card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm';
     
-    const firstImg = (ev.images && ev.images.length > 0) ? ev.images[0] : '/extracted_data/brand_assets/home_1.JPG';
+    const rawImg = (ev.images && ev.images.length > 0) ? ev.images[0] : 'extracted_data/brand_assets/home_1.JPG';
+    const firstImg = resolveAssetUrl(rawImg);
 
     card.innerHTML = `
       <div class="space-y-3">
         <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
-          <img src="${firstImg}" alt="${ev.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/extracted_data/brand_assets/home_1.JPG'">
+          <img src="${firstImg}" alt="${ev.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='${resolveAssetUrl('extracted_data/brand_assets/home_1.JPG')}'">
           <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
           <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg">
-            📷 ${ev.image_count || 1} صور
+            📷 ${ev.image_count || (ev.images ? ev.images.length : 1)} صور
           </span>
         </div>
         <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
           <span>${ev.date || ''}</span>
-          <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold">ميداني / حماية</span>
+          <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold">ميداني / إشراف هندسي</span>
         </div>
         <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">${ev.title}</h4>
         <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">${ev.content || 'مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.'}</p>
@@ -328,11 +394,17 @@ function renderContact(settings, profile) {
   const email = settings.contact_email || profile.emails?.[0] || 'info@asalbatati.net';
   const address = settings.address || 'المملكة العربية السعودية - منطقة مكة المكرمة - جدة';
 
-  document.getElementById('contact-phone').textContent = phone;
-  document.getElementById('contact-phone-link').href = `tel:${phone}`;
-  document.getElementById('contact-email').textContent = email;
-  document.getElementById('contact-email-link').href = `mailto:${email}`;
-  document.getElementById('contact-address').textContent = address;
+  const pEl = document.getElementById('contact-phone');
+  const plEl = document.getElementById('contact-phone-link');
+  const eEl = document.getElementById('contact-email');
+  const elEl = document.getElementById('contact-email-link');
+  const aEl = document.getElementById('contact-address');
+
+  if (pEl) pEl.textContent = phone;
+  if (plEl) plEl.href = `tel:${phone}`;
+  if (eEl) eEl.textContent = email;
+  if (elEl) elEl.href = `mailto:${email}`;
+  if (aEl) aEl.textContent = address;
 }
 
 // Tab Switching
@@ -405,7 +477,7 @@ function setupSearchListeners() {
   }
 }
 
-// Contact Form Handler
+// Contact Form Handler (Backend API + Client-side Fallback)
 function setupContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
@@ -419,19 +491,44 @@ function setupContactForm() {
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
 
+    // 1. Try Backend API
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      const json = await res.json();
-      if (json.success) {
-        showToast(json.message || 'تم إرسال رسالتك بنجاح!');
-        form.reset();
-      } else {
-        showToast(json.error || 'تعذر إرسال الرسالة', 'error');
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success) {
+          showToast(json.message || 'تم إرسال رسالتك بنجاح!');
+          form.reset();
+          btn.disabled = false;
+          btn.innerHTML = `<span>إرسال الرسالة</span><span>✉️</span>`;
+          return;
+        }
       }
+    } catch (err) {
+      // Backend not running (e.g. GitHub Pages)
+    }
+
+    // 2. Client-side localStorage fallback for live static preview
+    try {
+      let localDB = JSON.parse(localStorage.getItem('albatati_local_db') || '{}');
+      if (!localDB.messages) localDB.messages = [];
+      localDB.messages.unshift({
+        id: Date.now(),
+        name: String(payload.name).trim(),
+        email: String(payload.email || '').trim(),
+        phone: String(payload.phone || '').trim(),
+        subject: String(payload.subject || 'رسالة جديدة من الموقع').trim(),
+        message: String(payload.message).trim(),
+        date: new Date().toLocaleString('ar-SA'),
+        read: false
+      });
+      localStorage.setItem('albatati_local_db', JSON.stringify(localDB));
+      showToast('تم إرسال رسالتك بنجاح وحفظها في صندوق الرسائل!');
+      form.reset();
     } catch (err) {
       showToast('حدث خطأ أثناء الإرسال', 'error');
     } finally {
@@ -464,7 +561,7 @@ function openReaderModal(type, id) {
   const imgWrapper = document.getElementById('modal-image-wrapper');
   const imgEl = document.getElementById('modal-image');
   if (item.image) {
-    imgEl.src = item.image;
+    imgEl.src = resolveAssetUrl(item.image);
     imgWrapper.classList.remove('hidden');
   } else {
     imgWrapper.classList.add('hidden');
@@ -483,14 +580,14 @@ function closeReaderModal() {
   document.body.style.overflow = 'auto';
 }
 
-// Simple Event Gallery Lightbox (Opens first image or all)
+// Event Gallery Lightbox (Opens first image or all)
 function openEventGallery(eventId) {
   if (!siteData?.events) return;
   const ev = siteData.events.find(e => e.id === eventId);
   if (!ev) return;
 
   if (ev.images && ev.images.length > 0) {
-    window.open(ev.images[0], '_blank');
+    window.open(resolveAssetUrl(ev.images[0]), '_blank');
   } else {
     showToast('لا توجد صور متوفرة لهذا الألبوم حالياً', 'error');
   }

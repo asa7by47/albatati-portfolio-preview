@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Readex+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 
   <script>
     tailwind.config = {
@@ -74,13 +74,18 @@
         <button onclick="switchTab('subjects')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="subjects">مواضيع رأي</button>
         <button onclick="switchTab('events')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="events">المشاريع والألبومات</button>
         <button onclick="switchTab('contact')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="contact">تواصل واستشارات</button>
+        <a href="admin/" class="md:hidden tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white text-emerald-800 font-bold transition">⚙️ لوحة التحكم</a>
       </nav>
 
-      <!-- Action Pill / Direct CV Link -->
+      <!-- Action Pill / Direct CV Link & Admin Link -->
       <div class="hidden md:flex items-center gap-2">
-        <a id="btn-cv-download" href="/extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1.5">
+        <a id="btn-cv-download" href="extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1.5">
           <span>السيرة الذاتية PDF</span>
           <svg class="w-3.5 h-3.5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </a>
+        <a href="admin/" class="px-3.5 py-2 rounded-full glass-pill hover:bg-white text-slate-700 hover:text-emerald-700 text-xs font-semibold shadow-xs transition flex items-center gap-1.5" title="لوحة التحكم الإدارية">
+          <span>⚙️</span>
+          <span>الإدارة</span>
         </a>
       </div>
 
@@ -136,7 +141,7 @@
         <div class="md:col-span-4 flex justify-center">
           <div class="relative group">
             <div class="w-52 h-52 sm:w-60 sm:h-60 rounded-3xl p-2 bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 shadow-xl rotate-1 group-hover:rotate-0 transition duration-300">
-              <img id="hero-photo" src="/extracted_data/brand_assets/home_1.JPG" alt="د. عبدالمجيد البطاطي" class="w-full h-full object-cover object-top rounded-2xl shadow-inner">
+              <img id="hero-photo" src="extracted_data/brand_assets/home_1.JPG" alt="د. عبدالمجيد البطاطي" class="w-full h-full object-cover object-top rounded-2xl shadow-inner">
             </div>
             <div class="absolute -bottom-3 inset-x-4 bg-white/95 backdrop-blur rounded-xl py-1 px-3 text-center border border-slate-100 shadow-sm text-[11px] font-bold text-slate-700">
               جدة • المملكة العربية السعودية
@@ -429,7 +434,7 @@
   </div>
 
   <!-- Front-end Logic -->
-  <script src="/js/app.js"></script>
+  <script src="js/app.js"></script>
 
 </body>
 </html>
