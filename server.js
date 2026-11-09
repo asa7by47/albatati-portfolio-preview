@@ -188,7 +188,7 @@ app.put('/api/admin/settings', requireAdmin, (req, res) => {
   const db = readDB();
   if (!db) return res.status(500).json({ success: false, error: 'خطأ في الخادم' });
 
-  const { site_title, contact_email, phone, address, hero_tagline, hero_bio, new_password } = req.body;
+  const { site_title, contact_email, phone, address, hero_tagline, hero_bio, new_password, admin_password } = req.body;
 
   if (site_title) db.settings.site_title = site_title;
   if (contact_email) db.settings.contact_email = contact_email;
@@ -196,14 +196,37 @@ app.put('/api/admin/settings', requireAdmin, (req, res) => {
   if (address) db.settings.address = address;
   if (hero_tagline) db.settings.hero_tagline = hero_tagline;
   if (hero_bio) db.settings.hero_bio = hero_bio;
-  if (new_password && new_password.trim().length > 0) {
-    db.settings.admin_password = new_password.trim();
+
+  const pass = new_password || admin_password;
+  if (pass && pass.trim().length > 0) {
+    db.settings.admin_password = pass.trim();
   }
 
   if (writeDB(db)) {
     res.json({ success: true, message: 'تم تحديث الإعدادات بنجاح' });
   } else {
     res.status(500).json({ success: false, error: 'تعذر الحفظ' });
+  }
+});
+
+// Dedicated Change Password Endpoint
+app.put('/api/admin/change-password', requireAdmin, (req, res) => {
+  const { new_password, confirm_password } = req.body;
+  if (!new_password || new_password.trim().length < 4) {
+    return res.status(400).json({ success: false, error: 'كلمة المرور يجب أن لا تقل عن 4 خانات' });
+  }
+  if (confirm_password && new_password.trim() !== confirm_password.trim()) {
+    return res.status(400).json({ success: false, error: 'كلمة المرور وتأكيدها غير متطابقين' });
+  }
+
+  const db = readDB();
+  if (!db) return res.status(500).json({ success: false, error: 'خطأ في قراءة الخادم' });
+
+  db.settings.admin_password = new_password.trim();
+  if (writeDB(db)) {
+    res.json({ success: true, message: 'تم تغيير كلمة مرور المدير بنجاح!' });
+  } else {
+    res.status(500).json({ success: false, error: 'تعذر حفظ كلمة المرور' });
   }
 });
 

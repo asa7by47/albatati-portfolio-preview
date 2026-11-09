@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupProfileForm();
   setupBookForm();
   setupArticleForm();
+  setupPasswordChangeForm();
 });
 
 // Check Authentication
@@ -208,7 +209,7 @@ function renderAdminDashboard(data) {
 function switchAdminTab(tabId) {
   currentAdminTab = tabId;
 
-  document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+  document.querySelectorAll('.admin-tab-btn, .admin-nav-btn').forEach(btn => {
     if (btn.dataset.tab === tabId) {
       btn.classList.add('bg-white', 'text-emerald-700', 'shadow-xs');
       btn.classList.remove('text-slate-600', 'hover:bg-white/50');
@@ -223,6 +224,69 @@ function switchAdminTab(tabId) {
       panel.classList.remove('hidden');
     } else {
       panel.classList.add('hidden');
+    }
+  });
+}
+
+// Dedicated Change Password Form
+function setupPasswordChangeForm() {
+  const form = document.getElementById('form-change-password');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const newPass = document.getElementById('admin-new-password').value.trim();
+    const confirmPass = document.getElementById('admin-confirm-password').value.trim();
+    const btn = document.getElementById('btn-save-new-password');
+
+    if (!newPass || newPass.length < 4) {
+      showToast('كلمة المرور يجب أن لا تقل عن 4 خانات', 'error');
+      return;
+    }
+    if (newPass !== confirmPass) {
+      showToast('كلمة المرور وتأكيدها غير متطابقين!', 'error');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span>جاري الحفظ...</span>';
+    const token = localStorage.getItem(TOKEN_KEY);
+
+    // 1. Try Backend API
+    try {
+      const res = await fetch('/api/admin/change-password', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ new_password: newPass, confirm_password: confirmPass })
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success) {
+          showToast('تم تغيير كلمة مرور المدير بنجاح!');
+          form.reset();
+          btn.disabled = false;
+          btn.innerHTML = '<span>حفظ وتحديث كلمة المرور الآن</span><span>💾</span>';
+          return;
+        }
+      }
+    } catch (err) {}
+
+    // 2. Client-side fallback (for static preview / GitHub Pages)
+    try {
+      let localDB = JSON.parse(localStorage.getItem(LOCAL_DB_KEY) || '{}');
+      if (!localDB.settings) localDB.settings = {};
+      localDB.settings.admin_password = newPass;
+      localStorage.setItem(LOCAL_DB_KEY, JSON.stringify(localDB));
+      showToast(`تم تغيير كلمة المرور بنجاح! كلمة المرور الجديدة هي: ${newPass}`);
+      form.reset();
+    } catch (e) {
+      showToast('حدث خطأ أثناء حفظ كلمة المرور', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<span>حفظ وتحديث كلمة المرور الآن</span><span>💾</span>';
     }
   });
 }

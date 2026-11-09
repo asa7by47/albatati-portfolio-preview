@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Generate complete SEO & GEO optimized index.html with Schema.org JSON-LD and pre-rendered semantic HTML
+Generate complete SEO & GEO optimized index.html with:
+- PhD degree in Business Administration
+- One-line Navbar & one-line CV PDF button
+- 21 dynamic rotating hero images on every reload
+- Executive career milestones and scanned CV certificates from cv.html
+- Schema.org JSON-LD
 """
 
 import json
@@ -19,15 +24,15 @@ books = db.get('books', [])
 articles = db.get('articles', [])
 subjects = db.get('subjects', [])
 events = db.get('events', [])
+career_milestones = profile.get('career_milestones', [])
 
-# Helper for clean escaping
 def e(s):
     return html.escape(str(s or ''))
 
 # Build Qualifications HTML
 qual_html_items = []
 for q in profile.get('academic_qualifications', []):
-    year_badge = f'<span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md">{e(q.get("year"))}</span>' if q.get('year') else ''
+    year_badge = f'<span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">{e(q.get("year"))}</span>' if q.get('year') else ''
     details_p = f'<p class="text-[11px] text-slate-500">{e(q.get("details"))}</p>' if q.get('details') else ''
     topic_p = f'<p class="text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 pt-1 mt-1"><strong>موضوع البحث:</strong> {e(q.get("topic"))}</p>' if q.get('topic') else ''
     qual_html_items.append(f'''
@@ -42,6 +47,20 @@ for q in profile.get('academic_qualifications', []):
       </div>''')
 qual_html = '\n'.join(qual_html_items)
 
+# Build Career Milestones HTML
+milestones_html_items = []
+for m in career_milestones:
+    milestones_html_items.append(f'''
+      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-center justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900">{e(m.get("role"))}</h5>
+          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">{e(m.get("period"))}</span>
+        </div>
+        <p class="text-xs text-emerald-700 font-medium">{e(m.get("org"))}</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed">{e(m.get("details"))}</p>
+      </div>''')
+milestones_html = '\n'.join(milestones_html_items)
+
 # Build Titles HTML
 titles_html_items = []
 for t in profile.get('titles', []):
@@ -52,15 +71,37 @@ for t in profile.get('titles', []):
       </div>''')
 titles_html = '\n'.join(titles_html_items)
 
+# Build Scans HTML
+scans_ar = cv.get('scans_ar', [])
+scans_en = cv.get('scans_en', [])
+scans_html_items = []
+for i, s in enumerate(scans_ar, 1):
+    clean = s.lstrip('/')
+    scans_html_items.append(f'''
+      <a href="{clean}" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+          <img src="{clean}" alt="شهادة وسيرة ذاتية {i}" class="w-full h-full object-cover group-hover:scale-105 transition">
+        </div>
+        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">شهادة عربية {i} 📄</span>
+      </a>''')
+for i, s in enumerate(scans_en, 1):
+    clean = s.lstrip('/')
+    scans_html_items.append(f'''
+      <a href="{clean}" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+          <img src="{clean}" alt="شهادة وسيرة ذاتية إنجليزية {i}" class="w-full h-full object-cover group-hover:scale-105 transition">
+        </div>
+        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">English Sheet {i} 📜</span>
+      </a>''')
+scans_html = '\n'.join(scans_html_items)
+
 # Build Books HTML
 books_html_items = []
 for b in books:
     cover = b.get('cover_image') or 'extracted_data/books/covers/01_one.jpg'
-    if cover.startswith('/'):
-        cover = cover[1:]
+    cover = cover.lstrip('/')
     pdf = b.get('pdf_file') or '#'
-    if pdf.startswith('/'):
-        pdf = pdf[1:]
+    pdf = pdf.lstrip('/')
     books_html_items.append(f'''
       <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
@@ -69,15 +110,15 @@ for b in books:
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">{e(b.get('date'))}</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold">بحث / كتاب</span>
+            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
           <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">{e(b.get('title'))}</h4>
           <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description">{e(b.get('description'))}</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="{e(pdf)}" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs">
+          <a href="{e(pdf)}" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
-            <svg class="w-3.5 h-3.5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>''')
@@ -91,17 +132,17 @@ for a in articles:
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 {e(a.get('date'))}</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold">مقالة رأي</span>
+            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
           <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">{e(a.get('title'))}</h4>
           <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">{e(a.get('content'))}</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', {a.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group">
+          <button onclick="openReaderModal('article', {a.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
         </div>
       </article>''')
 articles_html = '\n'.join(articles_html_items)
@@ -115,14 +156,14 @@ for s in subjects:
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>{e(s.get('date'))}</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold">قضية مجتمعية</span>
+            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
           <h4 class="text-lg font-bold text-slate-900 leading-snug">{e(s.get('title'))}</h4>
           {subtitle_h5}
           <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">{e(s.get('content'))}</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', {s.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group">
+          <button onclick="openReaderModal('subject', {s.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
             <span>قراءة الموضوع كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
@@ -135,8 +176,7 @@ events_html_items = []
 for ev in events:
     images = ev.get('images', [])
     raw_img = images[0] if images else 'extracted_data/brand_assets/home_1.JPG'
-    if raw_img.startswith('/'):
-        raw_img = raw_img[1:]
+    raw_img = raw_img.lstrip('/')
     img_cnt = ev.get('image_count') or (len(images) if images else 1)
     events_html_items.append(f'''
       <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
@@ -144,19 +184,19 @@ for ev in events:
           <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="{e(raw_img)}" alt="{e(ev.get('title'))}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
-            <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg">
+            <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
               📷 {img_cnt} صور
             </span>
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span>{e(ev.get('date'))}</span>
-            <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold">ميداني / إشراف هندسي</span>
+            <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
           <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">{e(ev.get('title'))}</h4>
           <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">{e(ev.get('content') or 'مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.')}</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
-          <button onclick="openEventGallery({ev.get('id')})" class="text-emerald-700 font-bold hover:underline flex items-center gap-1">
+          <button onclick="openEventGallery({ev.get('id')})" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
             <span>استعراض الألبوم المصور</span>
             <span>📸</span>
           </button>
@@ -164,7 +204,6 @@ for ev in events:
       </div>''')
 events_html = '\n'.join(events_html_items)
 
-# Generate Full HTML
 html_content = f'''<!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
@@ -174,10 +213,10 @@ html_content = f'''<!DOCTYPE html>
   <!-- ============================================== -->
   <!-- 1. PRIMARY SEO META TAGS                       -->
   <!-- ============================================== -->
-  <title>د. م. عبدالمجيد البطاطي | مهندس استشاري ومحكم معتمد | جدة، السعودية</title>
-  <meta name="title" content="د. م. عبدالمجيد البطاطي | مهندس استشاري ومحكم معتمد | جدة، السعودية">
-  <meta name="description" content="الموقع الرسمي للمهندس الاستشاري د. م. عبدالمجيد بن سعيد البطاطي (ترخيص هيئة المهندسين #201226 ومحكم معتمد بوزارة العدل). استشارات هندسية، حوكمة الشركات العائلية، دراسات السيول والبنية التحتية، مؤلفات وأبحاث علمية بجدة والمملكة.">
-  <meta name="keywords" content="عبدالمجيد البطاطي, دكتور عبدالمجيد البطاطي, مهندس عبدالمجيد البطاطي, عبدالمجيد بن سعيد بن طالب البطاطي, مهندس استشاري جدة, الهيئة السعودية للمهندسين 201226, محكم معتمد وزارة العدل, حوكمة الشركات العائلية, استشارات هندسية جدة, دراسات السيول جدة, إدارة المشاريع السعودية, جمعية التعاون للمشاريع البيئية, Dr. Abdulmajeed Albatati, Eng. Abdulmajeed Albatati, Consultant Engineer Saudi Arabia, Jeddah Arbitrator">
+  <title>د. م. عبدالمجيد البطاطي | دكتوراه إدارة الأعمال ومهندس استشاري | جدة</title>
+  <meta name="title" content="د. م. عبدالمجيد البطاطي | دكتوراه إدارة الأعمال ومهندس استشاري | جدة">
+  <meta name="description" content="الموقع الرسمي للدكتور المهندس عبدالمجيد بن سعيد البطاطي - دكتوراه في إدارة الأعمال (PhD)، مهندس استشاري معتمد (#201226)، ومحكم معتمد بوزارة العدل. استشارات حوكمة الشركات، التخطيط العمراني، ومشاريع البنية التحتية بجدة.">
+  <meta name="keywords" content="عبدالمجيد البطاطي, دكتور عبدالمجيد البطاطي, دكتوراه في ادارة الاعمال, مهندس عبدالمجيد البطاطي, عبدالمجيد بن سعيد بن طالب البطاطي, مهندس استشاري جدة, الهيئة السعودية للمهندسين 201226, محكم معتمد وزارة العدل, حوكمة الشركات العائلية, استشارات هندسية جدة, دراسات السيول جدة, إدارة المشاريع السعودية, جمعية التعاون للمشاريع البيئية, Dr. Abdulmajeed Albatati, Eng. Abdulmajeed Albatati, Consultant Engineer Saudi Arabia, Jeddah Arbitrator">
   <meta name="author" content="د. م. عبدالمجيد بن سعيد البطاطي">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -199,8 +238,8 @@ html_content = f'''<!DOCTYPE html>
   <!-- ============================================== -->
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://asa7by47.github.io/albatati-portfolio-preview/">
-  <meta property="og:title" content="د. م. عبدالمجيد البطاطي | مهندس استشاري ومحكم معتمد">
-  <meta property="og:description" content="الموقع الرسمي للمهندس الاستشاري د. م. عبدالمجيد بن سعيد البطاطي. مؤلفات وأبحاث، مقالات رأي، وسجل المشاريع الهندسية وحوكمة الشركات بجدة.">
+  <meta property="og:title" content="د. م. عبدالمجيد البطاطي | دكتوراه إدارة الأعمال ومهندس استشاري">
+  <meta property="og:description" content="الموقع الرسمي للدكتور المهندس عبدالمجيد بن سعيد البطاطي - دكتوراه في إدارة الأعمال ومحكم معتمد واستشاري هندسي. أبحاث، مقالات، ومشاريع ميدانية بجدة.">
   <meta property="og:image" content="https://asa7by47.github.io/albatati-portfolio-preview/extracted_data/brand_assets/home_1.JPG">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -216,8 +255,8 @@ html_content = f'''<!DOCTYPE html>
   <!-- ============================================== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://asa7by47.github.io/albatati-portfolio-preview/">
-  <meta name="twitter:title" content="د. م. عبدالمجيد البطاطي | مهندس استشاري ومحكم معتمد">
-  <meta name="twitter:description" content="الموقع الرسمي للدكتور المهندس عبدالمجيد بن سعيد البطاطي - استشارات هندسية، مؤلفات وأبحاث، وحوكمة شركات بجدة.">
+  <meta name="twitter:title" content="د. م. عبدالمجيد البطاطي | دكتوراه إدارة الأعمال ومهندس استشاري">
+  <meta name="twitter:description" content="الموقع الرسمي للدكتور المهندس عبدالمجيد بن سعيد البطاطي - دكتوراه في إدارة الأعمال ومحكم معتمد واستشاري هندسي بجدة.">
   <meta name="twitter:image" content="https://asa7by47.github.io/albatati-portfolio-preview/extracted_data/brand_assets/home_1.JPG">
 
   <!-- ============================================== -->
@@ -232,14 +271,14 @@ html_content = f'''<!DOCTYPE html>
         "@id": "https://asa7by47.github.io/albatati-portfolio-preview/#person",
         "name": "د. م. عبدالمجيد بن سعيد بن طالب البطاطي",
         "alternateName": [
-          "عبدالمجيد البطاطي",
           "د. عبدالمجيد البطاطي",
+          "عبدالمجيد البطاطي",
           "المهندس عبدالمجيد البطاطي",
           "Dr. Eng. Abdulmajeed Saeed Albatati",
           "Abdulmajeed Albatati"
         ],
-        "jobTitle": "مهندس استشاري ومحكم معتمد وخبير تطوير مؤسسي",
-        "description": "مهندس استشاري معتمد من الهيئة السعودية للمهندسين برقم 201226، ومحكم معتمد من وزارة العدل، حاصل على ماجستير إدارة الأعمال (MBA) من جامعة ويلز البريطانية، وباحث دكتوراه في الأداء المؤسسي والحوكمة.",
+        "jobTitle": "دكتور في إدارة الأعمال ومهندس استشاري ومحكم معتمد",
+        "description": "حاصل على درجة الدكتوراه في إدارة الأعمال (PhD)، ومهندس استشاري معتمد من الهيئة السعودية للمهندسين برقم 201226، ومحكم معتمد من وزارة العدل.",
         "url": "https://asa7by47.github.io/albatati-portfolio-preview/",
         "image": "https://asa7by47.github.io/albatati-portfolio-preview/extracted_data/brand_assets/home_1.JPG",
         "telephone": "+966505626375",
@@ -251,6 +290,11 @@ html_content = f'''<!DOCTYPE html>
           "addressCountry": "SA"
         }},
         "hasCredential": [
+          {{
+            "@type": "EducationalOccupationalCredential",
+            "name": "درجة الدكتوراه في إدارة الأعمال (PhD)",
+            "credentialCategory": "Doctorate Degree"
+          }},
           {{
             "@type": "EducationalOccupationalCredential",
             "name": "شهادة مهندس استشاري معتمد",
@@ -273,36 +317,20 @@ html_content = f'''<!DOCTYPE html>
         "alumnusOf": [
           {{
             "@type": "EducationalOrganization",
-            "name": "جامعة الرياض (جامعة الملك سعود)"
+            "name": "أكاديمية اعمل بيزنس (دكتوراه إدارة أعمال)"
           }},
           {{
             "@type": "EducationalOrganization",
-            "name": "University of Wales, UK"
+            "name": "جامعة الرياض / جامعة الملك سعود (بكالوريوس هندسة ميكانيكية)"
           }},
           {{
             "@type": "EducationalOrganization",
-            "name": "Institute of Business Administration, Delaware USA"
-          }}
-        ],
-        "memberOf": [
-          {{
-            "@type": "Organization",
-            "name": "جمعية التعاون للمشاريع البيئية",
-            "roleName": "عضو مجلس إدارة"
+            "name": "University of Wales, UK (ماجستير MBA)"
           }},
           {{
-            "@type": "Organization",
-            "name": "الهيئة السعودية للمهندسين",
-            "roleName": "مهندس استشاري (عضوية 201226)"
+            "@type": "EducationalOrganization",
+            "name": "Institute of Business Administration, Delaware USA (CBA)"
           }}
-        ],
-        "knowsAbout": [
-          "الهندسة الميكانيكية",
-          "إدارة وتخطيط المشاريع الهندسية",
-          "حوكمة الشركات العائلية",
-          "التحكيم التجاري والهندسي",
-          "هندسة البنية التحتية وحماية المدن من أخطار السيول",
-          "التطوير الإداري والتنظيمي"
         ]
       }},
       {{
@@ -327,28 +355,13 @@ html_content = f'''<!DOCTYPE html>
           "@type": "GeoCoordinates",
           "latitude": 21.543333,
           "longitude": 39.172778
-        }},
-        "areaServed": [
-          {{
-            "@type": "City",
-            "name": "جدة"
-          }},
-          {{
-            "@type": "City",
-            "name": "مكة المكرمة"
-          }},
-          {{
-            "@type": "Country",
-            "name": "المملكة العربية السعودية"
-          }}
-        ]
+        }}
       }},
       {{
         "@type": "WebSite",
         "@id": "https://asa7by47.github.io/albatati-portfolio-preview/#website",
         "url": "https://asa7by47.github.io/albatati-portfolio-preview/",
         "name": "د. م. عبدالمجيد البطاطي | المنصة الرسمية",
-        "description": "الموقع الرسمي للمهندس الاستشاري د. م. عبدالمجيد بن سعيد البطاطي",
         "inLanguage": "ar-SA"
       }}
     ]
@@ -388,87 +401,99 @@ html_content = f'''<!DOCTYPE html>
     }}
   </script>
 </head>
-<body class="text-slate-800 antialiased p-3 sm:p-6 lg:p-8 selection:bg-emerald-500 selection:text-white">
+<body class="text-slate-800 antialiased p-2 sm:p-4 lg:p-6 selection:bg-emerald-500 selection:text-white">
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
 
-  <div class="max-w-6xl mx-auto space-y-6 sm:space-y-8">
+  <div class="max-w-7xl mx-auto space-y-5 sm:space-y-6">
     
-    <!-- Floating Glass Header -->
-    <header class="glass-card rounded-2xl p-4 sm:px-8 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 sticky top-4 z-40">
+    <!-- ============================================================== -->
+    <!-- FLOATING ONE-LINE GLASS NAVBAR (STRICTLY ONE LINE ON DESKTOP) -->
+    <!-- ============================================================== -->
+    <header class="glass-card rounded-2xl px-3 sm:px-5 py-2.5 shadow-sm sticky top-3 z-40 flex items-center justify-between gap-2 lg:gap-4">
       
-      <!-- Logo / Monogram -->
-      <div class="flex items-center justify-between w-full md:w-auto">
-        <a href="#hero" class="flex items-center gap-3.5 group">
-          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 text-white flex items-center justify-center font-bold text-xl shadow-md group-hover:scale-105 transition">
-            ع
-          </div>
-          <div>
-            <div id="header-name" class="text-base sm:text-lg font-bold text-slate-900 leading-tight">د. م. عبدالمجيد البطاطي</div>
-            <p id="header-subtitle" class="text-xs text-emerald-800 font-medium">مستشار هندسي وإداري | محكم معتمد</p>
-          </div>
-        </a>
+      <!-- 1. Logo / Monogram (Right side) -->
+      <a href="#hero" class="flex items-center gap-2.5 group flex-shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 text-white flex items-center justify-center font-bold text-lg shadow-md group-hover:scale-105 transition flex-shrink-0">
+          ع
+        </div>
+        <div class="flex-shrink-0 leading-tight">
+          <div id="header-name" class="text-sm font-bold text-slate-900 whitespace-nowrap">د. م. عبدالمجيد البطاطي</div>
+          <p id="header-subtitle" class="text-[10px] text-emerald-800 font-medium whitespace-nowrap">دكتوراه إدارة أعمال | استشاري ومحكم</p>
+        </div>
+      </a>
 
-        <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl glass-pill text-slate-700 hover:bg-white transition" aria-label="القائمة">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-        </button>
-      </div>
-
-      <!-- Navigation Tabs (Pills) -->
-      <nav id="nav-menu" class="hidden md:flex flex-wrap items-center gap-1.5 text-xs font-semibold text-slate-700 w-full md:w-auto justify-center" aria-label="أقسام المنصة">
-        <button onclick="switchTab('about')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="about">نبذة ومؤهلات</button>
-        <button onclick="switchTab('books')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="books">المؤلفات والأبحاث</button>
-        <button onclick="switchTab('articles')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="articles">المقالات</button>
-        <button onclick="switchTab('subjects')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="subjects">مواضيع رأي</button>
-        <button onclick="switchTab('events')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="events">المشاريع والألبومات</button>
-        <button onclick="switchTab('contact')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="contact">تواصل واستشارات</button>
-        <a href="admin/" class="md:hidden tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white text-emerald-800 font-bold transition">⚙️ لوحة التحكم</a>
+      <!-- 2. Navigation Tabs (Middle): ALL SECTIONS IN ONE STRICT LINE -->
+      <nav id="nav-menu" class="hidden lg:flex flex-nowrap items-center gap-1 xl:gap-2 text-xs font-semibold text-slate-700 justify-center flex-shrink-0" aria-label="أقسام المنصة">
+        <button onclick="switchTab('about')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="about">نبذة ومؤهلات</button>
+        <button onclick="switchTab('books')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="books">المؤلفات والأبحاث</button>
+        <button onclick="switchTab('articles')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="articles">المقالات</button>
+        <button onclick="switchTab('subjects')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="subjects">مواضيع رأي</button>
+        <button onclick="switchTab('events')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="events">المشاريع والألبومات</button>
+        <button onclick="switchTab('contact')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="contact">تواصل واستشارات</button>
       </nav>
 
-      <!-- Action Pill / Direct CV Link & Admin Link -->
-      <div class="hidden md:flex items-center gap-2">
-        <a id="btn-cv-download" href="extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1.5">
-          <span>السيرة الذاتية PDF</span>
-          <svg class="w-3.5 h-3.5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+      <!-- 3. Actions (Left side): CV PDF & ADMIN STRICTLY IN ONE LINE -->
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <a id="btn-cv-download" href="extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+          <span class="whitespace-nowrap">السيرة الذاتية PDF</span>
+          <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </a>
-        <a href="admin/" class="px-3.5 py-2 rounded-full glass-pill hover:bg-white text-slate-700 hover:text-emerald-700 text-xs font-semibold shadow-xs transition flex items-center gap-1.5" title="لوحة التحكم الإدارية">
+        <a href="admin/" class="hidden sm:flex px-3 py-1.5 rounded-full glass-pill hover:bg-white text-slate-700 hover:text-emerald-700 text-xs font-semibold shadow-xs transition items-center gap-1 whitespace-nowrap flex-shrink-0" title="لوحة التحكم الإدارية">
           <span>⚙️</span>
-          <span>الإدارة</span>
+          <span class="whitespace-nowrap">الإدارة</span>
         </a>
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl glass-pill text-slate-700 hover:bg-white transition flex-shrink-0" aria-label="القائمة">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
       </div>
 
     </header>
 
-    <!-- Hero Card (Sample 4 Signature Glassmorphic Hero) -->
-    <section id="hero" class="glass-card rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm relative overflow-hidden" itemscope itemtype="https://schema.org/Person">
+    <!-- Mobile Dropdown Navigation Menu -->
+    <div id="mobile-nav-dropdown" class="hidden lg:hidden glass-card rounded-2xl p-4 shadow-lg flex flex-col gap-2 text-xs font-semibold text-slate-800">
+      <button onclick="switchTab('about'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">نبذة ومؤهلات</button>
+      <button onclick="switchTab('books'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">المؤلفات والأبحاث</button>
+      <button onclick="switchTab('articles'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">المقالات</button>
+      <button onclick="switchTab('subjects'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">مواضيع رأي</button>
+      <button onclick="switchTab('events'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">المشاريع والألبومات</button>
+      <button onclick="switchTab('contact'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">تواصل واستشارات</button>
+      <a href="admin/" class="text-right py-2 px-3 rounded-xl bg-emerald-50 text-emerald-800 font-bold flex items-center justify-between">
+        <span>⚙️ لوحة التحكم الإدارية</span>
+        <span>←</span>
+      </a>
+    </div>
+
+    <!-- Hero Card (With Dynamic Rotating Images on Every Reload) -->
+    <section id="hero" class="glass-card rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden" itemscope itemtype="https://schema.org/Person">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         
-        <div class="md:col-span-8 space-y-5 text-center md:text-right">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+        <div class="md:col-span-8 space-y-4 text-center md:text-right">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-semibold whitespace-nowrap">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span id="hero-tagline">{e(settings.get('hero_tagline'))}</span>
           </div>
 
           <!-- Primary H1 for Google Search SEO -->
-          <h1 id="hero-title" itemprop="name" class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          <h1 id="hero-title" itemprop="name" class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
             {e(profile.get('name', {}).get('arabic', 'د. م. عبدالمجيد بن سعيد البطاطي'))}
           </h1>
 
-          <p id="hero-bio" itemprop="description" class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
+          <p id="hero-bio" itemprop="description" class="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-2xl">
             {e(settings.get('hero_bio'))}
           </p>
 
-          <!-- Credential Badges -->
-          <div id="hero-badges" class="flex flex-wrap gap-2.5 justify-center md:justify-start pt-1">
-            <span class="px-3.5 py-1.5 rounded-xl bg-white/80 border border-slate-200/80 text-xs text-slate-700 font-medium shadow-xs">🎓 باحث دكتوراه في إدارة الأعمال</span>
-            <span class="px-3.5 py-1.5 rounded-xl bg-white/80 border border-slate-200/80 text-xs text-slate-700 font-medium shadow-xs">⚖️ محكم معتمد من وزارة العدل</span>
-            <span class="px-3.5 py-1.5 rounded-xl bg-white/80 border border-slate-200/80 text-xs text-slate-700 font-medium shadow-xs">🏗️ مهندس استشاري معتمد (201226)</span>
+          <!-- Credential Badges (Clarifying PhD degree) -->
+          <div id="hero-badges" class="flex flex-wrap gap-2 justify-center md:justify-start pt-1">
+            <span class="px-3 py-1 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold shadow-xs whitespace-nowrap">🎓 درجة الدكتوراه في إدارة الأعمال (PhD)</span>
+            <span class="px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-xs font-medium shadow-xs whitespace-nowrap">⚖️ محكم معتمد من وزارة العدل</span>
+            <span class="px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-xs font-medium shadow-xs whitespace-nowrap">🏗️ مهندس استشاري معتمد (#201226)</span>
           </div>
 
           <!-- Quick Stat Counters -->
-          <div class="grid grid-cols-4 gap-3 pt-4 border-t border-slate-200/60 max-w-lg mx-auto md:mx-0">
+          <div class="grid grid-cols-4 gap-2 pt-3 border-t border-slate-200/60 max-w-lg mx-auto md:mx-0 text-center">
             <div>
               <div id="stat-books" class="text-2xl sm:text-3xl font-black text-emerald-700">{len(books)}</div>
               <div class="text-[11px] text-slate-500">مؤلفاً وبحثاً</div>
@@ -488,13 +513,18 @@ html_content = f'''<!DOCTYPE html>
           </div>
         </div>
 
-        <!-- Portrait Image Card -->
+        <!-- Portrait Image Card (Rotates randomly on reload from 21 dynamic images) -->
         <div class="md:col-span-4 flex justify-center">
           <div class="relative group">
-            <div class="w-52 h-52 sm:w-60 sm:h-60 rounded-3xl p-2 bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 shadow-xl rotate-1 group-hover:rotate-0 transition duration-300">
+            <div class="w-52 h-52 sm:w-60 sm:h-60 rounded-3xl p-2 bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 shadow-xl rotate-1 group-hover:rotate-0 transition duration-300 relative overflow-hidden">
               <img id="hero-photo" itemprop="image" src="extracted_data/brand_assets/home_1.JPG" alt="د. عبدالمجيد البطاطي - مهندس استشاري جدة" class="w-full h-full object-cover object-top rounded-2xl shadow-inner">
+              <!-- Switch Image Button -->
+              <button onclick="rotateHeroPhoto()" class="absolute top-3 left-3 p-1.5 rounded-full bg-black/40 hover:bg-black/70 text-white text-[10px] backdrop-blur transition flex items-center gap-1 shadow" title="تبديل الصورة عشوائياً (21 صورة)">
+                <span>🔄</span>
+                <span class="text-[9px] font-bold">صورة أخرى</span>
+              </button>
             </div>
-            <div class="absolute -bottom-3 inset-x-4 bg-white/95 backdrop-blur rounded-xl py-1 px-3 text-center border border-slate-100 shadow-sm text-[11px] font-bold text-slate-700">
+            <div class="absolute -bottom-3 inset-x-4 bg-white/95 backdrop-blur rounded-xl py-1 px-3 text-center border border-slate-100 shadow-sm text-[11px] font-bold text-slate-700 whitespace-nowrap">
               جدة • منطقة مكة المكرمة • المملكة العربية السعودية
             </div>
           </div>
@@ -516,33 +546,59 @@ html_content = f'''<!DOCTYPE html>
         </div>
 
         <!-- Summary paragraph -->
-        <div class="p-5 rounded-2xl bg-white/80 border border-slate-200/80 leading-relaxed text-sm sm:text-base text-slate-700 shadow-xs">
+        <div class="p-5 rounded-2xl bg-white/80 border border-slate-200/80 leading-relaxed text-xs sm:text-sm text-slate-700 shadow-xs">
           <p id="about-summary">
             {e(cv.get('summary'))}
           </p>
         </div>
 
-        <!-- Qualifications Grid (Pre-rendered for Googlebot & Hydrated dynamically) -->
-        <div class="space-y-4">
-          <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+        <!-- Qualifications Grid -->
+        <div class="space-y-3">
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
             <span>📜</span>
-            <span>الشهادات والمؤهلات العلمية:</span>
+            <span>الشهادات والمؤهلات الأكاديمية:</span>
           </h3>
-          <div id="qualifications-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div id="qualifications-list" class="grid grid-cols-1 md:grid-cols-2 gap-3">
 {qual_html}
           </div>
         </div>
 
-        <!-- Memberships & Committees -->
-        <div class="space-y-4 pt-4 border-t border-slate-200/60">
-          <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
-            <span>🏛️</span>
-            <span>المناصب وعضويات مجالس الإدارة:</span>
+        <!-- Career History Timeline -->
+        <div class="space-y-3 pt-4 border-t border-slate-200/60">
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+            <span>🏢</span>
+            <span>المسيرة المهنية والمناصب القيادية (CV):</span>
           </h3>
-          <div id="titles-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+{milestones_html}
+          </div>
+        </div>
+
+        <!-- Memberships & Committees -->
+        <div class="space-y-3 pt-4 border-t border-slate-200/60">
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+            <span>🏛️</span>
+            <span>عضويات مجالس الإدارة واللجان:</span>
+          </h3>
+          <div id="titles-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
 {titles_html}
           </div>
         </div>
+
+        <!-- Scanned CV Sheets from asalbatati.net/pages/cv.html -->
+        <div class="space-y-3 pt-4 border-t border-slate-200/60">
+          <div class="flex justify-between items-center">
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>📑</span>
+              <span>أوراق السيرة الذاتية والشهادات الأصلية المصورة:</span>
+            </h3>
+            <span class="text-xs text-slate-500 font-mono">9 وثائق وشهادات</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+{scans_html}
+          </div>
+        </div>
+
       </section>
 
       <!-- ============================================== -->
@@ -554,7 +610,6 @@ html_content = f'''<!DOCTYPE html>
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">الإنتاج المعرفي والمحكّم</span>
             <h2 id="heading-books" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">الكتب والأبحاث العلمية</h2>
           </div>
-          <!-- Search Input -->
           <div class="relative w-full sm:w-64">
             <input type="text" id="books-search" placeholder="بحث في الأبحاث والكتب..." class="w-full px-4 py-2 rounded-xl glass-pill text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-white">
           </div>
@@ -564,7 +619,6 @@ html_content = f'''<!DOCTYPE html>
           تشمل دراسات متخصصة في حوكمة الشركات العائلية، السلوك المؤسسي، التوطين، وربط استراتيجية المنظمة بثقافة العمل، متاحة للتحميل المباشر بصيغة PDF.
         </p>
 
-        <!-- Books Grid (Pre-rendered for Googlebot & Hydrated dynamically) -->
         <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 {books_html}
         </div>
@@ -588,7 +642,6 @@ html_content = f'''<!DOCTYPE html>
           مقالات ودراسات رأي نشرت في الصحف الرسمية بالمملكة (مثل جريدة البلاد) تناقش التعليم، القوة الشرائية، والمنفعة العامة.
         </p>
 
-        <!-- Articles Grid (Pre-rendered for Googlebot & Hydrated dynamically) -->
         <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 {articles_html}
         </div>
@@ -607,7 +660,6 @@ html_content = f'''<!DOCTYPE html>
           قضايا ونقاشات تركز على حماية المستهلك، جودة الخدمات، وحقوق العمالة بما يعزز جودة الحياة والمسؤولية المجتمعية.
         </p>
 
-        <!-- Subjects Grid (Pre-rendered for Googlebot & Hydrated dynamically) -->
         <div id="subjects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 {subjects_html}
         </div>
@@ -626,7 +678,6 @@ html_content = f'''<!DOCTYPE html>
           توثيق ميداني مصور لأعمال حماية محافظة جدة من أخطار السيول وتطوير السدود وقنوات التصريف بالتنسيق مع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.
         </p>
 
-        <!-- Events Grid (Pre-rendered for Googlebot & Hydrated dynamically) -->
         <div id="events-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 {events_html}
         </div>
@@ -646,7 +697,6 @@ html_content = f'''<!DOCTYPE html>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
           
-          <!-- Contact Info Cards -->
           <div class="md:col-span-5 space-y-4">
             
             <a id="contact-phone-link" href="tel:{e(settings.get('phone', '0505626375'))}" class="card-interactive p-4 rounded-2xl bg-white/70 border border-slate-200/70 flex items-center gap-3.5 block shadow-xs">
@@ -673,7 +723,6 @@ html_content = f'''<!DOCTYPE html>
               </div>
             </div>
 
-            <!-- Certified SCE Badge -->
             <div class="p-4 rounded-2xl bg-gradient-to-tr from-emerald-50 to-teal-50 border border-emerald-200/70 space-y-1.5 shadow-xs">
               <span class="text-[10px] uppercase font-bold text-emerald-800">الاعتماد الرسمي</span>
               <p class="text-xs font-bold text-emerald-950">الهيئة السعودية للمهندسين - ترخيص استشاري #201226</p>
@@ -682,7 +731,6 @@ html_content = f'''<!DOCTYPE html>
 
           </div>
 
-          <!-- Contact Submission Form -->
           <div class="md:col-span-7">
             <form id="contact-form" class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -733,22 +781,22 @@ html_content = f'''<!DOCTYPE html>
     <!-- Footer -->
     <footer class="pt-8 pb-12 border-t border-slate-200/60 text-center text-xs text-slate-500 space-y-3">
       <div class="flex flex-wrap justify-center items-center gap-4 text-xs font-semibold text-slate-600">
-        <button onclick="switchTab('about')" class="hover:text-emerald-700">نبذة ومؤهلات</button>
+        <button onclick="switchTab('about')" class="hover:text-emerald-700 whitespace-nowrap">نبذة ومؤهلات</button>
         <span>•</span>
-        <button onclick="switchTab('books')" class="hover:text-emerald-700">الأبحاث والكتب</button>
+        <button onclick="switchTab('books')" class="hover:text-emerald-700 whitespace-nowrap">الأبحاث والكتب</button>
         <span>•</span>
-        <button onclick="switchTab('articles')" class="hover:text-emerald-700">المقالات</button>
+        <button onclick="switchTab('articles')" class="hover:text-emerald-700 whitespace-nowrap">المقالات</button>
         <span>•</span>
-        <button onclick="switchTab('subjects')" class="hover:text-emerald-700">قضايا رأي</button>
+        <button onclick="switchTab('subjects')" class="hover:text-emerald-700 whitespace-nowrap">قضايا رأي</button>
         <span>•</span>
-        <button onclick="switchTab('events')" class="hover:text-emerald-700">المشاريع الميدانية</button>
+        <button onclick="switchTab('events')" class="hover:text-emerald-700 whitespace-nowrap">المشاريع الميدانية</button>
         <span>•</span>
-        <button onclick="switchTab('contact')" class="hover:text-emerald-700">تواصل</button>
+        <button onclick="switchTab('contact')" class="hover:text-emerald-700 whitespace-nowrap">تواصل</button>
         <span>•</span>
-        <a href="admin/" class="text-emerald-700 hover:underline">لوحة التحكم (Admin)</a>
+        <a href="admin/" class="text-emerald-700 hover:underline whitespace-nowrap">لوحة التحكم (Admin)</a>
       </div>
       <p class="leading-relaxed">
-        جميع الحقوق محفوظة © 2026 د. م. عبدالمجيد بن سعيد بن طالب البطاطي. مهندس استشاري معتمد (ترخيص 201226) • محكم معتمد • جدة، المملكة العربية السعودية.
+        جميع الحقوق محفوظة © 2026 د. م. عبدالمجيد بن سعيد بن طالب البطاطي. دكتوراه في إدارة الأعمال • مهندس استشاري معتمد (ترخيص 201226) • محكم معتمد • جدة، المملكة العربية السعودية.
       </p>
     </footer>
 
@@ -793,11 +841,11 @@ html_content = f'''<!DOCTYPE html>
 </html>
 '''
 
-# Write to both locations
+# Write to both index.html and public/index.html
 with open('/home/omar/.gemini/antigravity/scratch/albatati-portfolio/public/index.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
 
 with open('/home/omar/.gemini/antigravity/scratch/albatati-portfolio/index.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
 
-print("Successfully generated SEO & GEO optimized index.html with pre-rendered content!")
+print("Generated updated index.html with single-line navbar, PhD, career milestones, and scans!")

@@ -5,8 +5,8 @@
     "contact_email": "info@asalbatati.net",
     "phone": "0505626375",
     "address": "المملكة العربية السعودية - منطقة مكة المكرمة - جدة",
-    "hero_tagline": "مهندس استشاري ومحكم معتمد | خبير إدارة المشاريع والتطوير المؤسسي",
-    "hero_bio": "مستشار هندسي واستراتيجي يجمع بين الخبرة الأكاديمية والعمل الميداني لأكثر من 40 عاماً في إدارة المنظمات، حوكمة الشركات العائلية، وتخطيط البنى التحتية الكبرى."
+    "hero_tagline": "دكتوراه في إدارة الأعمال | مهندس استشاري ومحكم معتمد",
+    "hero_bio": "دكتور في إدارة الأعمال ومهندس استشاري ومحكم معتمد يجمع بين الخبرة الأكاديمية والعمل الميداني لأكثر من 40 عاماً في التخطيط العمراني، حوكمة الشركات العائلية، وإدارة المنظمات الكبرى بالمملكة العربية السعودية."
   },
   "profile": {
     "name": {
@@ -16,6 +16,7 @@
       "honorific_en": "Eng. Dr. Abdulmajeed Albatati"
     },
     "titles": [
+      "دكتور في إدارة الأعمال (PhD)",
       "عضو مجلس إدارة جمعية التعاون للمشاريع البيئية",
       "مهندس استشاري معتمد من الهيئة السعودية للمهندسين (رقم: 201226)",
       "محكم معتمد من وزارة العدل",
@@ -35,7 +36,7 @@
     },
     "academic_qualifications": [
       {
-        "degree": "دراسة دكتوراه في إدارة الأعمال",
+        "degree": "درجة الدكتوراه في إدارة الأعمال (PhD in Business Administration)",
         "institution": "أكاديمية اعمل بيزنس",
         "topic": "الأداء المؤسسي والتطويري لجمعيات المتقاعدين وعلاقته بالرضا والالتزام بالعضوية - دراسة تطبيقية على جمعية متقاعدي منطقة مكة المكرمة"
       },
@@ -66,14 +67,100 @@
         "year": "1972"
       }
     ],
-    "photo": "/extracted_data/brand_assets/home_1.JPG"
+    "photo": "/extracted_data/brand_assets/home_1.JPG",
+    "career_milestones": [
+      {
+        "role": "مدير عام التخطيط العمراني لمحافظة جدة",
+        "org": "أمانة محافظة جدة",
+        "period": "2009 - 2010",
+        "details": "إدارة المخطط المحلي ولجان مشاريع تصريف مياه الأمطار والسيول ودراسة ملكيات الأراضي"
+      },
+      {
+        "role": "نائب رئيس وعضو مجلس الإدارة",
+        "org": "جمعية المشاريع البيئية التعاونية",
+        "period": "2020 - حتى الآن",
+        "details": "رئيس المجلس التأسيسي وعضو مجلس الإدارة لتطوير المشروعات والمبادرات البيئية"
+      },
+      {
+        "role": "مساعد الأمين للبلديات الفرعية ومستشار المبادرات",
+        "org": "أمانة محافظة جدة",
+        "period": "2010 - 2014",
+        "details": "الإشراف على البلديات الفرعية، إدارة مكتب الاستراتيجية، ولجنة تصريف السيول"
+      },
+      {
+        "role": "مدير عام الدراسات التنظيمية والجودة ومستشار مساعد الأمين للتنمية",
+        "org": "أمانة محافظة جدة",
+        "period": "2006 - 2009",
+        "details": "تطوير الهياكل التنظيمية وتطبيق معايير الجودة الشاملة وتقييم التميز المؤسسي"
+      },
+      {
+        "role": "أمين عام مجلس الإدارة ومدير إدارة المساهمين",
+        "org": "البنك الأهلي التجاري (NCB)",
+        "period": "2003 - 2006",
+        "details": "أمين سر اللجنة التنفيذية وأمين سر لجنة المراجعة وإدارة شؤون كبار المساهمين"
+      },
+      {
+        "role": "مدير إدارة الخدمات المساندة العامة والموارد البشرية",
+        "org": "البنك الأهلي التجاري (NCB)",
+        "period": "1997 - 2003",
+        "details": "إدارة العمليات المساندة والخدمات والموارد البشرية والمباني على مستوى المملكة"
+      },
+      {
+        "role": "مدير إدارة الصيانة العامة لكافة الفروع والإدارات",
+        "org": "البنك الأهلي التجاري (NCB)",
+        "period": "1978 - 1996",
+        "details": "تطوير وتجهيز خدمات الصيانة والمشاريع الهندسية لكافة الفروع بالمملكة"
+      },
+      {
+        "role": "مهندس بالإدارة الهندسية",
+        "org": "جامعة الملك عبدالعزيز بجدة",
+        "period": "1977 - 1978",
+        "details": "الإشراف الهندسي والمتابعة الميدانية لمشاريع الجامعة"
+      }
+    ],
+    "rotating_images": [
+      "/extracted_data/rotating_hero_images/main.png",
+      "/extracted_data/rotating_hero_images/2.jpeg",
+      "/extracted_data/rotating_hero_images/3.jpg",
+      "/extracted_data/rotating_hero_images/4.jpg",
+      "/extracted_data/rotating_hero_images/5.jpg",
+      "/extracted_data/rotating_hero_images/6.jpg",
+      "/extracted_data/rotating_hero_images/7.jpg",
+      "/extracted_data/rotating_hero_images/8.jpg",
+      "/extracted_data/rotating_hero_images/9.jpg",
+      "/extracted_data/rotating_hero_images/10.jpg",
+      "/extracted_data/rotating_hero_images/11.jpg",
+      "/extracted_data/rotating_hero_images/12.jpg",
+      "/extracted_data/rotating_hero_images/13.jpg",
+      "/extracted_data/rotating_hero_images/14.jpg",
+      "/extracted_data/rotating_hero_images/15.jpg",
+      "/extracted_data/rotating_hero_images/16.jpg",
+      "/extracted_data/rotating_hero_images/17.jpg",
+      "/extracted_data/rotating_hero_images/18.jpg",
+      "/extracted_data/rotating_hero_images/19.jpg",
+      "/extracted_data/rotating_hero_images/20.jpg",
+      "/extracted_data/rotating_hero_images/21.jpg"
+    ]
   },
   "cv": {
     "title_ar": "السيرة الذاتية المهنية",
     "title_en": "Professional Curriculum Vitae",
     "pdf_ar": "/extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf",
     "pdf_en": "/extracted_data/cv/Abdulmajeed_Albatati_CV_English.pdf",
-    "summary": "مهندس استشاري معتمد من الهيئة السعودية للمهندسين برقم 201226، ومحكم معتمد من وزارة العدل، حاصل على ماجستير إدارة الأعمال (MBA) من جامعة ويلز البريطانية، وباحث دكتوراه في الأداء المؤسسي والحوكمة بأكاديمية اعمل بيزنس."
+    "summary": "دكتور في إدارة الأعمال (PhD) ومهندس استشاري معتمد من الهيئة السعودية للمهندسين برقم 201226، ومحكم معتمد من وزارة العدل، حاصل على ماجستير إدارة الأعمال (MBA) من جامعة ويلز البريطانية، وبكالوريوس الهندسة الميكانيكية من جامعة الملك سعود، مع خبرة تنفيذية واستشارية تزيد عن 40 عاماً في التخطيط العمراني، حوكمة الشركات العائلية، وتطوير المنظمات.",
+    "scans_ar": [
+      "/extracted_data/cv/scans/1-a.jpg",
+      "/extracted_data/cv/scans/2-a.jpg",
+      "/extracted_data/cv/scans/3-a.jpg",
+      "/extracted_data/cv/scans/4-a.jpg"
+    ],
+    "scans_en": [
+      "/extracted_data/cv/scans/1-e.jpg",
+      "/extracted_data/cv/scans/2-e.jpg",
+      "/extracted_data/cv/scans/3-e.jpg",
+      "/extracted_data/cv/scans/4-e.jpg",
+      "/extracted_data/cv/scans/5-e.jpg"
+    ]
   },
   "books": [
     {

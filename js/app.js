@@ -70,17 +70,52 @@ function showToast(message, type = 'success') {
   }, 4000);
 }
 
+// 21 Dynamic Rotating Hero Images from original website (switches on every reload)
+const HERO_ROTATING_IMAGES = [
+  'extracted_data/rotating_hero_images/main.png',
+  'extracted_data/rotating_hero_images/2.jpeg',
+  'extracted_data/rotating_hero_images/3.jpg',
+  'extracted_data/rotating_hero_images/4.jpg',
+  'extracted_data/rotating_hero_images/5.jpg',
+  'extracted_data/rotating_hero_images/6.jpg',
+  'extracted_data/rotating_hero_images/7.jpg',
+  'extracted_data/rotating_hero_images/8.jpg',
+  'extracted_data/rotating_hero_images/9.jpg',
+  'extracted_data/rotating_hero_images/10.jpg',
+  'extracted_data/rotating_hero_images/11.jpg',
+  'extracted_data/rotating_hero_images/12.jpg',
+  'extracted_data/rotating_hero_images/13.jpg',
+  'extracted_data/rotating_hero_images/14.jpg',
+  'extracted_data/rotating_hero_images/15.jpg',
+  'extracted_data/rotating_hero_images/16.jpg',
+  'extracted_data/rotating_hero_images/17.jpg',
+  'extracted_data/rotating_hero_images/18.jpg',
+  'extracted_data/rotating_hero_images/19.jpg',
+  'extracted_data/rotating_hero_images/20.jpg',
+  'extracted_data/rotating_hero_images/21.jpg'
+];
+
+function rotateHeroPhoto() {
+  const hp = document.getElementById('hero-photo');
+  if (!hp) return;
+  const rand = Math.floor(Math.random() * HERO_ROTATING_IMAGES.length);
+  hp.src = resolveAssetUrl(HERO_ROTATING_IMAGES[rand]);
+}
+
 // Mobile Menu Handler
 function initMobileMenu() {
   const btn = document.getElementById('mobile-menu-btn');
-  const nav = document.getElementById('nav-menu');
-  if (!btn || !nav) return;
+  const dropdown = document.getElementById('mobile-nav-dropdown');
+  if (!btn || !dropdown) return;
 
   btn.addEventListener('click', () => {
-    nav.classList.toggle('hidden');
-    nav.classList.toggle('flex');
-    nav.classList.toggle('flex-col');
+    dropdown.classList.toggle('hidden');
   });
+}
+
+function closeMobileMenu() {
+  const dropdown = document.getElementById('mobile-nav-dropdown');
+  if (dropdown) dropdown.classList.add('hidden');
 }
 
 // Fetch Public Website Data (Hybrid: Backend API with Static/LocalStorage Fallback)
@@ -162,10 +197,8 @@ function renderWebsite(data) {
     const hb = document.getElementById('hero-bio');
     if (hb) hb.textContent = settings.hero_bio;
   }
-  if (profile && profile.photo) {
-    const hp = document.getElementById('hero-photo');
-    if (hp) hp.src = resolveAssetUrl(profile.photo);
-  }
+  // Randomly rotate hero photo from 21 downloaded images
+  rotateHeroPhoto();
 
   // CV Download Button
   if (cv && cv.pdf_ar) {
