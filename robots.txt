@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+# Sitemaps
+Sitemap: https://asa7by47.github.io/albatati-portfolio-preview/sitemap.xml
+Sitemap: https://www.asalbatati.net/sitemap.xml
