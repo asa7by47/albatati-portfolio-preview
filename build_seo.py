@@ -3,10 +3,12 @@
 """
 Generate complete SEO & GEO optimized index.html with:
 - PhD degree in Business Administration
-- One-line Navbar & one-line CV PDF button
+- Strictly one-line Navbar on Desktop & elegant responsive Drawer on Mobile
+- One-line CV PDF button
 - 21 dynamic rotating hero images on every reload
 - Executive career milestones and scanned CV certificates from cv.html
 - Schema.org JSON-LD
+- Safe overflow prevention and responsive layout for all mobile/desktop breakpoints
 """
 
 import json
@@ -32,16 +34,16 @@ def e(s):
 # Build Qualifications HTML
 qual_html_items = []
 for q in profile.get('academic_qualifications', []):
-    year_badge = f'<span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">{e(q.get("year"))}</span>' if q.get('year') else ''
-    details_p = f'<p class="text-[11px] text-slate-500">{e(q.get("details"))}</p>' if q.get('details') else ''
-    topic_p = f'<p class="text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 pt-1 mt-1"><strong>موضوع البحث:</strong> {e(q.get("topic"))}</p>' if q.get('topic') else ''
+    year_badge = f'<span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">{e(q.get("year"))}</span>' if q.get('year') else ''
+    details_p = f'<p class="text-[11px] text-slate-500 break-words-safe">{e(q.get("details"))}</p>' if q.get('details') else ''
+    topic_p = f'<p class="text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 pt-1 mt-1 break-words-safe"><strong>موضوع البحث:</strong> {e(q.get("topic"))}</p>' if q.get('topic') else ''
     qual_html_items.append(f'''
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
-        <div class="flex items-center justify-between">
-          <h5 class="text-sm font-bold text-slate-900">{e(q.get("degree"))}</h5>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">{e(q.get("degree"))}</h5>
           {year_badge}
         </div>
-        <p class="text-xs text-slate-600 font-medium">{e(q.get("institution"))}</p>
+        <p class="text-xs text-slate-600 font-medium break-words-safe">{e(q.get("institution"))}</p>
         {details_p}
         {topic_p}
       </div>''')
@@ -51,13 +53,13 @@ qual_html = '\n'.join(qual_html_items)
 milestones_html_items = []
 for m in career_milestones:
     milestones_html_items.append(f'''
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
-        <div class="flex items-center justify-between gap-2">
-          <h5 class="text-xs sm:text-sm font-bold text-slate-900">{e(m.get("role"))}</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">{e(m.get("period"))}</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">{e(m.get("role"))}</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">{e(m.get("period"))}</span>
         </div>
-        <p class="text-xs text-emerald-700 font-medium">{e(m.get("org"))}</p>
-        <p class="text-[11px] text-slate-500 leading-relaxed">{e(m.get("details"))}</p>
+        <p class="text-xs text-emerald-700 font-medium break-words-safe">{e(m.get("org"))}</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed break-words-safe">{e(m.get("details"))}</p>
       </div>''')
 milestones_html = '\n'.join(milestones_html_items)
 
@@ -65,9 +67,9 @@ milestones_html = '\n'.join(milestones_html_items)
 titles_html_items = []
 for t in profile.get('titles', []):
     titles_html_items.append(f'''
-      <div class="p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
+      <div class="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
         <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-        <span>{e(t)}</span>
+        <span class="break-words-safe leading-snug">{e(t)}</span>
       </div>''')
 titles_html = '\n'.join(titles_html_items)
 
@@ -78,20 +80,20 @@ scans_html_items = []
 for i, s in enumerate(scans_ar, 1):
     clean = s.lstrip('/')
     scans_html_items.append(f'''
-      <a href="{clean}" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="{clean}" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="{clean}" alt="شهادة وسيرة ذاتية {i}" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">شهادة عربية {i} 📄</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">شهادة عربية {i} 📄</span>
       </a>''')
 for i, s in enumerate(scans_en, 1):
     clean = s.lstrip('/')
     scans_html_items.append(f'''
-      <a href="{clean}" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="{clean}" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="{clean}" alt="شهادة وسيرة ذاتية إنجليزية {i}" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">English Sheet {i} 📜</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">English Sheet {i} 📜</span>
       </a>''')
 scans_html = '\n'.join(scans_html_items)
 
@@ -103,20 +105,20 @@ for b in books:
     pdf = b.get('pdf_file') or '#'
     pdf = pdf.lstrip('/')
     books_html_items.append(f'''
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="{e(cover)}" alt="{e(b.get('title'))}" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">{e(b.get('date'))}</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">{e(b.get('title'))}</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description">{e(b.get('description'))}</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">{e(b.get('title'))}</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description">{e(b.get('description'))}</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="{e(pdf)}" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="{e(pdf)}" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
@@ -128,21 +130,21 @@ books_html = '\n'.join(books_html_items)
 articles_html_items = []
 for a in articles:
     articles_html_items.append(f'''
-      <article class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
+      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 {e(a.get('date'))}</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">{e(a.get('title'))}</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">{e(a.get('content'))}</p>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">{e(a.get('title'))}</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">{e(a.get('content'))}</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
           <button onclick="openReaderModal('article', {a.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
         </div>
       </article>''')
 articles_html = '\n'.join(articles_html_items)
@@ -150,17 +152,17 @@ articles_html = '\n'.join(articles_html_items)
 # Build Subjects HTML
 subjects_html_items = []
 for s in subjects:
-    subtitle_h5 = f'<h5 class="text-xs font-semibold text-emerald-700">{e(s.get("subtitle"))}</h5>' if s.get('subtitle') else ''
+    subtitle_h5 = f'<h5 class="text-xs font-semibold text-emerald-700 break-words-safe">{e(s.get("subtitle"))}</h5>' if s.get('subtitle') else ''
     subjects_html_items.append(f'''
-      <div class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>{e(s.get('date'))}</span>
             <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug">{e(s.get('title'))}</h4>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">{e(s.get('title'))}</h4>
           {subtitle_h5}
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">{e(s.get('content'))}</p>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">{e(s.get('content'))}</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
           <button onclick="openReaderModal('subject', {s.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
@@ -179,9 +181,9 @@ for ev in events:
     raw_img = raw_img.lstrip('/')
     img_cnt = ev.get('image_count') or (len(images) if images else 1)
     events_html_items.append(f'''
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="{e(raw_img)}" alt="{e(ev.get('title'))}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -192,8 +194,8 @@ for ev in events:
             <span>{e(ev.get('date'))}</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">{e(ev.get('title'))}</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">{e(ev.get('content') or 'مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.')}</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">{e(ev.get('title'))}</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">{e(ev.get('content') or 'مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.')}</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery({ev.get('id')})" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -381,6 +383,14 @@ html_content = f'''<!DOCTYPE html>
   <script>
     tailwind.config = {{
       theme: {{
+        screens: {{
+          'xs': '480px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+          '2xl': '1536px',
+        }},
         extend: {{
           fontFamily: {{
             sans: ['Readex Pro', 'sans-serif'],
@@ -401,131 +411,157 @@ html_content = f'''<!DOCTYPE html>
     }}
   </script>
 </head>
-<body class="text-slate-800 antialiased p-2 sm:p-4 lg:p-6 selection:bg-emerald-500 selection:text-white">
+<body class="text-slate-800 antialiased p-2.5 sm:p-4 lg:p-6 selection:bg-emerald-500 selection:text-white overflow-x-hidden w-full max-w-full">
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
 
-  <div class="max-w-7xl mx-auto space-y-5 sm:space-y-6">
+  <div class="max-w-7xl mx-auto space-y-4 sm:space-y-6 w-full">
     
     <!-- ============================================================== -->
-    <!-- FLOATING ONE-LINE GLASS NAVBAR (STRICTLY ONE LINE ON DESKTOP) -->
+    <!-- FLOATING ONE-LINE GLASS NAVBAR (RESPONSIVE & OVERFLOW-SAFE)    -->
     <!-- ============================================================== -->
-    <header class="glass-card rounded-2xl px-3 sm:px-5 py-2.5 shadow-sm sticky top-3 z-40 flex items-center justify-between gap-2 lg:gap-4">
+    <header class="glass-card rounded-2xl px-3 sm:px-4 lg:px-5 py-2 sm:py-2.5 shadow-sm sticky top-2 sm:top-3 z-40 flex items-center justify-between gap-2 lg:gap-3">
       
-      <!-- 1. Logo / Monogram (Right side) -->
-      <a href="#hero" class="flex items-center gap-2.5 group flex-shrink-0">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 text-white flex items-center justify-center font-bold text-lg shadow-md group-hover:scale-105 transition flex-shrink-0">
+      <!-- 1. Logo / Monogram & Name (Right side) -->
+      <a href="#hero" class="flex items-center gap-2 group flex-shrink-0 min-w-0">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 text-white flex items-center justify-center font-bold text-base sm:text-lg shadow-md group-hover:scale-105 transition flex-shrink-0">
           ع
         </div>
         <div class="flex-shrink-0 leading-tight">
-          <div id="header-name" class="text-sm font-bold text-slate-900 whitespace-nowrap">د. م. عبدالمجيد البطاطي</div>
-          <p id="header-subtitle" class="text-[10px] text-emerald-800 font-medium whitespace-nowrap">دكتوراه إدارة أعمال | استشاري ومحكم</p>
+          <div id="header-name" class="text-xs sm:text-sm font-bold text-slate-900 whitespace-nowrap">د. م. عبدالمجيد البطاطي</div>
+          <p id="header-subtitle" class="text-[9px] sm:text-[10px] text-emerald-800 font-medium whitespace-nowrap hidden xl:block">دكتوراه إدارة أعمال | استشاري ومحكم</p>
         </div>
       </a>
 
-      <!-- 2. Navigation Tabs (Middle): ALL SECTIONS IN ONE STRICT LINE -->
-      <nav id="nav-menu" class="hidden lg:flex flex-nowrap items-center gap-1 xl:gap-2 text-xs font-semibold text-slate-700 justify-center flex-shrink-0" aria-label="أقسام المنصة">
-        <button onclick="switchTab('about')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="about">نبذة ومؤهلات</button>
-        <button onclick="switchTab('books')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="books">المؤلفات والأبحاث</button>
-        <button onclick="switchTab('articles')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="articles">المقالات</button>
-        <button onclick="switchTab('subjects')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="subjects">مواضيع رأي</button>
-        <button onclick="switchTab('events')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="events">المشاريع والألبومات</button>
-        <button onclick="switchTab('contact')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="contact">تواصل واستشارات</button>
+      <!-- 2. Navigation Tabs (Middle): ALL 6 SECTIONS IN ONE STRICT LINE ON DESKTOP -->
+      <nav id="nav-menu" class="hidden lg:flex flex-nowrap items-center gap-1 xl:gap-1.5 text-[11px] xl:text-xs font-semibold text-slate-700 justify-center flex-shrink-0" aria-label="أقسام المنصة">
+        <button onclick="switchTab('about')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="about">نبذة ومؤهلات</button>
+        <button onclick="switchTab('books')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="books">المؤلفات والأبحاث</button>
+        <button onclick="switchTab('articles')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="articles">المقالات</button>
+        <button onclick="switchTab('subjects')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="subjects">مواضيع رأي</button>
+        <button onclick="switchTab('events')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="events">المشاريع والألبومات</button>
+        <button onclick="switchTab('contact')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="contact">تواصل واستشارات</button>
       </nav>
 
       <!-- 3. Actions (Left side): CV PDF & ADMIN STRICTLY IN ONE LINE -->
-      <div class="flex items-center gap-2 flex-shrink-0">
-        <a id="btn-cv-download" href="extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+        <a id="btn-cv-download" href="extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-2.5 sm:px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] sm:text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1 sm:gap-1.5 whitespace-nowrap flex-shrink-0">
           <span class="whitespace-nowrap">السيرة الذاتية PDF</span>
-          <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+          <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </a>
-        <a href="admin/" class="hidden sm:flex px-3 py-1.5 rounded-full glass-pill hover:bg-white text-slate-700 hover:text-emerald-700 text-xs font-semibold shadow-xs transition items-center gap-1 whitespace-nowrap flex-shrink-0" title="لوحة التحكم الإدارية">
+        <a href="admin/" class="hidden lg:flex px-2.5 xl:px-3 py-1.5 rounded-full glass-pill hover:bg-white text-slate-700 hover:text-emerald-700 text-[11px] xl:text-xs font-semibold shadow-xs transition items-center gap-1 whitespace-nowrap flex-shrink-0" title="لوحة التحكم الإدارية">
           <span>⚙️</span>
           <span class="whitespace-nowrap">الإدارة</span>
         </a>
-        <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl glass-pill text-slate-700 hover:bg-white transition flex-shrink-0" aria-label="القائمة">
+        <!-- Mobile Menu Toggle Button (Visible only on mobile/tablet < lg) -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl glass-pill text-slate-700 hover:bg-white transition flex-shrink-0 focus:outline-none" aria-label="فتح القائمة">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
         </button>
       </div>
 
     </header>
 
-    <!-- Mobile Dropdown Navigation Menu -->
-    <div id="mobile-nav-dropdown" class="hidden lg:hidden glass-card rounded-2xl p-4 shadow-lg flex flex-col gap-2 text-xs font-semibold text-slate-800">
-      <button onclick="switchTab('about'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">نبذة ومؤهلات</button>
-      <button onclick="switchTab('books'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">المؤلفات والأبحاث</button>
-      <button onclick="switchTab('articles'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">المقالات</button>
-      <button onclick="switchTab('subjects'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">مواضيع رأي</button>
-      <button onclick="switchTab('events'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">المشاريع والألبومات</button>
-      <button onclick="switchTab('contact'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">تواصل واستشارات</button>
-      <a href="admin/" class="text-right py-2 px-3 rounded-xl bg-emerald-50 text-emerald-800 font-bold flex items-center justify-between">
-        <span>⚙️ لوحة التحكم الإدارية</span>
-        <span>←</span>
-      </a>
+    <!-- Mobile Dropdown Navigation Menu (Clean 2-Column Grid + Actions) -->
+    <div id="mobile-nav-dropdown" class="hidden lg:hidden glass-dropdown rounded-2xl p-3.5 sm:p-4 shadow-xl border border-white/80 space-y-2.5 transition-all">
+      <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-slate-800">
+        <button onclick="switchTab('about', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>📜 نبذة ومؤهلات</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('books', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>📚 المؤلفات والأبحاث</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('articles', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>✍️ المقالات</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('subjects', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>💡 مواضيع رأي</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('events', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>🏗️ المشاريع الميدانية</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('contact', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>✉️ تواصل واستشارات</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+      </div>
+      <div class="pt-2 border-t border-slate-200/60 flex items-center justify-between gap-2">
+        <a href="extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition">
+          <span>السيرة الذاتية (PDF)</span>
+          <span>📄</span>
+        </a>
+        <a href="admin/" class="flex-1 py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+          <span>لوحة التحكم الإدارية</span>
+          <span>⚙️</span>
+        </a>
+      </div>
     </div>
 
     <!-- Hero Card (With Dynamic Rotating Images on Every Reload) -->
-    <section id="hero" class="glass-card rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden" itemscope itemtype="https://schema.org/Person">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+    <section id="hero" class="glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm relative overflow-hidden" itemscope itemtype="https://schema.org/Person">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
         
-        <div class="md:col-span-8 space-y-4 text-center md:text-right">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-semibold whitespace-nowrap">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span id="hero-tagline">{e(settings.get('hero_tagline'))}</span>
+        <div class="md:col-span-8 space-y-3.5 sm:space-y-4 text-center md:text-right">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-900 text-[11px] sm:text-xs font-semibold max-w-full">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse flex-shrink-0"></span>
+            <span id="hero-tagline" class="leading-normal">{e(settings.get('hero_tagline'))}</span>
           </div>
 
           <!-- Primary H1 for Google Search SEO -->
-          <h1 id="hero-title" itemprop="name" class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          <h1 id="hero-title" itemprop="name" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-snug sm:leading-tight break-words-safe">
             {e(profile.get('name', {}).get('arabic', 'د. م. عبدالمجيد بن سعيد البطاطي'))}
           </h1>
 
-          <p id="hero-bio" itemprop="description" class="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-2xl">
+          <p id="hero-bio" itemprop="description" class="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-2xl mx-auto md:mx-0 break-words-safe">
             {e(settings.get('hero_bio'))}
           </p>
 
           <!-- Credential Badges (Clarifying PhD degree) -->
-          <div id="hero-badges" class="flex flex-wrap gap-2 justify-center md:justify-start pt-1">
-            <span class="px-3 py-1 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold shadow-xs whitespace-nowrap">🎓 درجة الدكتوراه في إدارة الأعمال (PhD)</span>
-            <span class="px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-xs font-medium shadow-xs whitespace-nowrap">⚖️ محكم معتمد من وزارة العدل</span>
-            <span class="px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-xs font-medium shadow-xs whitespace-nowrap">🏗️ مهندس استشاري معتمد (#201226)</span>
+          <div id="hero-badges" class="flex flex-wrap gap-1.5 sm:gap-2 justify-center md:justify-start pt-1">
+            <span class="px-2.5 sm:px-3 py-1 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-[11px] sm:text-xs font-bold shadow-xs whitespace-nowrap">🎓 درجة الدكتوراه في إدارة الأعمال (PhD)</span>
+            <span class="px-2.5 sm:px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-[11px] sm:text-xs font-medium shadow-xs whitespace-nowrap">⚖️ محكم معتمد من وزارة العدل</span>
+            <span class="px-2.5 sm:px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-[11px] sm:text-xs font-medium shadow-xs whitespace-nowrap">🏗️ مهندس استشاري معتمد (#201226)</span>
           </div>
 
           <!-- Quick Stat Counters -->
-          <div class="grid grid-cols-4 gap-2 pt-3 border-t border-slate-200/60 max-w-lg mx-auto md:mx-0 text-center">
-            <div>
-              <div id="stat-books" class="text-2xl sm:text-3xl font-black text-emerald-700">{len(books)}</div>
-              <div class="text-[11px] text-slate-500">مؤلفاً وبحثاً</div>
+          <div class="grid grid-cols-4 gap-1.5 sm:gap-2 pt-3 border-t border-slate-200/60 max-w-lg mx-auto md:mx-0 text-center">
+            <div class="p-1">
+              <div id="stat-books" class="text-xl sm:text-2xl lg:text-3xl font-black text-emerald-700">{len(books)}</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium">مؤلفاً وبحثاً</div>
             </div>
-            <div>
-              <div id="stat-articles" class="text-2xl sm:text-3xl font-black text-emerald-700">{len(articles) + len(subjects)}</div>
-              <div class="text-[11px] text-slate-500">مقالة ودراسة</div>
+            <div class="p-1">
+              <div id="stat-articles" class="text-xl sm:text-2xl lg:text-3xl font-black text-emerald-700">{len(articles) + len(subjects)}</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium">مقالة ودراسة</div>
             </div>
-            <div>
-              <div id="stat-events" class="text-2xl sm:text-3xl font-black text-emerald-700">{len(events)}+</div>
-              <div class="text-[11px] text-slate-500">مشروعاً وسداً</div>
+            <div class="p-1">
+              <div id="stat-events" class="text-xl sm:text-2xl lg:text-3xl font-black text-emerald-700">{len(events)}+</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium">مشروعاً وسداً</div>
             </div>
-            <div>
-              <div class="text-2xl sm:text-3xl font-black text-emerald-700">+40</div>
-              <div class="text-[11px] text-slate-500">عاماً خبرة</div>
+            <div class="p-1">
+              <div class="text-xl sm:text-2xl lg:text-3xl font-black text-emerald-700">+40</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium">عاماً خبرة</div>
             </div>
           </div>
         </div>
 
         <!-- Portrait Image Card (Rotates randomly on reload from 21 dynamic images) -->
-        <div class="md:col-span-4 flex justify-center">
+        <div class="md:col-span-4 flex justify-center pb-3 md:pb-0">
           <div class="relative group">
-            <div class="w-52 h-52 sm:w-60 sm:h-60 rounded-3xl p-2 bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 shadow-xl rotate-1 group-hover:rotate-0 transition duration-300 relative overflow-hidden">
+            <div class="w-48 h-48 sm:w-56 sm:h-56 lg:w-60 lg:h-60 rounded-3xl p-1.5 sm:p-2 bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 shadow-xl rotate-1 group-hover:rotate-0 transition duration-300 relative overflow-hidden">
               <img id="hero-photo" itemprop="image" src="extracted_data/brand_assets/home_1.JPG" alt="د. عبدالمجيد البطاطي - مهندس استشاري جدة" class="w-full h-full object-cover object-top rounded-2xl shadow-inner">
               <!-- Switch Image Button -->
-              <button onclick="rotateHeroPhoto()" class="absolute top-3 left-3 p-1.5 rounded-full bg-black/40 hover:bg-black/70 text-white text-[10px] backdrop-blur transition flex items-center gap-1 shadow" title="تبديل الصورة عشوائياً (21 صورة)">
+              <button onclick="rotateHeroPhoto()" class="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 py-1 rounded-full bg-black/50 hover:bg-black/75 text-white text-[10px] backdrop-blur transition flex items-center gap-1 shadow" title="تبديل الصورة عشوائياً (21 صورة)">
                 <span>🔄</span>
                 <span class="text-[9px] font-bold">صورة أخرى</span>
               </button>
             </div>
-            <div class="absolute -bottom-3 inset-x-4 bg-white/95 backdrop-blur rounded-xl py-1 px-3 text-center border border-slate-100 shadow-sm text-[11px] font-bold text-slate-700 whitespace-nowrap">
-              جدة • منطقة مكة المكرمة • المملكة العربية السعودية
+            <div class="absolute -bottom-3 inset-x-2 sm:inset-x-3 bg-white/95 backdrop-blur rounded-xl py-1 px-2.5 text-center border border-slate-200/80 shadow-sm text-[10px] sm:text-[11px] font-bold text-slate-700 truncate">
+              جدة • المملكة العربية السعودية
             </div>
           </div>
         </div>
@@ -534,20 +570,20 @@ html_content = f'''<!DOCTYPE html>
     </section>
 
     <!-- Dynamic Main Content Container -->
-    <main id="main-content" class="space-y-6">
+    <main id="main-content" class="space-y-4 sm:space-y-6">
 
       <!-- ============================================== -->
       <!-- TAB 1: ABOUT & QUALIFICATIONS                  -->
       <!-- ============================================== -->
-      <section id="tab-about" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-8" aria-labelledby="heading-about">
+      <section id="tab-about" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 sm:space-y-8" aria-labelledby="heading-about">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">المسيرة المهنية والعلمية</span>
-          <h2 id="heading-about" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">المؤهلات الأكاديمية والخبرات الاستشارية</h2>
+          <h2 id="heading-about" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">المؤهلات الأكاديمية والخبرات الاستشارية</h2>
         </div>
 
         <!-- Summary paragraph -->
-        <div class="p-5 rounded-2xl bg-white/80 border border-slate-200/80 leading-relaxed text-xs sm:text-sm text-slate-700 shadow-xs">
-          <p id="about-summary">
+        <div class="p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 leading-relaxed text-xs sm:text-sm text-slate-700 shadow-xs">
+          <p id="about-summary" class="break-words-safe">
             {e(cv.get('summary'))}
           </p>
         </div>
@@ -594,7 +630,7 @@ html_content = f'''<!DOCTYPE html>
             </h3>
             <span class="text-xs text-slate-500 font-mono">9 وثائق وشهادات</span>
           </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5 sm:gap-3">
 {scans_html}
           </div>
         </div>
@@ -604,22 +640,22 @@ html_content = f'''<!DOCTYPE html>
       <!-- ============================================== -->
       <!-- TAB 2: BOOKS & RESEARCH PAPERS                 -->
       <!-- ============================================== -->
-      <section id="tab-books" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-books">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <section id="tab-books" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-books">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">الإنتاج المعرفي والمحكّم</span>
-            <h2 id="heading-books" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">الكتب والأبحاث العلمية</h2>
+            <h2 id="heading-books" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">الكتب والأبحاث العلمية</h2>
           </div>
           <div class="relative w-full sm:w-64">
             <input type="text" id="books-search" placeholder="بحث في الأبحاث والكتب..." class="w-full px-4 py-2 rounded-xl glass-pill text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-white">
           </div>
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-500">
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
           تشمل دراسات متخصصة في حوكمة الشركات العائلية، السلوك المؤسسي، التوطين، وربط استراتيجية المنظمة بثقافة العمل، متاحة للتحميل المباشر بصيغة PDF.
         </p>
 
-        <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 {books_html}
         </div>
       </section>
@@ -627,22 +663,22 @@ html_content = f'''<!DOCTYPE html>
       <!-- ============================================== -->
       <!-- TAB 3: ARTICLES                                -->
       <!-- ============================================== -->
-      <section id="tab-articles" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-articles">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <section id="tab-articles" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-articles">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">طروحات فكرية وتنموية</span>
-            <h2 id="heading-articles" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">المقالات والدراسات المنشورة</h2>
+            <h2 id="heading-articles" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">المقالات والدراسات المنشورة</h2>
           </div>
           <div class="relative w-full sm:w-64">
             <input type="text" id="articles-search" placeholder="بحث في المقالات..." class="w-full px-4 py-2 rounded-xl glass-pill text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-white">
           </div>
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-500">
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
           مقالات ودراسات رأي نشرت في الصحف الرسمية بالمملكة (مثل جريدة البلاد) تناقش التعليم، القوة الشرائية، والمنفعة العامة.
         </p>
 
-        <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 {articles_html}
         </div>
       </section>
@@ -650,17 +686,17 @@ html_content = f'''<!DOCTYPE html>
       <!-- ============================================== -->
       <!-- TAB 4: SUBJECTS                                -->
       <!-- ============================================== -->
-      <section id="tab-subjects" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-subjects">
+      <section id="tab-subjects" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-subjects">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">قضايا مجتمعية ورأي عام</span>
-          <h2 id="heading-subjects" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">رؤى ومواضيع في الشأن العام</h2>
+          <h2 id="heading-subjects" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">رؤى ومواضيع في الشأن العام</h2>
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-500">
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
           قضايا ونقاشات تركز على حماية المستهلك، جودة الخدمات، وحقوق العمالة بما يعزز جودة الحياة والمسؤولية المجتمعية.
         </p>
 
-        <div id="subjects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="subjects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 {subjects_html}
         </div>
       </section>
@@ -668,17 +704,17 @@ html_content = f'''<!DOCTYPE html>
       <!-- ============================================== -->
       <!-- TAB 5: EVENTS & GALLERIES                      -->
       <!-- ============================================== -->
-      <section id="tab-events" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-events">
+      <section id="tab-events" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-events">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">مشاريع وطنية وميدانية</span>
-          <h2 id="heading-events" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">ألبومات المشاريع الميدانية وحماية السيول</h2>
+          <h2 id="heading-events" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">ألبومات المشاريع الميدانية وحماية السيول</h2>
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-500">
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
           توثيق ميداني مصور لأعمال حماية محافظة جدة من أخطار السيول وتطوير السدود وقنوات التصريف بالتنسيق مع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.
         </p>
 
-        <div id="events-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="events-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 {events_html}
         </div>
       </section>
@@ -686,45 +722,45 @@ html_content = f'''<!DOCTYPE html>
       <!-- ============================================== -->
       <!-- TAB 6: CONTACT & CONSULTATION                  -->
       <!-- ============================================== -->
-      <section id="tab-contact" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 hidden" aria-labelledby="heading-contact">
+      <section id="tab-contact" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 sm:space-y-8 hidden" aria-labelledby="heading-contact">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">قنوات التواصل المباشر</span>
-          <h2 id="heading-contact" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">طلب استشارة أو جلسة تحكيم</h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          <h2 id="heading-contact" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">طلب استشارة أو جلسة تحكيم</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">
             نسعد بتواصلكم لطلب استشارات الحوكمة المؤسسية، التحكيم الهندسي والتجاري، ودراسات المشاريع الكبرى.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
           
-          <div class="md:col-span-5 space-y-4">
+          <div class="md:col-span-5 space-y-3.5 sm:space-y-4">
             
             <a id="contact-phone-link" href="tel:{e(settings.get('phone', '0505626375'))}" class="card-interactive p-4 rounded-2xl bg-white/70 border border-slate-200/70 flex items-center gap-3.5 block shadow-xs">
-              <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg font-bold">📞</div>
-              <div>
-                <span class="text-[11px] text-slate-400 font-medium">الهاتف المباشر</span>
-                <h5 id="contact-phone" class="text-sm font-bold text-slate-900 font-mono" dir="ltr">{e(settings.get('phone', '0505626375'))}</h5>
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg font-bold flex-shrink-0">📞</div>
+              <div class="min-w-0">
+                <span class="text-[11px] text-slate-400 font-medium block">الهاتف المباشر</span>
+                <h5 id="contact-phone" class="text-sm font-bold text-slate-900 font-mono truncate" dir="ltr">{e(settings.get('phone', '0505626375'))}</h5>
               </div>
             </a>
 
             <a id="contact-email-link" href="mailto:{e(settings.get('contact_email', 'info@asalbatati.net'))}" class="card-interactive p-4 rounded-2xl bg-white/70 border border-slate-200/70 flex items-center gap-3.5 block shadow-xs">
-              <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center text-lg font-bold">✉️</div>
-              <div>
-                <span class="text-[11px] text-slate-400 font-medium">البريد الإلكتروني</span>
-                <h5 id="contact-email" class="text-sm font-bold text-slate-900 font-mono">{e(settings.get('contact_email', 'info@asalbatati.net'))}</h5>
+              <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center text-lg font-bold flex-shrink-0">✉️</div>
+              <div class="min-w-0">
+                <span class="text-[11px] text-slate-400 font-medium block">البريد الإلكتروني</span>
+                <h5 id="contact-email" class="text-sm font-bold text-slate-900 font-mono truncate">{e(settings.get('contact_email', 'info@asalbatati.net'))}</h5>
               </div>
             </a>
 
             <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 flex items-center gap-3.5 shadow-xs">
-              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-lg font-bold">📍</div>
-              <div>
-                <span class="text-[11px] text-slate-400 font-medium">المقر والمكتب الاستشاري</span>
-                <h5 id="contact-address" class="text-xs font-bold text-slate-800 leading-snug">{e(settings.get('address', 'المملكة العربية السعودية - منطقة مكة المكرمة - جدة'))}</h5>
+              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-lg font-bold flex-shrink-0">📍</div>
+              <div class="min-w-0">
+                <span class="text-[11px] text-slate-400 font-medium block">المقر والمكتب الاستشاري</span>
+                <h5 id="contact-address" class="text-xs font-bold text-slate-800 leading-snug break-words-safe">{e(settings.get('address', 'المملكة العربية السعودية - منطقة مكة المكرمة - جدة'))}</h5>
               </div>
             </div>
 
             <div class="p-4 rounded-2xl bg-gradient-to-tr from-emerald-50 to-teal-50 border border-emerald-200/70 space-y-1.5 shadow-xs">
-              <span class="text-[10px] uppercase font-bold text-emerald-800">الاعتماد الرسمي</span>
+              <span class="text-[10px] uppercase font-bold text-emerald-800 block">الاعتماد الرسمي</span>
               <p class="text-xs font-bold text-emerald-950">الهيئة السعودية للمهندسين - ترخيص استشاري #201226</p>
               <p class="text-[11px] text-emerald-800">محكم معتمد مسجل لدى وزارة العدل بالمملكة العربية السعودية</p>
             </div>
@@ -733,7 +769,7 @@ html_content = f'''<!DOCTYPE html>
 
           <div class="md:col-span-7">
             <form id="contact-form" class="space-y-4">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">الاسم الكريم *</label>
                   <input type="text" name="name" required placeholder="الاسم الكامل" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
@@ -744,7 +780,7 @@ html_content = f'''<!DOCTYPE html>
                 </div>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">البريد الإلكتروني</label>
                   <input type="email" name="email" placeholder="name@domain.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white" dir="ltr">
@@ -779,23 +815,23 @@ html_content = f'''<!DOCTYPE html>
     </main>
 
     <!-- Footer -->
-    <footer class="pt-8 pb-12 border-t border-slate-200/60 text-center text-xs text-slate-500 space-y-3">
-      <div class="flex flex-wrap justify-center items-center gap-4 text-xs font-semibold text-slate-600">
-        <button onclick="switchTab('about')" class="hover:text-emerald-700 whitespace-nowrap">نبذة ومؤهلات</button>
+    <footer class="pt-6 sm:pt-8 pb-10 sm:pb-12 border-t border-slate-200/60 text-center text-xs text-slate-500 space-y-3">
+      <div class="flex flex-wrap justify-center items-center gap-3 sm:gap-4 text-xs font-semibold text-slate-600">
+        <button onclick="switchTab('about', true)" class="hover:text-emerald-700 whitespace-nowrap">نبذة ومؤهلات</button>
         <span>•</span>
-        <button onclick="switchTab('books')" class="hover:text-emerald-700 whitespace-nowrap">الأبحاث والكتب</button>
+        <button onclick="switchTab('books', true)" class="hover:text-emerald-700 whitespace-nowrap">الأبحاث والكتب</button>
         <span>•</span>
-        <button onclick="switchTab('articles')" class="hover:text-emerald-700 whitespace-nowrap">المقالات</button>
+        <button onclick="switchTab('articles', true)" class="hover:text-emerald-700 whitespace-nowrap">المقالات</button>
         <span>•</span>
-        <button onclick="switchTab('subjects')" class="hover:text-emerald-700 whitespace-nowrap">قضايا رأي</button>
+        <button onclick="switchTab('subjects', true)" class="hover:text-emerald-700 whitespace-nowrap">قضايا رأي</button>
         <span>•</span>
-        <button onclick="switchTab('events')" class="hover:text-emerald-700 whitespace-nowrap">المشاريع الميدانية</button>
+        <button onclick="switchTab('events', true)" class="hover:text-emerald-700 whitespace-nowrap">المشاريع الميدانية</button>
         <span>•</span>
-        <button onclick="switchTab('contact')" class="hover:text-emerald-700 whitespace-nowrap">تواصل</button>
+        <button onclick="switchTab('contact', true)" class="hover:text-emerald-700 whitespace-nowrap">تواصل</button>
         <span>•</span>
         <a href="admin/" class="text-emerald-700 hover:underline whitespace-nowrap">لوحة التحكم (Admin)</a>
       </div>
-      <p class="leading-relaxed">
+      <p class="leading-relaxed px-4">
         جميع الحقوق محفوظة © 2026 د. م. عبدالمجيد بن سعيد بن طالب البطاطي. دكتوراه في إدارة الأعمال • مهندس استشاري معتمد (ترخيص 201226) • محكم معتمد • جدة، المملكة العربية السعودية.
       </p>
     </footer>
@@ -803,30 +839,30 @@ html_content = f'''<!DOCTYPE html>
   </div>
 
   <!-- Reader Modal for Articles and Subjects -->
-  <div id="reader-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-    <div class="glass-card bg-white/95 max-w-2xl w-full max-h-[85vh] rounded-3xl p-6 sm:p-8 shadow-2xl overflow-y-auto space-y-5 border border-white">
+  <div id="reader-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="glass-card bg-white/95 max-w-2xl w-full max-h-[85vh] rounded-3xl p-5 sm:p-8 shadow-2xl overflow-y-auto space-y-5 border border-white">
       
       <div class="flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
-        <div>
-          <span id="modal-date" class="text-xs text-slate-400 font-mono"></span>
-          <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-slate-900 mt-1"></h3>
-          <h4 id="modal-subtitle" class="text-xs font-semibold text-emerald-700 mt-1 hidden"></h4>
+        <div class="min-w-0">
+          <span id="modal-date" class="text-xs text-slate-400 font-mono block"></span>
+          <h3 id="modal-title" class="text-lg sm:text-2xl font-bold text-slate-900 mt-1 break-words-safe leading-snug"></h3>
+          <h4 id="modal-subtitle" class="text-xs font-semibold text-emerald-700 mt-1 hidden break-words-safe"></h4>
         </div>
-        <button onclick="closeReaderModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-sm transition">
+        <button onclick="closeReaderModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-sm transition flex-shrink-0" aria-label="إغلاق">
           ✕
         </button>
       </div>
 
-      <div id="modal-image-wrapper" class="h-56 rounded-2xl overflow-hidden bg-slate-100 hidden shadow-inner">
+      <div id="modal-image-wrapper" class="h-48 sm:h-56 rounded-2xl overflow-hidden bg-slate-100 hidden shadow-inner">
         <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
       </div>
 
-      <div id="modal-content" class="text-xs sm:text-sm text-slate-700 leading-loose whitespace-pre-line font-normal">
+      <div id="modal-content" class="text-xs sm:text-sm text-slate-700 leading-loose whitespace-pre-line font-normal break-words-safe">
       </div>
 
-      <div class="pt-6 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500">
+      <div class="pt-5 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500">
         <span>بقلم: د. م. عبدالمجيد البطاطي</span>
-        <button onclick="closeReaderModal()" class="px-5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold transition">
+        <button onclick="closeReaderModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold transition">
           إغلاق النافذة
         </button>
       </div>
@@ -848,4 +884,4 @@ with open('/home/omar/.gemini/antigravity/scratch/albatati-portfolio/public/inde
 with open('/home/omar/.gemini/antigravity/scratch/albatati-portfolio/index.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
 
-print("Generated updated index.html with single-line navbar, PhD, career milestones, and scans!")
+print("Generated updated index.html with single-line navbar, PhD, career milestones, scans, and full responsive overflow safety!")

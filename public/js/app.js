@@ -108,8 +108,16 @@ function initMobileMenu() {
   const dropdown = document.getElementById('mobile-nav-dropdown');
   if (!btn || !dropdown) return;
 
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
     dropdown.classList.toggle('hidden');
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
+      dropdown.classList.add('hidden');
+    }
   });
 }
 
@@ -176,16 +184,18 @@ function renderWebsite(data) {
     document.title = settings.site_title;
   }
 
-  // Header Elements
-  if (profile && profile.name?.arabic) {
-    const el = document.getElementById('header-name');
-    if (el) el.textContent = profile.name.arabic;
+  // Header Elements (Keep concise so navbar stays strictly in one line)
+  const headerNameEl = document.getElementById('header-name');
+  if (headerNameEl) {
+    headerNameEl.textContent = profile?.name?.honorific_ar || 'د. م. عبدالمجيد البطاطي';
   }
-  if (settings && settings.hero_tagline) {
-    const s1 = document.getElementById('header-subtitle');
-    const s2 = document.getElementById('hero-tagline');
-    if (s1) s1.textContent = settings.hero_tagline;
-    if (s2) s2.textContent = settings.hero_tagline;
+  const headerSubEl = document.getElementById('header-subtitle');
+  if (headerSubEl) {
+    headerSubEl.textContent = 'دكتوراه إدارة أعمال | استشاري ومحكم';
+  }
+  const heroTaglineEl = document.getElementById('hero-tagline');
+  if (heroTaglineEl && settings && settings.hero_tagline) {
+    heroTaglineEl.textContent = settings.hero_tagline;
   }
 
   // Hero Section
@@ -441,8 +451,11 @@ function renderContact(settings, profile) {
 }
 
 // Tab Switching
-function switchTab(tabId) {
+function switchTab(tabId, shouldScroll = false) {
   currentTab = tabId;
+
+  // Close mobile dropdown if open
+  closeMobileMenu();
 
   // Toggle Tab Buttons Active State
   document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -466,6 +479,14 @@ function switchTab(tabId) {
 
   // Update URL hash without jumping
   window.history.replaceState(null, '', `#${tabId}`);
+
+  // If invoked from mobile or requested, scroll smoothly to section
+  if (shouldScroll) {
+    const mainEl = document.getElementById('main-content');
+    if (mainEl) {
+      mainEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 }
 
 // Hash Navigation

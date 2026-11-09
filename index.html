@@ -175,6 +175,14 @@
   <script>
     tailwind.config = {
       theme: {
+        screens: {
+          'xs': '480px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+          '2xl': '1536px',
+        },
         extend: {
           fontFamily: {
             sans: ['Readex Pro', 'sans-serif'],
@@ -195,131 +203,157 @@
     }
   </script>
 </head>
-<body class="text-slate-800 antialiased p-2 sm:p-4 lg:p-6 selection:bg-emerald-500 selection:text-white">
+<body class="text-slate-800 antialiased p-2.5 sm:p-4 lg:p-6 selection:bg-emerald-500 selection:text-white overflow-x-hidden w-full max-w-full">
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
 
-  <div class="max-w-7xl mx-auto space-y-5 sm:space-y-6">
+  <div class="max-w-7xl mx-auto space-y-4 sm:space-y-6 w-full">
     
     <!-- ============================================================== -->
-    <!-- FLOATING ONE-LINE GLASS NAVBAR (STRICTLY ONE LINE ON DESKTOP) -->
+    <!-- FLOATING ONE-LINE GLASS NAVBAR (RESPONSIVE & OVERFLOW-SAFE)    -->
     <!-- ============================================================== -->
-    <header class="glass-card rounded-2xl px-3 sm:px-5 py-2.5 shadow-sm sticky top-3 z-40 flex items-center justify-between gap-2 lg:gap-4">
+    <header class="glass-card rounded-2xl px-3 sm:px-4 lg:px-5 py-2 sm:py-2.5 shadow-sm sticky top-2 sm:top-3 z-40 flex items-center justify-between gap-2 lg:gap-3">
       
-      <!-- 1. Logo / Monogram (Right side) -->
-      <a href="#hero" class="flex items-center gap-2.5 group flex-shrink-0">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 text-white flex items-center justify-center font-bold text-lg shadow-md group-hover:scale-105 transition flex-shrink-0">
+      <!-- 1. Logo / Monogram & Name (Right side) -->
+      <a href="#hero" class="flex items-center gap-2 group flex-shrink-0 min-w-0">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 text-white flex items-center justify-center font-bold text-base sm:text-lg shadow-md group-hover:scale-105 transition flex-shrink-0">
           ع
         </div>
         <div class="flex-shrink-0 leading-tight">
-          <div id="header-name" class="text-sm font-bold text-slate-900 whitespace-nowrap">د. م. عبدالمجيد البطاطي</div>
-          <p id="header-subtitle" class="text-[10px] text-emerald-800 font-medium whitespace-nowrap">دكتوراه إدارة أعمال | استشاري ومحكم</p>
+          <div id="header-name" class="text-xs sm:text-sm font-bold text-slate-900 whitespace-nowrap">د. م. عبدالمجيد البطاطي</div>
+          <p id="header-subtitle" class="text-[9px] sm:text-[10px] text-emerald-800 font-medium whitespace-nowrap hidden xl:block">دكتوراه إدارة أعمال | استشاري ومحكم</p>
         </div>
       </a>
 
-      <!-- 2. Navigation Tabs (Middle): ALL SECTIONS IN ONE STRICT LINE -->
-      <nav id="nav-menu" class="hidden lg:flex flex-nowrap items-center gap-1 xl:gap-2 text-xs font-semibold text-slate-700 justify-center flex-shrink-0" aria-label="أقسام المنصة">
-        <button onclick="switchTab('about')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="about">نبذة ومؤهلات</button>
-        <button onclick="switchTab('books')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="books">المؤلفات والأبحاث</button>
-        <button onclick="switchTab('articles')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="articles">المقالات</button>
-        <button onclick="switchTab('subjects')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="subjects">مواضيع رأي</button>
-        <button onclick="switchTab('events')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="events">المشاريع والألبومات</button>
-        <button onclick="switchTab('contact')" class="tab-btn px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap text-xs flex-shrink-0" data-tab="contact">تواصل واستشارات</button>
+      <!-- 2. Navigation Tabs (Middle): ALL 6 SECTIONS IN ONE STRICT LINE ON DESKTOP -->
+      <nav id="nav-menu" class="hidden lg:flex flex-nowrap items-center gap-1 xl:gap-1.5 text-[11px] xl:text-xs font-semibold text-slate-700 justify-center flex-shrink-0" aria-label="أقسام المنصة">
+        <button onclick="switchTab('about')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="about">نبذة ومؤهلات</button>
+        <button onclick="switchTab('books')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="books">المؤلفات والأبحاث</button>
+        <button onclick="switchTab('articles')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="articles">المقالات</button>
+        <button onclick="switchTab('subjects')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="subjects">مواضيع رأي</button>
+        <button onclick="switchTab('events')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="events">المشاريع والألبومات</button>
+        <button onclick="switchTab('contact')" class="tab-btn px-2 xl:px-2.5 py-1.5 rounded-full glass-pill hover:bg-white transition whitespace-nowrap flex-shrink-0" data-tab="contact">تواصل واستشارات</button>
       </nav>
 
       <!-- 3. Actions (Left side): CV PDF & ADMIN STRICTLY IN ONE LINE -->
-      <div class="flex items-center gap-2 flex-shrink-0">
-        <a id="btn-cv-download" href="extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+        <a id="btn-cv-download" href="extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-2.5 sm:px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] sm:text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1 sm:gap-1.5 whitespace-nowrap flex-shrink-0">
           <span class="whitespace-nowrap">السيرة الذاتية PDF</span>
-          <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+          <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </a>
-        <a href="admin/" class="hidden sm:flex px-3 py-1.5 rounded-full glass-pill hover:bg-white text-slate-700 hover:text-emerald-700 text-xs font-semibold shadow-xs transition items-center gap-1 whitespace-nowrap flex-shrink-0" title="لوحة التحكم الإدارية">
+        <a href="admin/" class="hidden lg:flex px-2.5 xl:px-3 py-1.5 rounded-full glass-pill hover:bg-white text-slate-700 hover:text-emerald-700 text-[11px] xl:text-xs font-semibold shadow-xs transition items-center gap-1 whitespace-nowrap flex-shrink-0" title="لوحة التحكم الإدارية">
           <span>⚙️</span>
           <span class="whitespace-nowrap">الإدارة</span>
         </a>
-        <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl glass-pill text-slate-700 hover:bg-white transition flex-shrink-0" aria-label="القائمة">
+        <!-- Mobile Menu Toggle Button (Visible only on mobile/tablet < lg) -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl glass-pill text-slate-700 hover:bg-white transition flex-shrink-0 focus:outline-none" aria-label="فتح القائمة">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
         </button>
       </div>
 
     </header>
 
-    <!-- Mobile Dropdown Navigation Menu -->
-    <div id="mobile-nav-dropdown" class="hidden lg:hidden glass-card rounded-2xl p-4 shadow-lg flex flex-col gap-2 text-xs font-semibold text-slate-800">
-      <button onclick="switchTab('about'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">نبذة ومؤهلات</button>
-      <button onclick="switchTab('books'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">المؤلفات والأبحاث</button>
-      <button onclick="switchTab('articles'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">المقالات</button>
-      <button onclick="switchTab('subjects'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">مواضيع رأي</button>
-      <button onclick="switchTab('events'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">المشاريع والألبومات</button>
-      <button onclick="switchTab('contact'); closeMobileMenu();" class="text-right py-2 px-3 rounded-xl hover:bg-white">تواصل واستشارات</button>
-      <a href="admin/" class="text-right py-2 px-3 rounded-xl bg-emerald-50 text-emerald-800 font-bold flex items-center justify-between">
-        <span>⚙️ لوحة التحكم الإدارية</span>
-        <span>←</span>
-      </a>
+    <!-- Mobile Dropdown Navigation Menu (Clean 2-Column Grid + Actions) -->
+    <div id="mobile-nav-dropdown" class="hidden lg:hidden glass-dropdown rounded-2xl p-3.5 sm:p-4 shadow-xl border border-white/80 space-y-2.5 transition-all">
+      <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-slate-800">
+        <button onclick="switchTab('about', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>📜 نبذة ومؤهلات</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('books', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>📚 المؤلفات والأبحاث</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('articles', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>✍️ المقالات</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('subjects', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>💡 مواضيع رأي</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('events', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>🏗️ المشاريع الميدانية</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+        <button onclick="switchTab('contact', true)" class="text-right py-2.5 px-3 rounded-xl bg-white/60 hover:bg-white border border-slate-200/50 flex items-center justify-between transition">
+          <span>✉️ تواصل واستشارات</span>
+          <span class="text-slate-400 text-[10px]">←</span>
+        </button>
+      </div>
+      <div class="pt-2 border-t border-slate-200/60 flex items-center justify-between gap-2">
+        <a href="extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition">
+          <span>السيرة الذاتية (PDF)</span>
+          <span>📄</span>
+        </a>
+        <a href="admin/" class="flex-1 py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+          <span>لوحة التحكم الإدارية</span>
+          <span>⚙️</span>
+        </a>
+      </div>
     </div>
 
     <!-- Hero Card (With Dynamic Rotating Images on Every Reload) -->
-    <section id="hero" class="glass-card rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden" itemscope itemtype="https://schema.org/Person">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+    <section id="hero" class="glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm relative overflow-hidden" itemscope itemtype="https://schema.org/Person">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
         
-        <div class="md:col-span-8 space-y-4 text-center md:text-right">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-semibold whitespace-nowrap">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span id="hero-tagline">دكتوراه في إدارة الأعمال | مهندس استشاري ومحكم معتمد</span>
+        <div class="md:col-span-8 space-y-3.5 sm:space-y-4 text-center md:text-right">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-900 text-[11px] sm:text-xs font-semibold max-w-full">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse flex-shrink-0"></span>
+            <span id="hero-tagline" class="leading-normal">دكتوراه في إدارة الأعمال | مهندس استشاري ومحكم معتمد</span>
           </div>
 
           <!-- Primary H1 for Google Search SEO -->
-          <h1 id="hero-title" itemprop="name" class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          <h1 id="hero-title" itemprop="name" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-snug sm:leading-tight break-words-safe">
             عبدالمجيد بن سعيد بن طالب البطاطي
           </h1>
 
-          <p id="hero-bio" itemprop="description" class="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-2xl">
+          <p id="hero-bio" itemprop="description" class="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-2xl mx-auto md:mx-0 break-words-safe">
             دكتور في إدارة الأعمال ومهندس استشاري ومحكم معتمد يجمع بين الخبرة الأكاديمية والعمل الميداني لأكثر من 40 عاماً في التخطيط العمراني، حوكمة الشركات العائلية، وإدارة المنظمات الكبرى بالمملكة العربية السعودية.
           </p>
 
           <!-- Credential Badges (Clarifying PhD degree) -->
-          <div id="hero-badges" class="flex flex-wrap gap-2 justify-center md:justify-start pt-1">
-            <span class="px-3 py-1 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold shadow-xs whitespace-nowrap">🎓 درجة الدكتوراه في إدارة الأعمال (PhD)</span>
-            <span class="px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-xs font-medium shadow-xs whitespace-nowrap">⚖️ محكم معتمد من وزارة العدل</span>
-            <span class="px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-xs font-medium shadow-xs whitespace-nowrap">🏗️ مهندس استشاري معتمد (#201226)</span>
+          <div id="hero-badges" class="flex flex-wrap gap-1.5 sm:gap-2 justify-center md:justify-start pt-1">
+            <span class="px-2.5 sm:px-3 py-1 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-[11px] sm:text-xs font-bold shadow-xs whitespace-nowrap">🎓 درجة الدكتوراه في إدارة الأعمال (PhD)</span>
+            <span class="px-2.5 sm:px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-[11px] sm:text-xs font-medium shadow-xs whitespace-nowrap">⚖️ محكم معتمد من وزارة العدل</span>
+            <span class="px-2.5 sm:px-3 py-1 rounded-xl bg-white/80 border border-slate-200 text-slate-700 text-[11px] sm:text-xs font-medium shadow-xs whitespace-nowrap">🏗️ مهندس استشاري معتمد (#201226)</span>
           </div>
 
           <!-- Quick Stat Counters -->
-          <div class="grid grid-cols-4 gap-2 pt-3 border-t border-slate-200/60 max-w-lg mx-auto md:mx-0 text-center">
-            <div>
-              <div id="stat-books" class="text-2xl sm:text-3xl font-black text-emerald-700">11</div>
-              <div class="text-[11px] text-slate-500">مؤلفاً وبحثاً</div>
+          <div class="grid grid-cols-4 gap-1.5 sm:gap-2 pt-3 border-t border-slate-200/60 max-w-lg mx-auto md:mx-0 text-center">
+            <div class="p-1">
+              <div id="stat-books" class="text-xl sm:text-2xl lg:text-3xl font-black text-emerald-700">11</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium">مؤلفاً وبحثاً</div>
             </div>
-            <div>
-              <div id="stat-articles" class="text-2xl sm:text-3xl font-black text-emerald-700">16</div>
-              <div class="text-[11px] text-slate-500">مقالة ودراسة</div>
+            <div class="p-1">
+              <div id="stat-articles" class="text-xl sm:text-2xl lg:text-3xl font-black text-emerald-700">16</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium">مقالة ودراسة</div>
             </div>
-            <div>
-              <div id="stat-events" class="text-2xl sm:text-3xl font-black text-emerald-700">21+</div>
-              <div class="text-[11px] text-slate-500">مشروعاً وسداً</div>
+            <div class="p-1">
+              <div id="stat-events" class="text-xl sm:text-2xl lg:text-3xl font-black text-emerald-700">21+</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium">مشروعاً وسداً</div>
             </div>
-            <div>
-              <div class="text-2xl sm:text-3xl font-black text-emerald-700">+40</div>
-              <div class="text-[11px] text-slate-500">عاماً خبرة</div>
+            <div class="p-1">
+              <div class="text-xl sm:text-2xl lg:text-3xl font-black text-emerald-700">+40</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-500 font-medium">عاماً خبرة</div>
             </div>
           </div>
         </div>
 
         <!-- Portrait Image Card (Rotates randomly on reload from 21 dynamic images) -->
-        <div class="md:col-span-4 flex justify-center">
+        <div class="md:col-span-4 flex justify-center pb-3 md:pb-0">
           <div class="relative group">
-            <div class="w-52 h-52 sm:w-60 sm:h-60 rounded-3xl p-2 bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 shadow-xl rotate-1 group-hover:rotate-0 transition duration-300 relative overflow-hidden">
+            <div class="w-48 h-48 sm:w-56 sm:h-56 lg:w-60 lg:h-60 rounded-3xl p-1.5 sm:p-2 bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 shadow-xl rotate-1 group-hover:rotate-0 transition duration-300 relative overflow-hidden">
               <img id="hero-photo" itemprop="image" src="extracted_data/brand_assets/home_1.JPG" alt="د. عبدالمجيد البطاطي - مهندس استشاري جدة" class="w-full h-full object-cover object-top rounded-2xl shadow-inner">
               <!-- Switch Image Button -->
-              <button onclick="rotateHeroPhoto()" class="absolute top-3 left-3 p-1.5 rounded-full bg-black/40 hover:bg-black/70 text-white text-[10px] backdrop-blur transition flex items-center gap-1 shadow" title="تبديل الصورة عشوائياً (21 صورة)">
+              <button onclick="rotateHeroPhoto()" class="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 py-1 rounded-full bg-black/50 hover:bg-black/75 text-white text-[10px] backdrop-blur transition flex items-center gap-1 shadow" title="تبديل الصورة عشوائياً (21 صورة)">
                 <span>🔄</span>
                 <span class="text-[9px] font-bold">صورة أخرى</span>
               </button>
             </div>
-            <div class="absolute -bottom-3 inset-x-4 bg-white/95 backdrop-blur rounded-xl py-1 px-3 text-center border border-slate-100 shadow-sm text-[11px] font-bold text-slate-700 whitespace-nowrap">
-              جدة • منطقة مكة المكرمة • المملكة العربية السعودية
+            <div class="absolute -bottom-3 inset-x-2 sm:inset-x-3 bg-white/95 backdrop-blur rounded-xl py-1 px-2.5 text-center border border-slate-200/80 shadow-sm text-[10px] sm:text-[11px] font-bold text-slate-700 truncate">
+              جدة • المملكة العربية السعودية
             </div>
           </div>
         </div>
@@ -328,20 +362,20 @@
     </section>
 
     <!-- Dynamic Main Content Container -->
-    <main id="main-content" class="space-y-6">
+    <main id="main-content" class="space-y-4 sm:space-y-6">
 
       <!-- ============================================== -->
       <!-- TAB 1: ABOUT & QUALIFICATIONS                  -->
       <!-- ============================================== -->
-      <section id="tab-about" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-8" aria-labelledby="heading-about">
+      <section id="tab-about" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 sm:space-y-8" aria-labelledby="heading-about">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">المسيرة المهنية والعلمية</span>
-          <h2 id="heading-about" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">المؤهلات الأكاديمية والخبرات الاستشارية</h2>
+          <h2 id="heading-about" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">المؤهلات الأكاديمية والخبرات الاستشارية</h2>
         </div>
 
         <!-- Summary paragraph -->
-        <div class="p-5 rounded-2xl bg-white/80 border border-slate-200/80 leading-relaxed text-xs sm:text-sm text-slate-700 shadow-xs">
-          <p id="about-summary">
+        <div class="p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 leading-relaxed text-xs sm:text-sm text-slate-700 shadow-xs">
+          <p id="about-summary" class="break-words-safe">
             دكتور في إدارة الأعمال (PhD) ومهندس استشاري معتمد من الهيئة السعودية للمهندسين برقم 201226، ومحكم معتمد من وزارة العدل، حاصل على ماجستير إدارة الأعمال (MBA) من جامعة ويلز البريطانية، وبكالوريوس الهندسة الميكانيكية من جامعة الملك سعود، مع خبرة تنفيذية واستشارية تزيد عن 40 عاماً في التخطيط العمراني، حوكمة الشركات العائلية، وتطوير المنظمات.
           </p>
         </div>
@@ -354,62 +388,62 @@
           </h3>
           <div id="qualifications-list" class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
-        <div class="flex items-center justify-between">
-          <h5 class="text-sm font-bold text-slate-900">درجة الدكتوراه في إدارة الأعمال (PhD in Business Administration)</h5>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">درجة الدكتوراه في إدارة الأعمال (PhD in Business Administration)</h5>
           
         </div>
-        <p class="text-xs text-slate-600 font-medium">أكاديمية اعمل بيزنس</p>
+        <p class="text-xs text-slate-600 font-medium break-words-safe">أكاديمية اعمل بيزنس</p>
         
-        <p class="text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 pt-1 mt-1"><strong>موضوع البحث:</strong> الأداء المؤسسي والتطويري لجمعيات المتقاعدين وعلاقته بالرضا والالتزام بالعضوية - دراسة تطبيقية على جمعية متقاعدي منطقة مكة المكرمة</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 pt-1 mt-1 break-words-safe"><strong>موضوع البحث:</strong> الأداء المؤسسي والتطويري لجمعيات المتقاعدين وعلاقته بالرضا والالتزام بالعضوية - دراسة تطبيقية على جمعية متقاعدي منطقة مكة المكرمة</p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
-        <div class="flex items-center justify-between">
-          <h5 class="text-sm font-bold text-slate-900">شهادة مهندس استشاري معتمد</h5>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">شهادة مهندس استشاري معتمد</h5>
           
         </div>
-        <p class="text-xs text-slate-600 font-medium">الهيئة السعودية للمهندسين</p>
-        <p class="text-[11px] text-slate-500">عضوية رقم 201226</p>
+        <p class="text-xs text-slate-600 font-medium break-words-safe">الهيئة السعودية للمهندسين</p>
+        <p class="text-[11px] text-slate-500 break-words-safe">عضوية رقم 201226</p>
         
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
-        <div class="flex items-center justify-between">
-          <h5 class="text-sm font-bold text-slate-900">CBA (Certified Business Administrator)</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">2002</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">CBA (Certified Business Administrator)</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">2002</span>
         </div>
-        <p class="text-xs text-slate-600 font-medium">Institute of Business Administration, Delaware USA</p>
-        
-        
-      </div>
-
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
-        <div class="flex items-center justify-between">
-          <h5 class="text-sm font-bold text-slate-900">M.B.A. (Master of Business Administration)</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">1998</span>
-        </div>
-        <p class="text-xs text-slate-600 font-medium">University of Wales, UK</p>
+        <p class="text-xs text-slate-600 font-medium break-words-safe">Institute of Business Administration, Delaware USA</p>
         
         
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
-        <div class="flex items-center justify-between">
-          <h5 class="text-sm font-bold text-slate-900">بكالوريوس هندسة ميكانيكية (B.Sc. Mechanical Engineering)</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">1977/1978</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">M.B.A. (Master of Business Administration)</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">1998</span>
         </div>
-        <p class="text-xs text-slate-600 font-medium">جامعة الرياض (الملك سعود)</p>
+        <p class="text-xs text-slate-600 font-medium break-words-safe">University of Wales, UK</p>
         
         
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
-        <div class="flex items-center justify-between">
-          <h5 class="text-sm font-bold text-slate-900">الثانوية العامة</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">1972</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">بكالوريوس هندسة ميكانيكية (B.Sc. Mechanical Engineering)</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">1977/1978</span>
         </div>
-        <p class="text-xs text-slate-600 font-medium">مدارس الفلاح الثانوية بجدة</p>
+        <p class="text-xs text-slate-600 font-medium break-words-safe">جامعة الرياض (الملك سعود)</p>
+        
+        
+      </div>
+
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1.5 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">الثانوية العامة</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">1972</span>
+        </div>
+        <p class="text-xs text-slate-600 font-medium break-words-safe">مدارس الفلاح الثانوية بجدة</p>
         
         
       </div>
@@ -424,76 +458,76 @@
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
-        <div class="flex items-center justify-between gap-2">
-          <h5 class="text-xs sm:text-sm font-bold text-slate-900">مدير عام التخطيط العمراني لمحافظة جدة</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">2009 - 2010</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">مدير عام التخطيط العمراني لمحافظة جدة</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">2009 - 2010</span>
         </div>
-        <p class="text-xs text-emerald-700 font-medium">أمانة محافظة جدة</p>
-        <p class="text-[11px] text-slate-500 leading-relaxed">إدارة المخطط المحلي ولجان مشاريع تصريف مياه الأمطار والسيول ودراسة ملكيات الأراضي</p>
+        <p class="text-xs text-emerald-700 font-medium break-words-safe">أمانة محافظة جدة</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed break-words-safe">إدارة المخطط المحلي ولجان مشاريع تصريف مياه الأمطار والسيول ودراسة ملكيات الأراضي</p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
-        <div class="flex items-center justify-between gap-2">
-          <h5 class="text-xs sm:text-sm font-bold text-slate-900">نائب رئيس وعضو مجلس الإدارة</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">2020 - حتى الآن</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">نائب رئيس وعضو مجلس الإدارة</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">2020 - حتى الآن</span>
         </div>
-        <p class="text-xs text-emerald-700 font-medium">جمعية المشاريع البيئية التعاونية</p>
-        <p class="text-[11px] text-slate-500 leading-relaxed">رئيس المجلس التأسيسي وعضو مجلس الإدارة لتطوير المشروعات والمبادرات البيئية</p>
+        <p class="text-xs text-emerald-700 font-medium break-words-safe">جمعية المشاريع البيئية التعاونية</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed break-words-safe">رئيس المجلس التأسيسي وعضو مجلس الإدارة لتطوير المشروعات والمبادرات البيئية</p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
-        <div class="flex items-center justify-between gap-2">
-          <h5 class="text-xs sm:text-sm font-bold text-slate-900">مساعد الأمين للبلديات الفرعية ومستشار المبادرات</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">2010 - 2014</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">مساعد الأمين للبلديات الفرعية ومستشار المبادرات</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">2010 - 2014</span>
         </div>
-        <p class="text-xs text-emerald-700 font-medium">أمانة محافظة جدة</p>
-        <p class="text-[11px] text-slate-500 leading-relaxed">الإشراف على البلديات الفرعية، إدارة مكتب الاستراتيجية، ولجنة تصريف السيول</p>
+        <p class="text-xs text-emerald-700 font-medium break-words-safe">أمانة محافظة جدة</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed break-words-safe">الإشراف على البلديات الفرعية، إدارة مكتب الاستراتيجية، ولجنة تصريف السيول</p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
-        <div class="flex items-center justify-between gap-2">
-          <h5 class="text-xs sm:text-sm font-bold text-slate-900">مدير عام الدراسات التنظيمية والجودة ومستشار مساعد الأمين للتنمية</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">2006 - 2009</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">مدير عام الدراسات التنظيمية والجودة ومستشار مساعد الأمين للتنمية</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">2006 - 2009</span>
         </div>
-        <p class="text-xs text-emerald-700 font-medium">أمانة محافظة جدة</p>
-        <p class="text-[11px] text-slate-500 leading-relaxed">تطوير الهياكل التنظيمية وتطبيق معايير الجودة الشاملة وتقييم التميز المؤسسي</p>
+        <p class="text-xs text-emerald-700 font-medium break-words-safe">أمانة محافظة جدة</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed break-words-safe">تطوير الهياكل التنظيمية وتطبيق معايير الجودة الشاملة وتقييم التميز المؤسسي</p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
-        <div class="flex items-center justify-between gap-2">
-          <h5 class="text-xs sm:text-sm font-bold text-slate-900">أمين عام مجلس الإدارة ومدير إدارة المساهمين</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">2003 - 2006</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">أمين عام مجلس الإدارة ومدير إدارة المساهمين</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">2003 - 2006</span>
         </div>
-        <p class="text-xs text-emerald-700 font-medium">البنك الأهلي التجاري (NCB)</p>
-        <p class="text-[11px] text-slate-500 leading-relaxed">أمين سر اللجنة التنفيذية وأمين سر لجنة المراجعة وإدارة شؤون كبار المساهمين</p>
+        <p class="text-xs text-emerald-700 font-medium break-words-safe">البنك الأهلي التجاري (NCB)</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed break-words-safe">أمين سر اللجنة التنفيذية وأمين سر لجنة المراجعة وإدارة شؤون كبار المساهمين</p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
-        <div class="flex items-center justify-between gap-2">
-          <h5 class="text-xs sm:text-sm font-bold text-slate-900">مدير إدارة الخدمات المساندة العامة والموارد البشرية</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">1997 - 2003</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">مدير إدارة الخدمات المساندة العامة والموارد البشرية</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">1997 - 2003</span>
         </div>
-        <p class="text-xs text-emerald-700 font-medium">البنك الأهلي التجاري (NCB)</p>
-        <p class="text-[11px] text-slate-500 leading-relaxed">إدارة العمليات المساندة والخدمات والموارد البشرية والمباني على مستوى المملكة</p>
+        <p class="text-xs text-emerald-700 font-medium break-words-safe">البنك الأهلي التجاري (NCB)</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed break-words-safe">إدارة العمليات المساندة والخدمات والموارد البشرية والمباني على مستوى المملكة</p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
-        <div class="flex items-center justify-between gap-2">
-          <h5 class="text-xs sm:text-sm font-bold text-slate-900">مدير إدارة الصيانة العامة لكافة الفروع والإدارات</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">1978 - 1996</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">مدير إدارة الصيانة العامة لكافة الفروع والإدارات</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">1978 - 1996</span>
         </div>
-        <p class="text-xs text-emerald-700 font-medium">البنك الأهلي التجاري (NCB)</p>
-        <p class="text-[11px] text-slate-500 leading-relaxed">تطوير وتجهيز خدمات الصيانة والمشاريع الهندسية لكافة الفروع بالمملكة</p>
+        <p class="text-xs text-emerald-700 font-medium break-words-safe">البنك الأهلي التجاري (NCB)</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed break-words-safe">تطوير وتجهيز خدمات الصيانة والمشاريع الهندسية لكافة الفروع بالمملكة</p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
-        <div class="flex items-center justify-between gap-2">
-          <h5 class="text-xs sm:text-sm font-bold text-slate-900">مهندس بالإدارة الهندسية</h5>
-          <span class="text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap">1977 - 1978</span>
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-white/70 border border-slate-200/70 hover:bg-white transition space-y-1 shadow-xs">
+        <div class="flex items-start justify-between gap-2">
+          <h5 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug break-words-safe">مهندس بالإدارة الهندسية</h5>
+          <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md flex-shrink-0 whitespace-nowrap">1977 - 1978</span>
         </div>
-        <p class="text-xs text-emerald-700 font-medium">جامعة الملك عبدالعزيز بجدة</p>
-        <p class="text-[11px] text-slate-500 leading-relaxed">الإشراف الهندسي والمتابعة الميدانية لمشاريع الجامعة</p>
+        <p class="text-xs text-emerald-700 font-medium break-words-safe">جامعة الملك عبدالعزيز بجدة</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed break-words-safe">الإشراف الهندسي والمتابعة الميدانية لمشاريع الجامعة</p>
       </div>
           </div>
         </div>
@@ -506,29 +540,29 @@
           </h3>
           <div id="titles-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
 
-      <div class="p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
+      <div class="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
         <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-        <span>دكتور في إدارة الأعمال (PhD)</span>
+        <span class="break-words-safe leading-snug">دكتور في إدارة الأعمال (PhD)</span>
       </div>
 
-      <div class="p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
+      <div class="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
         <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-        <span>عضو مجلس إدارة جمعية التعاون للمشاريع البيئية</span>
+        <span class="break-words-safe leading-snug">عضو مجلس إدارة جمعية التعاون للمشاريع البيئية</span>
       </div>
 
-      <div class="p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
+      <div class="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
         <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-        <span>مهندس استشاري معتمد من الهيئة السعودية للمهندسين (رقم: 201226)</span>
+        <span class="break-words-safe leading-snug">مهندس استشاري معتمد من الهيئة السعودية للمهندسين (رقم: 201226)</span>
       </div>
 
-      <div class="p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
+      <div class="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
         <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-        <span>محكم معتمد من وزارة العدل</span>
+        <span class="break-words-safe leading-snug">محكم معتمد من وزارة العدل</span>
       </div>
 
-      <div class="p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
+      <div class="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/70 flex items-center gap-2.5 text-xs font-semibold text-slate-800 shadow-xs">
         <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-        <span>مدير ومستشار إدارة وتطوير استراتيجي</span>
+        <span class="break-words-safe leading-snug">مدير ومستشار إدارة وتطوير استراتيجي</span>
       </div>
           </div>
         </div>
@@ -542,69 +576,69 @@
             </h3>
             <span class="text-xs text-slate-500 font-mono">9 وثائق وشهادات</span>
           </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5 sm:gap-3">
 
-      <a href="extracted_data/cv/scans/1-a.jpg" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="extracted_data/cv/scans/1-a.jpg" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="extracted_data/cv/scans/1-a.jpg" alt="شهادة وسيرة ذاتية 1" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">شهادة عربية 1 📄</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">شهادة عربية 1 📄</span>
       </a>
 
-      <a href="extracted_data/cv/scans/2-a.jpg" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="extracted_data/cv/scans/2-a.jpg" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="extracted_data/cv/scans/2-a.jpg" alt="شهادة وسيرة ذاتية 2" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">شهادة عربية 2 📄</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">شهادة عربية 2 📄</span>
       </a>
 
-      <a href="extracted_data/cv/scans/3-a.jpg" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="extracted_data/cv/scans/3-a.jpg" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="extracted_data/cv/scans/3-a.jpg" alt="شهادة وسيرة ذاتية 3" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">شهادة عربية 3 📄</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">شهادة عربية 3 📄</span>
       </a>
 
-      <a href="extracted_data/cv/scans/4-a.jpg" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="extracted_data/cv/scans/4-a.jpg" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="extracted_data/cv/scans/4-a.jpg" alt="شهادة وسيرة ذاتية 4" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">شهادة عربية 4 📄</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">شهادة عربية 4 📄</span>
       </a>
 
-      <a href="extracted_data/cv/scans/1-e.jpg" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="extracted_data/cv/scans/1-e.jpg" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="extracted_data/cv/scans/1-e.jpg" alt="شهادة وسيرة ذاتية إنجليزية 1" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">English Sheet 1 📜</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">English Sheet 1 📜</span>
       </a>
 
-      <a href="extracted_data/cv/scans/2-e.jpg" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="extracted_data/cv/scans/2-e.jpg" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="extracted_data/cv/scans/2-e.jpg" alt="شهادة وسيرة ذاتية إنجليزية 2" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">English Sheet 2 📜</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">English Sheet 2 📜</span>
       </a>
 
-      <a href="extracted_data/cv/scans/3-e.jpg" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="extracted_data/cv/scans/3-e.jpg" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="extracted_data/cv/scans/3-e.jpg" alt="شهادة وسيرة ذاتية إنجليزية 3" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">English Sheet 3 📜</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">English Sheet 3 📜</span>
       </a>
 
-      <a href="extracted_data/cv/scans/4-e.jpg" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="extracted_data/cv/scans/4-e.jpg" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="extracted_data/cv/scans/4-e.jpg" alt="شهادة وسيرة ذاتية إنجليزية 4" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">English Sheet 4 📜</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">English Sheet 4 📜</span>
       </a>
 
-      <a href="extracted_data/cv/scans/5-e.jpg" target="_blank" class="p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
-        <div class="h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+      <a href="extracted_data/cv/scans/5-e.jpg" target="_blank" class="p-2.5 sm:p-3 rounded-xl bg-white/80 border border-slate-200 hover:border-emerald-500 transition text-center space-y-2 group shadow-xs">
+        <div class="h-24 sm:h-28 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
           <img src="extracted_data/cv/scans/5-e.jpg" alt="شهادة وسيرة ذاتية إنجليزية 5" class="w-full h-full object-cover group-hover:scale-105 transition">
         </div>
-        <span class="block text-[11px] font-bold text-slate-700 group-hover:text-emerald-700">English Sheet 5 📜</span>
+        <span class="block text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-emerald-700 truncate">English Sheet 5 📜</span>
       </a>
           </div>
         </div>
@@ -614,34 +648,34 @@
       <!-- ============================================== -->
       <!-- TAB 2: BOOKS & RESEARCH PAPERS                 -->
       <!-- ============================================== -->
-      <section id="tab-books" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-books">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <section id="tab-books" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-books">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">الإنتاج المعرفي والمحكّم</span>
-            <h2 id="heading-books" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">الكتب والأبحاث العلمية</h2>
+            <h2 id="heading-books" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">الكتب والأبحاث العلمية</h2>
           </div>
           <div class="relative w-full sm:w-64">
             <input type="text" id="books-search" placeholder="بحث في الأبحاث والكتب..." class="w-full px-4 py-2 rounded-xl glass-pill text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-white">
           </div>
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-500">
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
           تشمل دراسات متخصصة في حوكمة الشركات العائلية، السلوك المؤسسي، التوطين، وربط استراتيجية المنظمة بثقافة العمل، متاحة للتحميل المباشر بصيغة PDF.
         </p>
 
-        <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/01_one.jpg" alt="ورقة عمل قدمت في المؤتمر العاشر الدولي للتسامح والسلام بالقاهرة" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">25/11/2018</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">ورقة عمل قدمت في المؤتمر العاشر الدولي للتسامح والسلام بالقاهرة</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description">قد تم تقديم هذا العرض في المؤتمر الدولي العاشر للتسامح والسلام
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">ورقة عمل قدمت في المؤتمر العاشر الدولي للتسامح والسلام بالقاهرة</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description">قد تم تقديم هذا العرض في المؤتمر الدولي العاشر للتسامح والسلام
 
 المنعقد لمدة يومين 24 ، 25 نوفمبر 2018 م في اكاديمية طيبة
 
@@ -654,156 +688,156 @@
 حمدي قنديل رئيس منظمة التسامح والسلام.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/01_ورقة_عمل_قدمت_في_المؤتمر_العاش.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/01_ورقة_عمل_قدمت_في_المؤتمر_العاش.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/02_two.jpg" alt="Causes of Corrupt Behaviour in Organisations" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">01/01/2015</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">Causes of Corrupt Behaviour in Organisations</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">Causes of Corrupt Behaviour in Organisations</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/02_Causes_of_Corrupt_Behaviour_in.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/02_Causes_of_Corrupt_Behaviour_in.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/03_three.png" alt="ربط استراتيجية المؤسسة بثقافة العمل" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">06/08/2011</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">ربط استراتيجية المؤسسة بثقافة العمل</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">ربط استراتيجية المؤسسة بثقافة العمل</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/03_ربط_استراتيجية_المؤسسة_بثقافة.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/03_ربط_استراتيجية_المؤسسة_بثقافة.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/04_four.jpg" alt="الطرق العلمية لتحديد الاهداف والاحتياجات والخطط المالية" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">01/11/2010</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">الطرق العلمية لتحديد الاهداف والاحتياجات والخطط المالية</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">الطرق العلمية لتحديد الاهداف والاحتياجات والخطط المالية</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/04_الطرق_العلمية_لتحديد_الاهداف_و.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/04_الطرق_العلمية_لتحديد_الاهداف_و.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/05_five.jpg" alt="النموذج الفكري لهيكل الرؤية المؤسسي" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">26/03/2010</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">النموذج الفكري لهيكل الرؤية المؤسسي</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">النموذج الفكري لهيكل الرؤية المؤسسي</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/05_النموذج_الفكري_لهيكل_الرؤية_ال.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/05_النموذج_الفكري_لهيكل_الرؤية_ال.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/06_six.jpg" alt="التطوير الإداري للتخطيط العمراني بأمانة محافظة جدة" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">01/03/2010</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">التطوير الإداري للتخطيط العمراني بأمانة محافظة جدة</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">التطوير الإداري للتخطيط العمراني بأمانة محافظة جدة</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/06_التطوير_الإداري_للتخطيط_العمرا.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/06_التطوير_الإداري_للتخطيط_العمرا.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/07_seven.jpg" alt="منهج السعودة في القطاع الخاص" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">07/09/2009</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">منهج السعودة في القطاع الخاص</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">منهج السعودة في القطاع الخاص</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/07_منهج_السعودة_في_القطاع_الخاص.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/07_منهج_السعودة_في_القطاع_الخاص.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/08_eight.jpg" alt="من أعلام حضرموت - الشيخ حسن قحطان النقيب" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">26/02/2009</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">من أعلام حضرموت - الشيخ حسن قحطان النقيب</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">من أعلام حضرموت - الشيخ حسن قحطان النقيب</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/08_من_أعلام_حضرموت_-_الشيخ_حسن_قح.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/08_من_أعلام_حضرموت_-_الشيخ_حسن_قح.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/09_nine.jpg" alt="الـطـريــق إلــى الـنـظام الـحـاكم لـلـشركـات الـحـاكـمـيــة
                 الـمـؤسـســيـة." itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
@@ -811,21 +845,21 @@
             <span itemprop="datePublished">08/07/2008</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">الـطـريــق إلــى الـنـظام الـحـاكم لـلـشركـات الـحـاكـمـيــة
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">الـطـريــق إلــى الـنـظام الـحـاكم لـلـشركـات الـحـاكـمـيــة
                 الـمـؤسـســيـة.</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/09_الـطـريــق_إلــى_الـنـظام_الـح.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/09_الـطـريــق_إلــى_الـنـظام_الـح.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/10_ten.png" alt="تأمين مستقبل المنشآت العائلية التجارية في المملكة العربية
                 السعودية" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
@@ -833,32 +867,32 @@
             <span itemprop="datePublished">08/07/2008</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">تأمين مستقبل المنشآت العائلية التجارية في المملكة العربية
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">تأمين مستقبل المنشآت العائلية التجارية في المملكة العربية
                 السعودية</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/10_تأمين_مستقبل_المنشآت_العائلية.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/10_تأمين_مستقبل_المنشآت_العائلية.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Book">
         <div class="space-y-3">
-          <div class="h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
+          <div class="h-44 sm:h-48 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-2 border border-slate-100 shadow-inner">
             <img src="extracted_data/books/covers/11_eleven.jpg" alt="تــوطـيـن الـوظـائــف .... إستراتيجية ومـنـهــج" itemprop="image" class="max-h-full object-contain" onerror="this.src='extracted_data/books/covers/01_one.jpg'">
           </div>
           <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
             <span itemprop="datePublished">07/07/2008</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">بحث / كتاب</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug" itemprop="name">تــوطـيـن الـوظـائــف .... إستراتيجية ومـنـهــج</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed" itemprop="description"></p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe" itemprop="name">تــوطـيـن الـوظـائــف .... إستراتيجية ومـنـهــج</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="description"></p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <a href="extracted_data/books/pdfs/11_تــوطـيـن_الـوظـائــف__إستراتي.pdf" target="_blank" download class="w-full text-center py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
+          <a href="extracted_data/books/pdfs/11_تــوطـيـن_الـوظـائــف__إستراتي.pdf" target="_blank" download class="w-full text-center py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5 shadow-xs whitespace-nowrap">
             <span>تحميل البحث (PDF)</span>
             <svg class="w-3.5 h-3.5 rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
@@ -870,31 +904,31 @@
       <!-- ============================================== -->
       <!-- TAB 3: ARTICLES                                -->
       <!-- ============================================== -->
-      <section id="tab-articles" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-articles">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <section id="tab-articles" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-articles">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">طروحات فكرية وتنموية</span>
-            <h2 id="heading-articles" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">المقالات والدراسات المنشورة</h2>
+            <h2 id="heading-articles" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">المقالات والدراسات المنشورة</h2>
           </div>
           <div class="relative w-full sm:w-64">
             <input type="text" id="articles-search" placeholder="بحث في المقالات..." class="w-full px-4 py-2 rounded-xl glass-pill text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-white">
           </div>
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-500">
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
           مقالات ودراسات رأي نشرت في الصحف الرسمية بالمملكة (مثل جريدة البلاد) تناقش التعليم، القوة الشرائية، والمنفعة العامة.
         </p>
 
-        <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 
-      <article class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
+      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 26/04/2016</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">التعليم يبني الحضارات ويصنع التاريخ</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">الشعوب التي استطاعت ان تبني لها حضارة وتاريخ تفتخر به كان العلم
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">التعليم يبني الحضارات ويصنع التاريخ</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">الشعوب التي استطاعت ان تبني لها حضارة وتاريخ تفتخر به كان العلم
 
 نبراس لها وهدف لابنائها، ولم ينتشر الاسلام الا بالعلم وكانت اول
 
@@ -1049,18 +1083,18 @@
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
         </div>
       </article>
 
-      <article class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
+      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 14/11/2015</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">الى معالي وزير الاسكان مع التحية</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">لقد احزنني كثيرا النهج الذي قام عليه نقد معالي الوزير واسلوب
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">الى معالي وزير الاسكان مع التحية</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">لقد احزنني كثيرا النهج الذي قام عليه نقد معالي الوزير واسلوب
 
 &quot;الطقطقة&quot; ولن انتهج ذلك الاسلوب في مقالي هذا وانما سوف ادخل الى
 
@@ -1205,18 +1239,18 @@
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
         </div>
       </article>
 
-      <article class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
+      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 06/11/2015</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">المنفعه العامة والمنفعة الخاصة</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">ما اثارني لكتابة هذاالموضوع هو سلوك اصحاب القرار او المؤثرين في
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">المنفعه العامة والمنفعة الخاصة</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">ما اثارني لكتابة هذاالموضوع هو سلوك اصحاب القرار او المؤثرين في
 
 اصحاب القرار بوضع الدراسات والتقديرات مبنية على تحقيقهم لمصالح
 
@@ -1327,18 +1361,18 @@
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
         </div>
       </article>
 
-      <article class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
+      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 31/10/2015</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">المواطن هو المستفيد وهو المتضرر</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">ما اثار هذ الموضوع هو المقابلة التي اجريتها مع قناة روتانا
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">المواطن هو المستفيد وهو المتضرر</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">ما اثار هذ الموضوع هو المقابلة التي اجريتها مع قناة روتانا
 
 خليجية بخصوص مشروع قطار الحرمين. هذا المشروع هو مشروع استراتيجي
 
@@ -1483,18 +1517,18 @@
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
         </div>
       </article>
 
-      <article class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
+      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 24/10/2015</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">القران ليس مجالا للتاويل والتفسير بعيدا عن اهل العلم الشرعي</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">لقد زادت في هذه الايام تدخلات الكثير فيما لا يفهمون. فنجد ان
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">القران ليس مجالا للتاويل والتفسير بعيدا عن اهل العلم الشرعي</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">لقد زادت في هذه الايام تدخلات الكثير فيما لا يفهمون. فنجد ان
 
 هناك من يفتي في الطب وينشر ما يشاء عن طريق ادوات التواصل الحديثة
 
@@ -1645,18 +1679,18 @@
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
         </div>
       </article>
 
-      <article class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
+      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 10/10/2015</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">أعينوا الداخلية لمحاربة الارهاب</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">يجتهد رجال الامن في الداخلية لمحاربة الارهاب بكل انواعه وكذلك
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">أعينوا الداخلية لمحاربة الارهاب</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">يجتهد رجال الامن في الداخلية لمحاربة الارهاب بكل انواعه وكذلك
 
 تتبني ايضا محاربة الفكر المؤدي الى الارهاب. ويتعرض رجال الامن
 
@@ -1779,18 +1813,18 @@
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
         </div>
       </article>
 
-      <article class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
+      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 03/10/2015</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">القوة الشرائية للـريـال هي حياتنا</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">لا يعي الكثير من الناس ما يجري بحق القوة الشرائية للريال السعودي
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">القوة الشرائية للـريـال هي حياتنا</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">لا يعي الكثير من الناس ما يجري بحق القوة الشرائية للريال السعودي
 
 واثر ذلك على حياة كل المواطنين والساكنين في مملكتنا الحبيبه.
 
@@ -1915,18 +1949,18 @@
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
         </div>
       </article>
 
-      <article class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
+      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
         <div class="space-y-3">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span itemprop="datePublished">📅 21/08/2015</span>
             <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug" itemprop="headline">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed" itemprop="articleBody">الارهاب رغم اننا نتحدث انه دخيل علينا الا ان الواقع يقول ان تلك
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">الارهاب رغم اننا نتحدث انه دخيل علينا الا ان الواقع يقول ان تلك
 
 الفتنة قد بدات منذ عهد سيدنا عثمان بن عفان رضي الله عنه وكانت
 
@@ -2059,7 +2093,7 @@
             <span>قراءة المقال كاملاً</span>
             <span class="group-hover:-translate-x-1 transition duration-200">←</span>
           </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد السعودية</span>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
         </div>
       </article>
         </div>
@@ -2068,27 +2102,27 @@
       <!-- ============================================== -->
       <!-- TAB 4: SUBJECTS                                -->
       <!-- ============================================== -->
-      <section id="tab-subjects" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-subjects">
+      <section id="tab-subjects" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-subjects">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">قضايا مجتمعية ورأي عام</span>
-          <h2 id="heading-subjects" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">رؤى ومواضيع في الشأن العام</h2>
+          <h2 id="heading-subjects" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">رؤى ومواضيع في الشأن العام</h2>
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-500">
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
           قضايا ونقاشات تركز على حماية المستهلك، جودة الخدمات، وحقوق العمالة بما يعزز جودة الحياة والمسؤولية المجتمعية.
         </p>
 
-        <div id="subjects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="subjects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 
-      <div class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>22/11/2010</span>
             <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug">يحكى ان......</h4>
-          <h5 class="text-xs font-semibold text-emerald-700">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h5>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">بعد المقال التي كتبته عن التطور وتوفير عناصر القوة لامتنا واولها
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">يحكى ان......</h4>
+          <h5 class="text-xs font-semibold text-emerald-700 break-words-safe">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h5>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">بعد المقال التي كتبته عن التطور وتوفير عناصر القوة لامتنا واولها
 
 القوة العسكرية شرح لي احد الاصدقاء كيف اننا اضعف اليوم من ان
 
@@ -2166,15 +2200,15 @@
         </div>
       </div>
 
-      <div class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>22/11/2010</span>
             <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug">وماذا بعد يا عرب</h4>
-          <h5 class="text-xs font-semibold text-emerald-700">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h5>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">مؤتمر القمة العربية في بيروت كان من اكثر مؤتمرات القمة احداثا
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">وماذا بعد يا عرب</h4>
+          <h5 class="text-xs font-semibold text-emerald-700 break-words-safe">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h5>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مؤتمر القمة العربية في بيروت كان من اكثر مؤتمرات القمة احداثا
 
 وفاعلية واعظمها قعقعة. عاش مؤتمر القمة في بيروت احداث يجب على كل
 
@@ -2370,15 +2404,15 @@
         </div>
       </div>
 
-      <div class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>22/11/2010</span>
             <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug">وامعتصماه...يا وزارة العمل</h4>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">وامعتصماه...يا وزارة العمل</h4>
           
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">فكرت في ان اهاجم تراخي مكاتب العمل عن ايجاد حلول لمعاناة
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">فكرت في ان اهاجم تراخي مكاتب العمل عن ايجاد حلول لمعاناة
 
 المواطنين، ثم بعد تفكير تراجعت عن ذلك لانه ليس لمكتب العمل ذنب
 
@@ -2538,15 +2572,15 @@
         </div>
       </div>
 
-      <div class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>22/11/2010</span>
             <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug">هل يقرأ المسؤولين ما يكتبه الكتاب</h4>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">هل يقرأ المسؤولين ما يكتبه الكتاب</h4>
           
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">اكتب هذا المقال وانا في مدينة هونج كونج. لقد زارها الكثير من
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">اكتب هذا المقال وانا في مدينة هونج كونج. لقد زارها الكثير من
 
 الناس ويعرفونها اكثر مما اعرف فيها، ولكن لي تاملاتي الخاصة كما
 
@@ -2708,15 +2742,15 @@
         </div>
       </div>
 
-      <div class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>22/11/2010</span>
             <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug">هجوم على سواقي وباصات نقل الطالبات</h4>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">هجوم على سواقي وباصات نقل الطالبات</h4>
           
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">اخبرني صديق لي في يوم من الايام ان هناك حملة سعودة على سائقي اتوبيسات نقل الطالبات وقد ادى ذلك الى حجز الاتوبيسات والسواقين وقد اتصلت شركات النقل على اباء الطالبات  ليتدبروا امر توصيل بناتهم الى منازلهم.
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">اخبرني صديق لي في يوم من الايام ان هناك حملة سعودة على سائقي اتوبيسات نقل الطالبات وقد ادى ذلك الى حجز الاتوبيسات والسواقين وقد اتصلت شركات النقل على اباء الطالبات  ليتدبروا امر توصيل بناتهم الى منازلهم.
 
 امر غريب وسلوك اغرب لفت انتباهي لما له من صفة عشوائية في الاجراء دون وعي وادراك لخلفيته والنتائج التي يمكن ان تترتب على ذلك. وكما يقولون في هذا الاجراء هو تطبيق القانون &quot;رجاله&quot;. من الصعب جدا ان نطبق برامج السعودة لنضيف بطالة جديدة. لا يمكن ان يقبل صاحب العمل ان يرى بين وقت واخر من يستاذن لاحضار ابنته من الجامعة او المدرسة لان هذه الباصات قد توقفت عن العمل بسبب السعودة. أي اننا بالسعودة نطبق السعودة المعكوسة.
 
@@ -2756,15 +2790,15 @@
         </div>
       </div>
 
-      <div class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>22/11/2010</span>
             <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug">نحن نتغير الى الاحسن</h4>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">نحن نتغير الى الاحسن</h4>
           
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">لقد تحدثت في مقالات سابقة عن امرين وجدتهما في غاية الاهمية
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">لقد تحدثت في مقالات سابقة عن امرين وجدتهما في غاية الاهمية
 
 لقيادة دفة التغيير وحماية استقرارنا وامننا دون تدخل للمغرضين
 
@@ -2882,15 +2916,15 @@
         </div>
       </div>
 
-      <div class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>22/11/2010</span>
             <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug">من يخدم من؟ العميل ام مقدم الخدمة</h4>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">من يخدم من؟ العميل ام مقدم الخدمة</h4>
           
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">هناك فرق بين الحكومة والوطن. فالحكومة هي اجهزة ادارية تسعى لتحقيق الامن والاستقرار والرفاهية للوطن والمواطنين. والمقصود من الحديث هنا ان الاجهزة الحكومية والخدماتيه بالخصوص المفروض ان تعمل بجد على اقرار التشريعات التي تنظم اعمال المواطنين كما وانها تقوم بتسهيل كل الاجراءات للمواطنين سواء عن طريق تقصير الاجراءات البيروقراطية او توفير المعلومات في اجهزة الدولة بما يسمح باتخاذ الاجراءات بكل سهولة، فالعصر الحديث هو عصر المعلومات.
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">هناك فرق بين الحكومة والوطن. فالحكومة هي اجهزة ادارية تسعى لتحقيق الامن والاستقرار والرفاهية للوطن والمواطنين. والمقصود من الحديث هنا ان الاجهزة الحكومية والخدماتيه بالخصوص المفروض ان تعمل بجد على اقرار التشريعات التي تنظم اعمال المواطنين كما وانها تقوم بتسهيل كل الاجراءات للمواطنين سواء عن طريق تقصير الاجراءات البيروقراطية او توفير المعلومات في اجهزة الدولة بما يسمح باتخاذ الاجراءات بكل سهولة، فالعصر الحديث هو عصر المعلومات.
 
 فالمفروض ان اجهزة الزكاة والدخل مثلا لديها كل المعلومات في ما لوكانت السجلات التجارية لا زالت تعمل او الغيت وكذلك بالنسبة للتراخيص من البلديات وخلاف ذلك. اما ان الاجهزة الحكومية ذات الصفة الخدمية لا تتعامل مع بعضها البعض او لا تنسق اعمالها مع بعضها البعض او انها ترغم المواطن على ان يقوم بدورها وترغمه على ان يسير في دوامة الإجراءات وكلٍ يرمي على الجهة الاخرى فهذا عيب في هذه الدوائر العقيمة وسوء ادارة او قل كل ما يمكن ان يقال في سوء الادارة.
 
@@ -2906,15 +2940,15 @@
         </div>
       </div>
 
-      <div class="card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>22/11/2010</span>
             <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
           </div>
-          <h4 class="text-lg font-bold text-slate-900 leading-snug">من يحمي العامل والمستهلك</h4>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">من يحمي العامل والمستهلك</h4>
           
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">كتب القارئ طارق قايد سالم إلى جريدة البلاد لطرح الحديث عن
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">كتب القارئ طارق قايد سالم إلى جريدة البلاد لطرح الحديث عن
 
 موضوعين مهمين اوضح ان فيهما الكثير من التقصير في التنظيم
 
@@ -3045,21 +3079,21 @@
       <!-- ============================================== -->
       <!-- TAB 5: EVENTS & GALLERIES                      -->
       <!-- ============================================== -->
-      <section id="tab-events" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-events">
+      <section id="tab-events" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 hidden" aria-labelledby="heading-events">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">مشاريع وطنية وميدانية</span>
-          <h2 id="heading-events" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">ألبومات المشاريع الميدانية وحماية السيول</h2>
+          <h2 id="heading-events" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">ألبومات المشاريع الميدانية وحماية السيول</h2>
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-500">
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
           توثيق ميداني مصور لأعمال حماية محافظة جدة من أخطار السيول وتطوير السدود وقنوات التصريف بالتنسيق مع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.
         </p>
 
-        <div id="events-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="events-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_01/1 (1).JPG" alt="البوم الصور لوقائع زيارة وزير الشئون البلدية والقروية" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3070,8 +3104,8 @@
             <span>21/6/1432</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">البوم الصور لوقائع زيارة وزير الشئون البلدية والقروية</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">البوم الصور لوقائع زيارة وزير الشئون البلدية والقروية</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(1)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -3081,9 +3115,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_02/1 (1).JPG" alt="البوم الصور لوقائع افتتاح مشروعي السامر وام الخير" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3094,8 +3128,8 @@
             <span>15/05/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">البوم الصور لوقائع افتتاح مشروعي السامر وام الخير</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">البوم الصور لوقائع افتتاح مشروعي السامر وام الخير</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(2)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -3105,9 +3139,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_03/womanright_small.jpg" alt="حقوق المراة الحقيقية" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3118,8 +3152,8 @@
             <span>31/03/2012</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">حقوق المراة الحقيقية</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">سبق ان تحدث الكثيرين في موضوع حقوق المراة وماذا لها وماذا عليها
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">حقوق المراة الحقيقية</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">سبق ان تحدث الكثيرين في موضوع حقوق المراة وماذا لها وماذا عليها
 
 وكان الناس في ذلك الامر على طرفي نقيض فهناك من طالب بالانفتاح
 
@@ -3227,9 +3261,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_04/moror_small.jpg" alt="رجل المرور .. دور ننتظر عودته" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3240,8 +3274,8 @@
             <span>18/12/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">رجل المرور .. دور ننتظر عودته</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">سبق ان تحدثت عن ادارة المرور في حالات سابقة وذكرت كيف يغير رجل
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">رجل المرور .. دور ننتظر عودته</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">سبق ان تحدثت عن ادارة المرور في حالات سابقة وذكرت كيف يغير رجل
 
 المرور توقيت الاشارة ليخلق عملية ازدحام بدلا من ان يخفف ازدحام.
 
@@ -3359,9 +3393,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_05/1 (1).jpg" alt="البوم الصور لوقائع زيارة وزير الشئون البلدية والقروية" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3372,8 +3406,8 @@
             <span>21/6/1432</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">البوم الصور لوقائع زيارة وزير الشئون البلدية والقروية</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">البوم الصور لوقائع زيارة وزير الشئون البلدية والقروية</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(5)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -3383,9 +3417,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_06/um_alkhair_big.jpg" alt="تجاوزنا كل المخاطر ومشروعي السامر وأم الخير سينتهيان في موعدهما" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3396,8 +3430,8 @@
             <span>02/12/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">تجاوزنا كل المخاطر ومشروعي السامر وأم الخير سينتهيان في موعدهما</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">أعلن المهندس عبد المجيد البطاطي مدير عام مشروعي تصريف مياه
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">تجاوزنا كل المخاطر ومشروعي السامر وأم الخير سينتهيان في موعدهما</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">أعلن المهندس عبد المجيد البطاطي مدير عام مشروعي تصريف مياه
 
 الأمطار والسيول بالسامر وأم الخير تجاوز كل المخاطر التي واجهتهم
 
@@ -3577,9 +3611,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_07/umalkhair_small.jpg" alt="معلومات عن مشروعي ام الخير والسامر" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3590,8 +3624,8 @@
             <span>23/07/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">معلومات عن مشروعي ام الخير والسامر</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">في نوفمبر 2009 شهدت مدينة جدة فيضانات كبرى مما أدى إلى خسائر
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">معلومات عن مشروعي ام الخير والسامر</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">في نوفمبر 2009 شهدت مدينة جدة فيضانات كبرى مما أدى إلى خسائر
 
 كبيرة في الأرواح والممتلكات والبنية التحتية . وفي يناير 2011
 
@@ -3649,9 +3683,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_08/um_alkhair_big.jpg" alt="أمانة جدة: تجاوزنا المخاطر ومشاريع درء السيول في موعدها" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3662,8 +3696,8 @@
             <span>09/07/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">أمانة جدة: تجاوزنا المخاطر ومشاريع درء السيول في موعدها</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">دعا عدد من متضرري السيول والأمطار شرقي جدة، مسؤولي الأمانة والمجلس البلدي، إلى الاتزان والاعتدال في إعداد تقاريرهم الخاصة باجتماعاتهم الأسبوعية، التي تناقش سير العمل في المشاريع الخاصة بدرء مخاطر السيول والأمطار، التي وجهت القيادة بتنفيذها حالاً في عدد من أحياء شرقي المدينة.
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">أمانة جدة: تجاوزنا المخاطر ومشاريع درء السيول في موعدها</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">دعا عدد من متضرري السيول والأمطار شرقي جدة، مسؤولي الأمانة والمجلس البلدي، إلى الاتزان والاعتدال في إعداد تقاريرهم الخاصة باجتماعاتهم الأسبوعية، التي تناقش سير العمل في المشاريع الخاصة بدرء مخاطر السيول والأمطار، التي وجهت القيادة بتنفيذها حالاً في عدد من أحياء شرقي المدينة.
 
 وأبدى عدد من الأهالي استغرابهم من اللغة الاستهلاكية التي تظهر بها بعض التقارير، رغم أن تنفيذ المشاريع يجري بمتابعة دقيقة من أمير المنطقة الذي أولاها أهمية بالغة، كفيلة بإنجاحها والانتهاء من تنفيذها خلال المدة المحددة، وليس هناك ما يدعو ــ على حد قولهم ــ أن يتولى آخرون التحليل والإشادة بالجهود، والأعمال ملموسة على أرض الواقع وليست في حاجة للاستهلاك الإعلامي، وهي تحظى باهتمام كبير من أمير المنطقة وفق رؤى وخطط مدروسة.
 
@@ -3691,9 +3725,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_09/um_alkhair_big.jpg" alt="مدير «أم الخير» و«السامر»: خطة العمل تستوعب «درء السيول»" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3704,8 +3738,8 @@
             <span>09/07/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">مدير «أم الخير» و«السامر»: خطة العمل تستوعب «درء السيول»</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">أعلن المدير العام لمشروعي تصريف مياه الأمطار والسيول بالسامر وأم الخير المهندس عبدالمجيد البطاطي تجاوز كل المخاطر التي واجهتهم خلال هدم المنازل والعمل وسط أماكن مأهولة بالسكان، متوقعاً أن يجري إنجاز المشروع في موعده قبل نهاية شهر شباط (فبراير) المقبل، في ظل وجود أكثر الشركات كفاءة وقدرة على العمل لمدة (24) ساعة يومياً.
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">مدير «أم الخير» و«السامر»: خطة العمل تستوعب «درء السيول»</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">أعلن المدير العام لمشروعي تصريف مياه الأمطار والسيول بالسامر وأم الخير المهندس عبدالمجيد البطاطي تجاوز كل المخاطر التي واجهتهم خلال هدم المنازل والعمل وسط أماكن مأهولة بالسكان، متوقعاً أن يجري إنجاز المشروع في موعده قبل نهاية شهر شباط (فبراير) المقبل، في ظل وجود أكثر الشركات كفاءة وقدرة على العمل لمدة (24) ساعة يومياً.
 
 جاء ذلك خلال العرض المرئي الذي قدمه البطاطي أمام لجنة درء مخاطر السيول والأمطار في حضور نائب رئيس المجلس البلدي المهندس حسن الزهراني، وبسام بن جميل أخضر، والمدير العام للمياه والأودية والسيول بأمانة جدة المهندس محمد قطان، وشمل آخر تطورات العمل في المشروع الذي يكلف أكثر من (264) مليون ريال ويستمر العمل به لمدة (197) يوماً، بداية من منتصف مايو الماضي موعد توقيع عقد المشروع.وأجاب المدير العام للمشروع والمدير العام للإستراتيجية بأمانة جدة عن استفسارات المجلس البلدي، مؤكداً أنه تم بناء قاعدة معلومات عن المشروع في فترة قياسية. وقال: «تسلمنا العروض في العاشر من مايو الماضي وطلبنا من جميع الشركات التي لا تستطيع العمل بكفاءة خلال (24) ساعة الانسحاب، وبالفعل اعتذرت ثلاث شركات عن التقدم للتنفيذ لحساسية المشروعين والرغبة في إنجازه في زمني قياسي والحاجة إلى إعداد وتجهيز طاقات بشرية ومعدات ضخمة في وقت قصير مع القدرة على العمل في مختلف المراحل بتواز، وبدأنا التحليل الفني في نفس يوم وصول العروض، وأنهينا العمل في الـ 11من صباح اليوم الثاني لنبدأ العمل مباشرة في التحليل الاقتصادي بمساعدة فريق من شركة أرامكو التي تعمل تحت إشراف مقام الإمارة والتي أقرت الهيكلة التجارية للعقد وتحليل العروض مالياً، وتم الانتهاء من التحليل في اليوم نفسه».وأضاف: «تمت التوصية بترسية المشروع على إحدى الشركات ذات الكفاءة العالية في اليوم الثاني (11مايو)، ووافق أمين جدة عليها، واعتمدها الأمير خالد الفيصل، ما جعل الإجراءات تتم في أسرع وقت بحكم آلية اللجنة التنفيذية المعتمدة من المقام السامي ومنهجية العمل الفاعلة التي تبناها أمير المنطقة، وتم توقيع العقد في منتصف أيار (مايو) وفق الشروط والضوابط التي وضعناها وبطريقة تلبي طموحات وآمال كل سكان المنطقة، وتمنع تكرار أي كارثة أخرى في حال سقوط السيول مستقبلاً».وشدد المهندس عبدالمجيد البطاطي على أن المشروع الذي يجري تنفيذه حالياً سيكون قادراً على استيعاب السيول، حيث تم تحديد المسار عن طريق هيئة المساحة الجيولوجية، ويتضمن تنفيذ مجرى السيل في السامر، ومجرى السيل وحوض التجميع في مخطط أم الخير، لافتاً إلى أن حوض التجميع يستوعب أكثر من 2.3 مليون متر مكعب من المياه، ويتصل الحوض بقناة مفتوحة بطول 780 م، وعرض أكثر من 30 متراً وعمق 3.5 م، تتصل هي الأخرى بالعبارة في غرب مخطط أم الخير.وأكد أن المعدات تعمل ليل نهار وتم الانتهاء من هدم جميع المباني التي تقع في طريق السيل بمجمع أم الخير السكني، ويسير حجم الإنجاز بصورة أكبر مما توقعناه وبطريقة تبشر بالخير وتجعلنا نتوقع افتتاح المشروع في موعده. وزاد: «تعرض المشروع لمخاطر كبيرة، إذ كان هناك تحد كبير في هدم بعض المنازل، فكنا نسابق الزمن من أجل تحقيق إنجاز في هذا المشروع. عملنا ليلاً ونهاراً بلا توقف تحت إشراف ومتابعة مباشرة من أمين جدة الدكتور هاني أبو راس خطوة بخطوة، كما وجدنا دعماً ومساندة من الناس لأنهم ينظرون إلى المستقبل ويعرفون العائد الكبير الذي سيكون لهذا المشروع».
 
@@ -3719,9 +3753,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_10/jeddah-proj_big1.jpg" alt="أكد اكتمال مشروعي السامر وأم الخير في نوفمبر المقبل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3732,8 +3766,8 @@
             <span>25/06/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">أكد اكتمال مشروعي السامر وأم الخير في نوفمبر المقبل</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">أكد اكتمال مشروعي السامر وأم الخير في نوفمبر المقبل
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">أكد اكتمال مشروعي السامر وأم الخير في نوفمبر المقبل</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">أكد اكتمال مشروعي السامر وأم الخير في نوفمبر المقبل
 
 منصور بن متعب: إنجاز سدود شرق جدة في مواعيدها ووفق المواصفات المعتمدة
 
@@ -3777,9 +3811,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_11/jeddah-proj_small.jpg" alt="تفقد مشاريع السدود بجدة" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -3790,8 +3824,8 @@
             <span>25/06/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">تفقد مشاريع السدود بجدة</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">جدة - إبراهيم المدني
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">تفقد مشاريع السدود بجدة</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">جدة - إبراهيم المدني
 
 تصوير - إبراهيم بركات :
 
@@ -4003,9 +4037,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_12/clean_big.jpg" alt="Jeddah cleaners to be given ‘motivational scores’" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4016,8 +4050,8 @@
             <span>25/09/2010</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Jeddah cleaners to be given ‘motivational scores’</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">Jeddah cleaners to be given ‘motivational scores’</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(12)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -4027,9 +4061,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_13/g1-big.jpg" alt="أهـــمـــيــة نـشـــــــــــر الثـقـــافـــــــة البـيـئـيـة فـي المـجـتـمـــــع" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4040,8 +4074,8 @@
             <span>04/08/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">أهـــمـــيــة نـشـــــــــــر الثـقـــافـــــــة البـيـئـيـة فـي المـجـتـمـــــع</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">أهـــمـــيــة نـشـــــــــــر الثـقـــافـــــــة البـيـئـيـة فـي المـجـتـمـــــع</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(13)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -4051,9 +4085,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_14/env_day_big.jpg" alt="إطلاق معرض الحفاظ على البيئة" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4064,8 +4098,8 @@
             <span>04/08/2010</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">إطلاق معرض الحفاظ على البيئة</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">إطلاق معرض الحفاظ على البيئة</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(14)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -4075,9 +4109,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_15/1 (1).jpg" alt="إطلاق معرض الحفاظ على البيئة - البوم الصور" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4088,8 +4122,8 @@
             <span>04/08/2010</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">إطلاق معرض الحفاظ على البيئة - البوم الصور</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">إطلاق معرض الحفاظ على البيئة - البوم الصور</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(15)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -4099,9 +4133,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_16/abdm_big.jpg" alt="البطاطي يحث البلديات على خدمة السكان" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4112,8 +4146,8 @@
             <span>02/04/2011</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">البطاطي يحث البلديات على خدمة السكان</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">يشغل المهندس عبد المجيد بن سعيد البطاطي منصب المشرف العام على البلديات في محافظة جدة، ويسعى من خلال موقعه للنهوض بعمل البلديات لتواكب متطلبات الأحياء وساكنيها.
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">البطاطي يحث البلديات على خدمة السكان</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">يشغل المهندس عبد المجيد بن سعيد البطاطي منصب المشرف العام على البلديات في محافظة جدة، ويسعى من خلال موقعه للنهوض بعمل البلديات لتواكب متطلبات الأحياء وساكنيها.
 
 ولد المهندس البطاطي في محافظة جدة عام 1374هـ، وتعلم في مدارسها الابتدائية والمتوسطة والثانوية، ثم اتجه إلى جامعة الملك عبد العزيز في جدة لإكمال تعليمه الجامعي، حيث التحق بقسم الهندسة الميكانيكية، ورغم أن حلمه كان الطب إلا أنه ما لبث أن غير وجهته الدراسية إلى الهندسة، حيث تخرج مهندس ميكانيكا، ثم أكمل تعليمه العالي حيث حصل على درجة الماجستير في إدارة الأعمال.
 
@@ -4133,9 +4167,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_17/clean_1_big.jpg" alt="«أمانة جدة» تدعو الأحياء إلى مشاركتها في رفع مستوى نظافة العروس" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4146,8 +4180,8 @@
             <span>03/08/2010</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">«أمانة جدة» تدعو الأحياء إلى مشاركتها في رفع مستوى نظافة العروس</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">جدة : البلاد - ابراهيم المدني
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">«أمانة جدة» تدعو الأحياء إلى مشاركتها في رفع مستوى نظافة العروس</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">جدة : البلاد - ابراهيم المدني
 
 دعا مساعد وكيل أمين محافظة جدة للنظافة والمرادم المهندس عبدالمجيد بن سالم البطاطي إلى ضرورة ترسيخ وتعميق مفهوم ثقافة النظافة، معربا عن أمله في مشاركة الجميع مع الأمانة لرفع مستوى النظافة في محافظة جدة.
 
@@ -4179,9 +4213,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_18/clean_big.jpg" alt="أمانة جدة تدعو إلى تعــزيز مستوى النظافة العامة" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4192,8 +4226,8 @@
             <span>03/08/2010</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">أمانة جدة تدعو إلى تعــزيز مستوى النظافة العامة</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">أمانة جدة تدعو إلى تعــزيز مستوى النظافة العامة</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(18)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -4203,9 +4237,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_19/amana_big.jpg" alt="«أمانة جدة» تدعو الأحياء إلى مشاركتها في رفع مستوى نظافة العروس" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4216,8 +4250,8 @@
             <span>03/08/2010</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">«أمانة جدة» تدعو الأحياء إلى مشاركتها في رفع مستوى نظافة العروس</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">«أمانة جدة» تدعو الأحياء إلى مشاركتها في رفع مستوى نظافة العروس</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(19)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -4227,9 +4261,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_20/ksa_local_campaign_big.jpg" alt="سكان حي في جدة يعالجون تردي أوضاع النظافة بحملة لـ200 متطوع" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4240,8 +4274,8 @@
             <span>18/07/2010</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">سكان حي في جدة يعالجون تردي أوضاع النظافة بحملة لـ200 متطوع</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">سكان حي في جدة يعالجون تردي أوضاع النظافة بحملة لـ200 متطوع</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(20)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -4251,9 +4285,9 @@
         </div>
       </div>
 
-      <div class="card-interactive p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
+      <div class="card-interactive p-4 sm:p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
         <div class="space-y-3">
-          <div class="h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
+          <div class="h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-900 relative shadow-inner group">
             <img src="extracted_data/events_and_media/images/event_21/report_big.jpg" alt="التقرير مع حسين شبكشي: نظام العمل وعلاقته بالحوكمة" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='extracted_data/brand_assets/home_1.JPG'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
             <span class="absolute bottom-2.5 right-2.5 text-white text-xs font-bold bg-black/40 backdrop-blur px-2.5 py-1 rounded-lg whitespace-nowrap">
@@ -4264,8 +4298,8 @@
             <span>08/08/2010</span>
             <span class="text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-semibold whitespace-nowrap">ميداني / إشراف هندسي</span>
           </div>
-          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">التقرير مع حسين شبكشي: نظام العمل وعلاقته بالحوكمة</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
+          <h4 class="font-bold text-sm sm:text-base text-slate-900 leading-snug break-words-safe">التقرير مع حسين شبكشي: نظام العمل وعلاقته بالحوكمة</h4>
+          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مشروع وطني ضمن مشاريع أمانة محافظة جدة ووزارة الشؤون البلدية والقروية.</p>
         </div>
         <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
           <button onclick="openEventGallery(21)" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 whitespace-nowrap">
@@ -4280,45 +4314,45 @@
       <!-- ============================================== -->
       <!-- TAB 6: CONTACT & CONSULTATION                  -->
       <!-- ============================================== -->
-      <section id="tab-contact" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 hidden" aria-labelledby="heading-contact">
+      <section id="tab-contact" class="tab-panel glass-card rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm space-y-6 sm:space-y-8 hidden" aria-labelledby="heading-contact">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">قنوات التواصل المباشر</span>
-          <h2 id="heading-contact" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">طلب استشارة أو جلسة تحكيم</h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          <h2 id="heading-contact" class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mt-1">طلب استشارة أو جلسة تحكيم</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">
             نسعد بتواصلكم لطلب استشارات الحوكمة المؤسسية، التحكيم الهندسي والتجاري، ودراسات المشاريع الكبرى.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
           
-          <div class="md:col-span-5 space-y-4">
+          <div class="md:col-span-5 space-y-3.5 sm:space-y-4">
             
             <a id="contact-phone-link" href="tel:0505626375" class="card-interactive p-4 rounded-2xl bg-white/70 border border-slate-200/70 flex items-center gap-3.5 block shadow-xs">
-              <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg font-bold">📞</div>
-              <div>
-                <span class="text-[11px] text-slate-400 font-medium">الهاتف المباشر</span>
-                <h5 id="contact-phone" class="text-sm font-bold text-slate-900 font-mono" dir="ltr">0505626375</h5>
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg font-bold flex-shrink-0">📞</div>
+              <div class="min-w-0">
+                <span class="text-[11px] text-slate-400 font-medium block">الهاتف المباشر</span>
+                <h5 id="contact-phone" class="text-sm font-bold text-slate-900 font-mono truncate" dir="ltr">0505626375</h5>
               </div>
             </a>
 
             <a id="contact-email-link" href="mailto:info@asalbatati.net" class="card-interactive p-4 rounded-2xl bg-white/70 border border-slate-200/70 flex items-center gap-3.5 block shadow-xs">
-              <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center text-lg font-bold">✉️</div>
-              <div>
-                <span class="text-[11px] text-slate-400 font-medium">البريد الإلكتروني</span>
-                <h5 id="contact-email" class="text-sm font-bold text-slate-900 font-mono">info@asalbatati.net</h5>
+              <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center text-lg font-bold flex-shrink-0">✉️</div>
+              <div class="min-w-0">
+                <span class="text-[11px] text-slate-400 font-medium block">البريد الإلكتروني</span>
+                <h5 id="contact-email" class="text-sm font-bold text-slate-900 font-mono truncate">info@asalbatati.net</h5>
               </div>
             </a>
 
             <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 flex items-center gap-3.5 shadow-xs">
-              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-lg font-bold">📍</div>
-              <div>
-                <span class="text-[11px] text-slate-400 font-medium">المقر والمكتب الاستشاري</span>
-                <h5 id="contact-address" class="text-xs font-bold text-slate-800 leading-snug">المملكة العربية السعودية - منطقة مكة المكرمة - جدة</h5>
+              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-lg font-bold flex-shrink-0">📍</div>
+              <div class="min-w-0">
+                <span class="text-[11px] text-slate-400 font-medium block">المقر والمكتب الاستشاري</span>
+                <h5 id="contact-address" class="text-xs font-bold text-slate-800 leading-snug break-words-safe">المملكة العربية السعودية - منطقة مكة المكرمة - جدة</h5>
               </div>
             </div>
 
             <div class="p-4 rounded-2xl bg-gradient-to-tr from-emerald-50 to-teal-50 border border-emerald-200/70 space-y-1.5 shadow-xs">
-              <span class="text-[10px] uppercase font-bold text-emerald-800">الاعتماد الرسمي</span>
+              <span class="text-[10px] uppercase font-bold text-emerald-800 block">الاعتماد الرسمي</span>
               <p class="text-xs font-bold text-emerald-950">الهيئة السعودية للمهندسين - ترخيص استشاري #201226</p>
               <p class="text-[11px] text-emerald-800">محكم معتمد مسجل لدى وزارة العدل بالمملكة العربية السعودية</p>
             </div>
@@ -4327,7 +4361,7 @@
 
           <div class="md:col-span-7">
             <form id="contact-form" class="space-y-4">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">الاسم الكريم *</label>
                   <input type="text" name="name" required placeholder="الاسم الكامل" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white">
@@ -4338,7 +4372,7 @@
                 </div>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 mb-1">البريد الإلكتروني</label>
                   <input type="email" name="email" placeholder="name@domain.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500 bg-white" dir="ltr">
@@ -4373,23 +4407,23 @@
     </main>
 
     <!-- Footer -->
-    <footer class="pt-8 pb-12 border-t border-slate-200/60 text-center text-xs text-slate-500 space-y-3">
-      <div class="flex flex-wrap justify-center items-center gap-4 text-xs font-semibold text-slate-600">
-        <button onclick="switchTab('about')" class="hover:text-emerald-700 whitespace-nowrap">نبذة ومؤهلات</button>
+    <footer class="pt-6 sm:pt-8 pb-10 sm:pb-12 border-t border-slate-200/60 text-center text-xs text-slate-500 space-y-3">
+      <div class="flex flex-wrap justify-center items-center gap-3 sm:gap-4 text-xs font-semibold text-slate-600">
+        <button onclick="switchTab('about', true)" class="hover:text-emerald-700 whitespace-nowrap">نبذة ومؤهلات</button>
         <span>•</span>
-        <button onclick="switchTab('books')" class="hover:text-emerald-700 whitespace-nowrap">الأبحاث والكتب</button>
+        <button onclick="switchTab('books', true)" class="hover:text-emerald-700 whitespace-nowrap">الأبحاث والكتب</button>
         <span>•</span>
-        <button onclick="switchTab('articles')" class="hover:text-emerald-700 whitespace-nowrap">المقالات</button>
+        <button onclick="switchTab('articles', true)" class="hover:text-emerald-700 whitespace-nowrap">المقالات</button>
         <span>•</span>
-        <button onclick="switchTab('subjects')" class="hover:text-emerald-700 whitespace-nowrap">قضايا رأي</button>
+        <button onclick="switchTab('subjects', true)" class="hover:text-emerald-700 whitespace-nowrap">قضايا رأي</button>
         <span>•</span>
-        <button onclick="switchTab('events')" class="hover:text-emerald-700 whitespace-nowrap">المشاريع الميدانية</button>
+        <button onclick="switchTab('events', true)" class="hover:text-emerald-700 whitespace-nowrap">المشاريع الميدانية</button>
         <span>•</span>
-        <button onclick="switchTab('contact')" class="hover:text-emerald-700 whitespace-nowrap">تواصل</button>
+        <button onclick="switchTab('contact', true)" class="hover:text-emerald-700 whitespace-nowrap">تواصل</button>
         <span>•</span>
         <a href="admin/" class="text-emerald-700 hover:underline whitespace-nowrap">لوحة التحكم (Admin)</a>
       </div>
-      <p class="leading-relaxed">
+      <p class="leading-relaxed px-4">
         جميع الحقوق محفوظة © 2026 د. م. عبدالمجيد بن سعيد بن طالب البطاطي. دكتوراه في إدارة الأعمال • مهندس استشاري معتمد (ترخيص 201226) • محكم معتمد • جدة، المملكة العربية السعودية.
       </p>
     </footer>
@@ -4397,30 +4431,30 @@
   </div>
 
   <!-- Reader Modal for Articles and Subjects -->
-  <div id="reader-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-    <div class="glass-card bg-white/95 max-w-2xl w-full max-h-[85vh] rounded-3xl p-6 sm:p-8 shadow-2xl overflow-y-auto space-y-5 border border-white">
+  <div id="reader-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="glass-card bg-white/95 max-w-2xl w-full max-h-[85vh] rounded-3xl p-5 sm:p-8 shadow-2xl overflow-y-auto space-y-5 border border-white">
       
       <div class="flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
-        <div>
-          <span id="modal-date" class="text-xs text-slate-400 font-mono"></span>
-          <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-slate-900 mt-1"></h3>
-          <h4 id="modal-subtitle" class="text-xs font-semibold text-emerald-700 mt-1 hidden"></h4>
+        <div class="min-w-0">
+          <span id="modal-date" class="text-xs text-slate-400 font-mono block"></span>
+          <h3 id="modal-title" class="text-lg sm:text-2xl font-bold text-slate-900 mt-1 break-words-safe leading-snug"></h3>
+          <h4 id="modal-subtitle" class="text-xs font-semibold text-emerald-700 mt-1 hidden break-words-safe"></h4>
         </div>
-        <button onclick="closeReaderModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-sm transition">
+        <button onclick="closeReaderModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-sm transition flex-shrink-0" aria-label="إغلاق">
           ✕
         </button>
       </div>
 
-      <div id="modal-image-wrapper" class="h-56 rounded-2xl overflow-hidden bg-slate-100 hidden shadow-inner">
+      <div id="modal-image-wrapper" class="h-48 sm:h-56 rounded-2xl overflow-hidden bg-slate-100 hidden shadow-inner">
         <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
       </div>
 
-      <div id="modal-content" class="text-xs sm:text-sm text-slate-700 leading-loose whitespace-pre-line font-normal">
+      <div id="modal-content" class="text-xs sm:text-sm text-slate-700 leading-loose whitespace-pre-line font-normal break-words-safe">
       </div>
 
-      <div class="pt-6 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500">
+      <div class="pt-5 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500">
         <span>بقلم: د. م. عبدالمجيد البطاطي</span>
-        <button onclick="closeReaderModal()" class="px-5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold transition">
+        <button onclick="closeReaderModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold transition">
           إغلاق النافذة
         </button>
       </div>
