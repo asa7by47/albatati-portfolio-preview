@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>د. م. عبدالمجيد البطاطي | المنصة الرسمية</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Readex Pro & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Readex+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Readex Pro', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="text-slate-800 antialiased p-3 sm:p-6 lg:p-8 selection:bg-emerald-500 selection:text-white">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <div class="max-w-6xl mx-auto space-y-6 sm:space-y-8">
+    
+    <!-- Floating Glass Header -->
+    <header class="glass-card rounded-2xl p-4 sm:px-8 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 sticky top-4 z-40">
+      
+      <!-- Logo / Monogram -->
+      <div class="flex items-center justify-between w-full md:w-auto">
+        <a href="#hero" class="flex items-center gap-3.5 group">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 text-white flex items-center justify-center font-bold text-xl shadow-md group-hover:scale-105 transition">
+            ع
+          </div>
+          <div>
+            <h1 id="header-name" class="text-base sm:text-lg font-bold text-slate-900 leading-tight">د. م. عبدالمجيد البطاطي</h1>
+            <p id="header-subtitle" class="text-xs text-emerald-800 font-medium">مستشار هندسي وإداري | محكم معتمد</p>
+          </div>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl glass-pill text-slate-700 hover:bg-white transition" aria-label="القائمة">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Tabs (Pills) -->
+      <nav id="nav-menu" class="hidden md:flex flex-wrap items-center gap-1.5 text-xs font-semibold text-slate-700 w-full md:w-auto justify-center">
+        <button onclick="switchTab('about')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="about">نبذة ومؤهلات</button>
+        <button onclick="switchTab('books')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="books">المؤلفات والأبحاث</button>
+        <button onclick="switchTab('articles')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="articles">المقالات</button>
+        <button onclick="switchTab('subjects')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="subjects">مواضيع رأي</button>
+        <button onclick="switchTab('events')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="events">المشاريع والألبومات</button>
+        <button onclick="switchTab('contact')" class="tab-btn px-3.5 py-2 rounded-full glass-pill hover:bg-white transition" data-tab="contact">تواصل واستشارات</button>
+      </nav>
+
+      <!-- Action Pill / Direct CV Link -->
+      <div class="hidden md:flex items-center gap-2">
+        <a id="btn-cv-download" href="/extracted_data/cv/Abdulmajeed_Albatati_CV_Arabic.pdf" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1.5">
+          <span>السيرة الذاتية PDF</span>
+          <svg class="w-3.5 h-3.5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </a>
+      </div>
+
+    </header>
+
+    <!-- Hero Card (Sample 4 Signature Glassmorphic Hero) -->
+    <section id="hero" class="glass-card rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm relative overflow-hidden">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        <div class="md:col-span-8 space-y-5 text-center md:text-right">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="hero-tagline">عضو مجلس إدارة جمعية المشاريع البيئية</span>
+          </div>
+
+          <h2 id="hero-title" class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            د. م. عبدالمجيد بن سعيد البطاطي
+          </h2>
+
+          <p id="hero-bio" class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
+            مستشار هندسي واستراتيجي يجمع بين الخبرة الأكاديمية والعمل الميداني لأكثر من 40 عاماً في إدارة المنظمات، حوكمة الشركات العائلية، وتخطيط البنى التحتية الكبرى.
+          </p>
+
+          <!-- Credential Badges -->
+          <div id="hero-badges" class="flex flex-wrap gap-2.5 justify-center md:justify-start pt-1">
+            <span class="px-3.5 py-1.5 rounded-xl bg-white/80 border border-slate-200/80 text-xs text-slate-700 font-medium shadow-xs">🎓 باحث دكتوراه في إدارة الأعمال</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-white/80 border border-slate-200/80 text-xs text-slate-700 font-medium shadow-xs">⚖️ محكم معتمد من وزارة العدل</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-white/80 border border-slate-200/80 text-xs text-slate-700 font-medium shadow-xs">🏗️ مهندس استشاري معتمد (201226)</span>
+          </div>
+
+          <!-- Quick Stat Counters -->
+          <div class="grid grid-cols-4 gap-3 pt-4 border-t border-slate-200/60 max-w-lg mx-auto md:mx-0">
+            <div>
+              <div id="stat-books" class="text-2xl sm:text-3xl font-black text-emerald-700">11</div>
+              <div class="text-[11px] text-slate-500">مؤلفاً وبحثاً</div>
+            </div>
+            <div>
+              <div id="stat-articles" class="text-2xl sm:text-3xl font-black text-emerald-700">16</div>
+              <div class="text-[11px] text-slate-500">مقالة ودراسة</div>
+            </div>
+            <div>
+              <div id="stat-events" class="text-2xl sm:text-3xl font-black text-emerald-700">21+</div>
+              <div class="text-[11px] text-slate-500">مشروعاً وسداً</div>
+            </div>
+            <div>
+              <div class="text-2xl sm:text-3xl font-black text-emerald-700">+40</div>
+              <div class="text-[11px] text-slate-500">عاماً خبرة</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portrait Image Card -->
+        <div class="md:col-span-4 flex justify-center">
+          <div class="relative group">
+            <div class="w-52 h-52 sm:w-60 sm:h-60 rounded-3xl p-2 bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 shadow-xl rotate-1 group-hover:rotate-0 transition duration-300">
+              <img id="hero-photo" src="/extracted_data/brand_assets/home_1.JPG" alt="د. عبدالمجيد البطاطي" class="w-full h-full object-cover object-top rounded-2xl shadow-inner">
+            </div>
+            <div class="absolute -bottom-3 inset-x-4 bg-white/95 backdrop-blur rounded-xl py-1 px-3 text-center border border-slate-100 shadow-sm text-[11px] font-bold text-slate-700">
+              جدة • المملكة العربية السعودية
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Dynamic Main Content Container -->
+    <main id="main-content" class="space-y-6">
+
+      <!-- ============================================== -->
+      <!-- TAB 1: ABOUT & QUALIFICATIONS                  -->
+      <!-- ============================================== -->
+      <section id="tab-about" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">المسيرة المهنية والعلمية</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">المؤهلات الأكاديمية والخبرات الاستشارية</h3>
+        </div>
+
+        <!-- Summary paragraph -->
+        <div class="p-5 rounded-2xl bg-white/80 border border-slate-200/80 leading-relaxed text-sm sm:text-base text-slate-700">
+          <p id="about-summary">
+            مهندس استشاري معتمد من الهيئة السعودية للمهندسين برقم 201226، ومحكم معتمد من وزارة العدل، حاصل على ماجستير إدارة الأعمال (MBA) من جامعة ويلز البريطانية، وباحث دكتوراه في الأداء المؤسسي والحوكمة بأكاديمية اعمل بيزنس.
+          </p>
+        </div>
+
+        <!-- Qualifications Grid -->
+        <div class="space-y-4">
+          <h4 class="text-base font-bold text-slate-900 flex items-center gap-2">
+            <span>📜</span>
+            <span>الشهادات والمؤهلات العلمية:</span>
+          </h4>
+          <div id="qualifications-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Loaded dynamically from API -->
+          </div>
+        </div>
+
+        <!-- Memberships & Committees -->
+        <div class="space-y-4 pt-4 border-t border-slate-200/60">
+          <h4 class="text-base font-bold text-slate-900 flex items-center gap-2">
+            <span>🏛️</span>
+            <span>المناصب وعضويات مجالس الإدارة:</span>
+          </h4>
+          <div id="titles-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Loaded dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 2: BOOKS & RESEARCH PAPERS                 -->
+      <!-- ============================================== -->
+      <section id="tab-books" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">الإنتاج المعرفي والمحكّم</span>
+            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">الكتب والأبحاث العلمية</h3>
+          </div>
+          <!-- Search Input -->
+          <div class="relative w-full sm:w-64">
+            <input type="text" id="books-search" placeholder="بحث في الأبحاث والكتب..." class="w-full px-4 py-2 rounded-xl glass-pill text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-white">
+          </div>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-500">
+          تشمل دراسات متخصصة في حوكمة الشركات العائلية، السلوك المؤسسي، التوطين، وربط استراتيجية المنظمة بثقافة العمل، متاحة للتحميل بصيغة PDF.
+        </p>
+
+        <!-- Books Grid -->
+        <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 3: ARTICLES                                -->
+      <!-- ============================================== -->
+      <section id="tab-articles" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">طروحات فكرية وتنموية</span>
+            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">المقالات والدراسات المنشورة</h3>
+          </div>
+          <div class="relative w-full sm:w-64">
+            <input type="text" id="articles-search" placeholder="بحث في المقالات..." class="w-full px-4 py-2 rounded-xl glass-pill text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-white">
+          </div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 4: SUBJECTS & OPINION                      -->
+      <!-- ============================================== -->
+      <section id="tab-subjects" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">شؤون المجتمع والتطوير</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">مواضيع وقضايا رأي</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">رؤى تحليلية حول النقل، حماية المستهلك، جودة الخدمات، والأمن القومي والتنمية.</p>
+        </div>
+
+        <div id="subjects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 5: EVENTS & INFRASTRUCTURE GALLERIES       -->
+      <!-- ============================================== -->
+      <section id="tab-events" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 hidden">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">الأرشيف الميداني المصور</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">المشاريع الميدانية وسدود حماية جدة</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">توثيق بالصور لوقائع افتتاح مشروعي السامر وأم الخير، الزيارات الوزارية، ومعارض حماية البيئة والتنمية المستدامة.</p>
+        </div>
+
+        <!-- Events Grid -->
+        <div id="events-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 6: CONTACT & CONSULTING                    -->
+      <!-- ============================================== -->
+      <section id="tab-contact" class="tab-panel glass-card rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 hidden">
+        <div class="text-center max-w-xl mx-auto space-y-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">التواصل المباشر والمهني</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">جلسات الاستشارات والتحكيم</h3>
+          <p class="text-xs sm:text-sm text-slate-500">
+            متاح لتقديم الاستشارات الإدارية والهندسية، وإدارة جلسات التحكيم المعتمدة، والمشاركة في المؤتمرات والندوات.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Contact Info Cards -->
+          <div class="lg:col-span-5 space-y-4">
+            <div class="p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl flex-shrink-0">
+                📞
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 block">الهاتف المباشر</span>
+                <a id="contact-phone-link" href="tel:0505626375" class="text-base font-bold text-slate-900 hover:text-emerald-700 transition">
+                  <span id="contact-phone">0505626375</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl flex-shrink-0">
+                ✉️
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 block">البريد الإلكتروني الرسمي</span>
+                <a id="contact-email-link" href="mailto:info@asalbatati.net" class="text-sm font-bold text-slate-900 hover:text-emerald-700 transition block">
+                  <span id="contact-email">info@asalbatati.net</span>
+                </a>
+                <a href="mailto:a.albatati@asalbatati.net" class="text-xs text-slate-600 hover:text-emerald-700 transition block mt-0.5">
+                  a.albatati@asalbatati.net
+                </a>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-white/80 border border-slate-200/80 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl flex-shrink-0">
+                📍
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 block">الموقع والمقر</span>
+                <p id="contact-address" class="text-sm font-bold text-slate-900">
+                  المملكة العربية السعودية - منطقة مكة المكرمة - جدة
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form Card -->
+          <div class="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-white/90 border border-slate-200/80 shadow-sm">
+            <h4 class="text-lg font-bold text-slate-900 mb-4">أرسل استفسارك أو طلب الجلسة الاستشارية</h4>
+            
+            <form id="contact-form" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1">الاسم الكريم *</label>
+                  <input type="text" name="name" required placeholder="أدخل اسمك الكامل" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1">رقم الهاتف / الواتساب</label>
+                  <input type="tel" name="phone" placeholder="05xxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">البريد الإلكتروني</label>
+                <input type="email" name="email" placeholder="example@domain.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">موضوع الرسالة</label>
+                <select name="subject" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white">
+                  <option value="طلب استشارة إدارية أو حوكمة">طلب استشارة إدارية أو حوكمة شركات عائلية</option>
+                  <option value="استشارة هندسية ومشاريع">استشارة هندسية وبنى تحتية</option>
+                  <option value="قضية تحكيم معتمد">طلب جلسة تحكيم قضائي</option>
+                  <option value="مشاركة في ندوة أو مؤتمر">دعوة لمؤتمر أو فعالية علمية</option>
+                  <option value="أخرى">استفسار عام</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">نص الرسالة أو الاستشارة *</label>
+                <textarea name="message" rows="4" required placeholder="اكتب تفاصيل طلبك هنا..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+              </div>
+
+              <button type="submit" id="btn-submit-contact" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition active:scale-[0.99] flex items-center justify-center gap-2">
+                <span>إرسال الرسالة</span>
+                <span>✉️</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-card rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-600">
+      <div>
+        <p class="font-bold text-slate-800">المنصة الرقمية الرسمية: د. م. عبدالمجيد بن سعيد البطاطي</p>
+        <p class="mt-0.5">جميع الحقوق محفوظة © 2026</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#about" class="hover:text-emerald-700">نبذة</a>
+        <a href="#books" class="hover:text-emerald-700">الكتب</a>
+        <a href="#articles" class="hover:text-emerald-700">المقالات</a>
+        <a href="#contact" class="hover:text-emerald-700">التواصل</a>
+        <span class="text-slate-300">|</span>
+        <a href="/admin" class="text-emerald-700 font-bold hover:underline flex items-center gap-1">
+          <span>لوحة التحكم</span>
+          <span>🔐</span>
+        </a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ARTICLE / SUBJECT READER                -->
+  <!-- ============================================== -->
+  <div id="reader-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="glass-card bg-white/95 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl animate-slide-up relative space-y-6">
+      
+      <!-- Close Button -->
+      <button onclick="closeReaderModal()" class="absolute top-6 left-6 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-lg font-bold transition">
+        ✕
+      </button>
+
+      <!-- Reader Header -->
+      <div class="space-y-3">
+        <span id="modal-date" class="text-xs font-mono text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full font-semibold"></span>
+        <h3 id="modal-title" class="text-xl sm:text-3xl font-black text-slate-900 leading-snug"></h3>
+        <h4 id="modal-subtitle" class="text-sm sm:text-base font-semibold text-slate-600 hidden"></h4>
+      </div>
+
+      <!-- Reader Image -->
+      <div id="modal-image-wrapper" class="rounded-2xl overflow-hidden bg-slate-100 max-h-80 flex items-center justify-center">
+        <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
+      </div>
+
+      <!-- Full Body Text -->
+      <div id="modal-content" class="text-sm sm:text-base text-slate-800 leading-loose whitespace-pre-line space-y-4 font-normal">
+      </div>
+
+      <div class="pt-6 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500">
+        <span>بقلم: د. م. عبدالمجيد البطاطي</span>
+        <button onclick="closeReaderModal()" class="px-5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold transition">
+          إغلاق النافذة
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Front-end Logic -->
+  <script src="/js/app.js"></script>
+
+</body>
+</html>

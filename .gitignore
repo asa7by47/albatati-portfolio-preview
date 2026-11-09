@@ -1,4 +1,8 @@
 www.asalbatati.net/
+node_modules/
 __pycache__/
 *.pyc
+*.tmp
 .DS_Store
+public/uploads/*
+!public/uploads/.gitkeep
