@@ -921,14 +921,23 @@
 
         <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 
-      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span itemprop="datePublished">📅 26/04/2016</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">التعليم يبني الحضارات ويصنع التاريخ</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">الشعوب التي استطاعت ان تبني لها حضارة وتاريخ تفتخر به كان العلم
+      <article class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group" itemscope itemtype="https://schema.org/Article">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/articles/images/01_one.jpg" alt="التعليم يبني الحضارات ويصنع التاريخ" itemprop="image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            صحيفة البلاد
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span itemprop="datePublished">📅 26/04/2016</span>
+              <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition" itemprop="headline">التعليم يبني الحضارات ويصنع التاريخ</h4>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">الشعوب التي استطاعت ان تبني لها حضارة وتاريخ تفتخر به كان العلم
 
 نبراس لها وهدف لابنائها، ولم ينتشر الاسلام الا بالعلم وكانت اول
 
@@ -1077,24 +1086,34 @@
 انتهاج مسيرة القيادة والبناء. هذا المقال تم نشره في جريدة البلاد
 
 السعودية في يوم الاحد الموافق 24 / 04 /2016 م</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', 1)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة المقال كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('article', 1)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة المقال كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+          </div>
         </div>
       </article>
 
-      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span itemprop="datePublished">📅 14/11/2015</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">الى معالي وزير الاسكان مع التحية</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">لقد احزنني كثيرا النهج الذي قام عليه نقد معالي الوزير واسلوب
+      <article class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group" itemscope itemtype="https://schema.org/Article">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/articles/images/02_two.jpg" alt="الى معالي وزير الاسكان مع التحية" itemprop="image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            صحيفة البلاد
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span itemprop="datePublished">📅 14/11/2015</span>
+              <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition" itemprop="headline">الى معالي وزير الاسكان مع التحية</h4>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">لقد احزنني كثيرا النهج الذي قام عليه نقد معالي الوزير واسلوب
 
 &quot;الطقطقة&quot; ولن انتهج ذلك الاسلوب في مقالي هذا وانما سوف ادخل الى
 
@@ -1233,24 +1252,34 @@
 المقال تم نشره في جريدة البلاد السعودية في يوم السبت الموافق 14/
 
 11 /2015 م</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', 2)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة المقال كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('article', 2)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة المقال كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+          </div>
         </div>
       </article>
 
-      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span itemprop="datePublished">📅 06/11/2015</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">المنفعه العامة والمنفعة الخاصة</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">ما اثارني لكتابة هذاالموضوع هو سلوك اصحاب القرار او المؤثرين في
+      <article class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group" itemscope itemtype="https://schema.org/Article">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/articles/images/03_three.jpg" alt="المنفعه العامة والمنفعة الخاصة" itemprop="image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            صحيفة البلاد
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span itemprop="datePublished">📅 06/11/2015</span>
+              <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition" itemprop="headline">المنفعه العامة والمنفعة الخاصة</h4>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">ما اثارني لكتابة هذاالموضوع هو سلوك اصحاب القرار او المؤثرين في
 
 اصحاب القرار بوضع الدراسات والتقديرات مبنية على تحقيقهم لمصالح
 
@@ -1355,24 +1384,34 @@
 هذا المقال تم نشره في جريدة البلاد السعودية في يوم الجمعه
 
 الموافق 08 / 11 /2015 م</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', 3)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة المقال كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('article', 3)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة المقال كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+          </div>
         </div>
       </article>
 
-      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span itemprop="datePublished">📅 31/10/2015</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">المواطن هو المستفيد وهو المتضرر</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">ما اثار هذ الموضوع هو المقابلة التي اجريتها مع قناة روتانا
+      <article class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group" itemscope itemtype="https://schema.org/Article">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/articles/images/04_four.jpg" alt="المواطن هو المستفيد وهو المتضرر" itemprop="image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            صحيفة البلاد
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span itemprop="datePublished">📅 31/10/2015</span>
+              <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition" itemprop="headline">المواطن هو المستفيد وهو المتضرر</h4>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">ما اثار هذ الموضوع هو المقابلة التي اجريتها مع قناة روتانا
 
 خليجية بخصوص مشروع قطار الحرمين. هذا المشروع هو مشروع استراتيجي
 
@@ -1511,24 +1550,34 @@
 المخالفة، ومثلك لن يعيه حلها. هذا المقال تم نشره في جريدة البلاد
 
 السعودية في يوم الجمعه الموافق 31 / 10 /2015 م</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', 4)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة المقال كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('article', 4)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة المقال كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+          </div>
         </div>
       </article>
 
-      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span itemprop="datePublished">📅 24/10/2015</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">القران ليس مجالا للتاويل والتفسير بعيدا عن اهل العلم الشرعي</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">لقد زادت في هذه الايام تدخلات الكثير فيما لا يفهمون. فنجد ان
+      <article class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group" itemscope itemtype="https://schema.org/Article">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/articles/images/05_five.jpg" alt="القران ليس مجالا للتاويل والتفسير بعيدا عن اهل العلم الشرعي" itemprop="image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            صحيفة البلاد
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span itemprop="datePublished">📅 24/10/2015</span>
+              <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition" itemprop="headline">القران ليس مجالا للتاويل والتفسير بعيدا عن اهل العلم الشرعي</h4>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">لقد زادت في هذه الايام تدخلات الكثير فيما لا يفهمون. فنجد ان
 
 هناك من يفتي في الطب وينشر ما يشاء عن طريق ادوات التواصل الحديثة
 
@@ -1673,24 +1722,34 @@
 يجراون على ذلك؟ هذا المقال تم نشره في جريدة البلاد السعودية في
 
 يوم الجمعه الموافق 23 / 10 /2015 م</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', 5)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة المقال كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('article', 5)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة المقال كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+          </div>
         </div>
       </article>
 
-      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span itemprop="datePublished">📅 10/10/2015</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">أعينوا الداخلية لمحاربة الارهاب</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">يجتهد رجال الامن في الداخلية لمحاربة الارهاب بكل انواعه وكذلك
+      <article class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group" itemscope itemtype="https://schema.org/Article">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/articles/images/06_six.jpg" alt="أعينوا الداخلية لمحاربة الارهاب" itemprop="image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            صحيفة البلاد
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span itemprop="datePublished">📅 10/10/2015</span>
+              <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition" itemprop="headline">أعينوا الداخلية لمحاربة الارهاب</h4>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">يجتهد رجال الامن في الداخلية لمحاربة الارهاب بكل انواعه وكذلك
 
 تتبني ايضا محاربة الفكر المؤدي الى الارهاب. ويتعرض رجال الامن
 
@@ -1807,24 +1866,34 @@
 الداخلية ان تضغط في هذا الاتجاه هذا المقال تم نشره في جريدة
 
 البلاد السعودية في يوم الجمعه الموافق 9 / 10 /2015 م</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', 6)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة المقال كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('article', 6)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة المقال كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+          </div>
         </div>
       </article>
 
-      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span itemprop="datePublished">📅 03/10/2015</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">القوة الشرائية للـريـال هي حياتنا</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">لا يعي الكثير من الناس ما يجري بحق القوة الشرائية للريال السعودي
+      <article class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group" itemscope itemtype="https://schema.org/Article">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/articles/images/07_two.jpg" alt="القوة الشرائية للـريـال هي حياتنا" itemprop="image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            صحيفة البلاد
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span itemprop="datePublished">📅 03/10/2015</span>
+              <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition" itemprop="headline">القوة الشرائية للـريـال هي حياتنا</h4>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">لا يعي الكثير من الناس ما يجري بحق القوة الشرائية للريال السعودي
 
 واثر ذلك على حياة كل المواطنين والساكنين في مملكتنا الحبيبه.
 
@@ -1943,24 +2012,34 @@
 المقال تم نشره في جريدة البلاد السعودية في يوم الجمعه 19 ذو
 
 الحجة 1436 الموافق 2 / 10 /2015 م</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', 7)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة المقال كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('article', 7)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة المقال كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+          </div>
         </div>
       </article>
 
-      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span itemprop="datePublished">📅 21/08/2015</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">الارهاب رغم اننا نتحدث انه دخيل علينا الا ان الواقع يقول ان تلك
+      <article class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group" itemscope itemtype="https://schema.org/Article">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/articles/images/08_six.jpg" alt="مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية" itemprop="image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            صحيفة البلاد
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span itemprop="datePublished">📅 21/08/2015</span>
+              <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition" itemprop="headline">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h4>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">الارهاب رغم اننا نتحدث انه دخيل علينا الا ان الواقع يقول ان تلك
 
 الفتنة قد بدات منذ عهد سيدنا عثمان بن عفان رضي الله عنه وكانت
 
@@ -2087,13 +2166,14 @@
 كل ما كانت مبررات الخروج عن الطاعة غير وارده. هذا المقال تم نشره
 
 في جريدة البلاد السعودية في يوم الجمعه الموافق 21 / 8 /2015 م</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', 8)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة المقال كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('article', 8)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة المقال كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+          </div>
         </div>
       </article>
         </div>
@@ -2114,15 +2194,24 @@
 
         <div id="subjects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 
-      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>22/11/2010</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">يحكى ان......</h4>
-          <h5 class="text-xs font-semibold text-emerald-700 break-words-safe">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h5>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">بعد المقال التي كتبته عن التطور وتوفير عناصر القوة لامتنا واولها
+      <div class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/subjects/images/01_one.jpeg" alt="يحكى ان......" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            قضية مجتمعية
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span>📅 22/11/2010</span>
+              <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">يحكى ان......</h4>
+            <h5 class="text-xs font-semibold text-emerald-700 break-words-safe">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h5>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">بعد المقال التي كتبته عن التطور وتوفير عناصر القوة لامتنا واولها
 
 القوة العسكرية شرح لي احد الاصدقاء كيف اننا اضعف اليوم من ان
 
@@ -2191,24 +2280,34 @@
 وبريطانيا واسرائيل. اوليس الحل بيدنا ونستطيعه؟ الا اننا لا
 
 نريده...فتعسا لنا.</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', 1)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة الموضوع كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('subject', 1)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة الموضوع كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>22/11/2010</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">وماذا بعد يا عرب</h4>
-          <h5 class="text-xs font-semibold text-emerald-700 break-words-safe">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h5>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مؤتمر القمة العربية في بيروت كان من اكثر مؤتمرات القمة احداثا
+      <div class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/subjects/images/02_one.jpeg" alt="وماذا بعد يا عرب" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            قضية مجتمعية
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span>📅 22/11/2010</span>
+              <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">وماذا بعد يا عرب</h4>
+            <h5 class="text-xs font-semibold text-emerald-700 break-words-safe">مكافحة الارهاب استراتيجية امن دولة وليس مهمة امنية</h5>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">مؤتمر القمة العربية في بيروت كان من اكثر مؤتمرات القمة احداثا
 
 وفاعلية واعظمها قعقعة. عاش مؤتمر القمة في بيروت احداث يجب على كل
 
@@ -2395,24 +2494,34 @@
 الَّذِينَ كَفَرُواْ مِنْهُمْ عَذَابٌ أَلِيمٌ.&quot; وقوله عز وجل: &quot;
 
 واعتصموا بحبل الله جميعا ولا تفرقوا....&quot; وليس بعد قول الله قول.</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', 2)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة الموضوع كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('subject', 2)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة الموضوع كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>22/11/2010</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">وامعتصماه...يا وزارة العمل</h4>
-          
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">فكرت في ان اهاجم تراخي مكاتب العمل عن ايجاد حلول لمعاناة
+      <div class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/subjects/images/03_three.jpg" alt="وامعتصماه...يا وزارة العمل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            قضية مجتمعية
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span>📅 22/11/2010</span>
+              <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">وامعتصماه...يا وزارة العمل</h4>
+            
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">فكرت في ان اهاجم تراخي مكاتب العمل عن ايجاد حلول لمعاناة
 
 المواطنين، ثم بعد تفكير تراجعت عن ذلك لانه ليس لمكتب العمل ذنب
 
@@ -2563,24 +2672,34 @@
 الا اذا كان هدفها غير خدمة المواطن وان الاصلاح هو اخر ما تفكر
 
 فيه فالله يعيننا وحسبنا الله ونعم الوكيل.</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', 3)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة الموضوع كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('subject', 3)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة الموضوع كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>22/11/2010</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">هل يقرأ المسؤولين ما يكتبه الكتاب</h4>
-          
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">اكتب هذا المقال وانا في مدينة هونج كونج. لقد زارها الكثير من
+      <div class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/subjects/images/04_four.jpg" alt="هل يقرأ المسؤولين ما يكتبه الكتاب" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            قضية مجتمعية
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span>📅 22/11/2010</span>
+              <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">هل يقرأ المسؤولين ما يكتبه الكتاب</h4>
+            
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">اكتب هذا المقال وانا في مدينة هونج كونج. لقد زارها الكثير من
 
 الناس ويعرفونها اكثر مما اعرف فيها، ولكن لي تاملاتي الخاصة كما
 
@@ -2733,24 +2852,34 @@
 فيطلعوا علينا بخططهم المستقبلية في مختلف المجالات وبرامجهم
 
 الزمنية للتنفيذ، وليس حديثا عابرا يدفنه الزمن وينسى.</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', 4)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة الموضوع كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('subject', 4)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة الموضوع كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>22/11/2010</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">هجوم على سواقي وباصات نقل الطالبات</h4>
-          
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">اخبرني صديق لي في يوم من الايام ان هناك حملة سعودة على سائقي اتوبيسات نقل الطالبات وقد ادى ذلك الى حجز الاتوبيسات والسواقين وقد اتصلت شركات النقل على اباء الطالبات  ليتدبروا امر توصيل بناتهم الى منازلهم.
+      <div class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/subjects/images/05_three.jpg" alt="هجوم على سواقي وباصات نقل الطالبات" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            قضية مجتمعية
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span>📅 22/11/2010</span>
+              <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">هجوم على سواقي وباصات نقل الطالبات</h4>
+            
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">اخبرني صديق لي في يوم من الايام ان هناك حملة سعودة على سائقي اتوبيسات نقل الطالبات وقد ادى ذلك الى حجز الاتوبيسات والسواقين وقد اتصلت شركات النقل على اباء الطالبات  ليتدبروا امر توصيل بناتهم الى منازلهم.
 
 امر غريب وسلوك اغرب لفت انتباهي لما له من صفة عشوائية في الاجراء دون وعي وادراك لخلفيته والنتائج التي يمكن ان تترتب على ذلك. وكما يقولون في هذا الاجراء هو تطبيق القانون &quot;رجاله&quot;. من الصعب جدا ان نطبق برامج السعودة لنضيف بطالة جديدة. لا يمكن ان يقبل صاحب العمل ان يرى بين وقت واخر من يستاذن لاحضار ابنته من الجامعة او المدرسة لان هذه الباصات قد توقفت عن العمل بسبب السعودة. أي اننا بالسعودة نطبق السعودة المعكوسة.
 
@@ -2781,24 +2910,34 @@
 بامكان مكاتب العمل ان توفر لهذه الشركات البدائل المناسبة وتقديمها لهذه الشركات لتوظيفهم بدلا عن استقدام السائقين. فهل قام مكتب العمل بهذا الدور بايجابية ومشاركة حقيقية بدلا من الفرض الغير مدروس؟
 
 سوف اقوم في القريب العاجل بتجميع مجموعة المقالات التي تقدم هذه الحلول الى وزارة العمل لوضعها اذا شاءوا قيد البحث والتحليل والاستفادة منها، ولكن في ذات الوقت ارجوا ان تقدم وزارة العمل وربما وزارة التجارة وجهات السعودة حلولا لمجتمعنا بدلا من السماح بعمل مثل هذه المنشأت وبعد ذلك تضع الجميع بين المطرقة والسندان وتعمل بمبدأ الفعل وردة الفعل دون الدراسة. مبدأ ادارة الازمات برد الفعل والتنفيذ الارتجالي دون الدراسة المسبقة عند التنفيذ له اضراره اكثر من فوائدة ويدخلنا في ازمات جديدة نحن في غنىً عنها. والله المستعان.</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', 5)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة الموضوع كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('subject', 5)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة الموضوع كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>22/11/2010</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">نحن نتغير الى الاحسن</h4>
-          
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">لقد تحدثت في مقالات سابقة عن امرين وجدتهما في غاية الاهمية
+      <div class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/subjects/images/06_six.jpg" alt="نحن نتغير الى الاحسن" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            قضية مجتمعية
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span>📅 22/11/2010</span>
+              <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">نحن نتغير الى الاحسن</h4>
+            
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">لقد تحدثت في مقالات سابقة عن امرين وجدتهما في غاية الاهمية
 
 لقيادة دفة التغيير وحماية استقرارنا وامننا دون تدخل للمغرضين
 
@@ -2907,48 +3046,68 @@
 لمهندسي هذه الخطوة الايجابية وماهي الا بداية على الجميع ان
 
 يعملوا متكاتفين لانجاحها، والله المستعان.</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', 6)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة الموضوع كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('subject', 6)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة الموضوع كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>22/11/2010</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">من يخدم من؟ العميل ام مقدم الخدمة</h4>
-          
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">هناك فرق بين الحكومة والوطن. فالحكومة هي اجهزة ادارية تسعى لتحقيق الامن والاستقرار والرفاهية للوطن والمواطنين. والمقصود من الحديث هنا ان الاجهزة الحكومية والخدماتيه بالخصوص المفروض ان تعمل بجد على اقرار التشريعات التي تنظم اعمال المواطنين كما وانها تقوم بتسهيل كل الاجراءات للمواطنين سواء عن طريق تقصير الاجراءات البيروقراطية او توفير المعلومات في اجهزة الدولة بما يسمح باتخاذ الاجراءات بكل سهولة، فالعصر الحديث هو عصر المعلومات.
+      <div class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/subjects/images/07_six.jpg" alt="من يخدم من؟ العميل ام مقدم الخدمة" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            قضية مجتمعية
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span>📅 22/11/2010</span>
+              <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">من يخدم من؟ العميل ام مقدم الخدمة</h4>
+            
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">هناك فرق بين الحكومة والوطن. فالحكومة هي اجهزة ادارية تسعى لتحقيق الامن والاستقرار والرفاهية للوطن والمواطنين. والمقصود من الحديث هنا ان الاجهزة الحكومية والخدماتيه بالخصوص المفروض ان تعمل بجد على اقرار التشريعات التي تنظم اعمال المواطنين كما وانها تقوم بتسهيل كل الاجراءات للمواطنين سواء عن طريق تقصير الاجراءات البيروقراطية او توفير المعلومات في اجهزة الدولة بما يسمح باتخاذ الاجراءات بكل سهولة، فالعصر الحديث هو عصر المعلومات.
 
 فالمفروض ان اجهزة الزكاة والدخل مثلا لديها كل المعلومات في ما لوكانت السجلات التجارية لا زالت تعمل او الغيت وكذلك بالنسبة للتراخيص من البلديات وخلاف ذلك. اما ان الاجهزة الحكومية ذات الصفة الخدمية لا تتعامل مع بعضها البعض او لا تنسق اعمالها مع بعضها البعض او انها ترغم المواطن على ان يقوم بدورها وترغمه على ان يسير في دوامة الإجراءات وكلٍ يرمي على الجهة الاخرى فهذا عيب في هذه الدوائر العقيمة وسوء ادارة او قل كل ما يمكن ان يقال في سوء الادارة.
 
 واعتقد ان ادارات بهذا الشكل فهي لا تفهم ما معنى ان تتعامل مع المواطن باعتباره عميل مهم يجب ارضاؤه، وانها تتعامل مع الامور بمنظور معكوس وترغب في ان يخدمها المواطن لا ان تخدمه. ومن نفس المنظور المقلوب تتكسر جسور المحبة بين هذه الدوائر ويصبح التعاون بين المواطنين وهذه الدوائر امر مستحيل وتتكون بيئة مناسبة لانتشار الفساد الاداري. اعجبني حاكم ولاية واشنطن دي سي عندما تبنى وفريقه الادارة استرتيجية تعمل على فكرة خدمة العميل ووضع رؤية الغاية منها تحقيق رضاء هذا العميل. وتلك الرؤية ايضا تتبناها الاجهزة الخدماتية في دبي، فكانت ان وفرت كل سبل الراحة للمواطنين والمقيمين في تسهيل اعمالهم دون تعقيدات. قال لي احد الاصدقاء ان البلدية طلبت منه ان يحضر ملفا لحفظ اوراقه والا فانه لن يجدها اذا احتاج لها مستقبلا.
 
 يا سبحان الله، فاين نحن من اؤلئك,,,,,,,, اليس لدينا النية لان نتعلم ونفوق من غيبوبتنا ونحمي امتنا ونبني وطننا.</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', 7)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة الموضوع كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('subject', 7)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة الموضوع كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>22/11/2010</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
-          </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">من يحمي العامل والمستهلك</h4>
-          
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">كتب القارئ طارق قايد سالم إلى جريدة البلاد لطرح الحديث عن
+      <div class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group">
+        
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="extracted_data/subjects/images/08_eight.jpeg" alt="من يحمي العامل والمستهلك" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            قضية مجتمعية
+          </span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span>📅 22/11/2010</span>
+              <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">من يحمي العامل والمستهلك</h4>
+            
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">كتب القارئ طارق قايد سالم إلى جريدة البلاد لطرح الحديث عن
 
 موضوعين مهمين اوضح ان فيهما الكثير من التقصير في التنظيم
 
@@ -3065,12 +3224,13 @@
 او عدم حمايتهم لحقوق المواطنين، وذلك حتى يكتب الله امرا كان
 
 مفعولا.</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', 8)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة الموضوع كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('subject', 8)" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة الموضوع كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+          </div>
         </div>
       </div>
         </div>
@@ -4445,8 +4605,8 @@
         </button>
       </div>
 
-      <div id="modal-image-wrapper" class="h-48 sm:h-56 rounded-2xl overflow-hidden bg-slate-100 hidden shadow-inner">
-        <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
+      <div id="modal-image-wrapper" class="h-56 sm:h-72 rounded-2xl overflow-hidden bg-slate-900/5 hidden shadow-inner border border-slate-100 p-1">
+        <img id="modal-image" src="" alt="" class="w-full h-full object-contain">
       </div>
 
       <div id="modal-content" class="text-xs sm:text-sm text-slate-700 leading-loose whitespace-pre-line font-normal break-words-safe">

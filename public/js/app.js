@@ -334,56 +334,89 @@ function renderArticles(articles) {
 
   articles.forEach(a => {
     const card = document.createElement('article');
-    card.className = 'card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm';
+    card.className = 'card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group';
     
-    card.innerHTML = `
-      <div class="space-y-3">
-        <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-          <span>📅 ${a.date || ''}</span>
-          <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold">مقالة رأي</span>
-        </div>
-        <h4 class="text-lg font-bold text-slate-900 leading-snug">${a.title}</h4>
-        <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">${a.content || ''}</p>
+    const imgSrc = resolveAssetUrl(a.image || '');
+    const imgBanner = imgSrc ? `
+      <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+        <img src="${imgSrc}" alt="${a.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+        <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+          صحيفة البلاد
+        </span>
       </div>
+    ` : '';
 
-      <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-        <button onclick="openReaderModal('article', ${a.id})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group">
-          <span>قراءة المقال كاملاً</span>
-          <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-        </button>
-        <span class="text-[11px] text-slate-400">صحيفة البلاد السعودية</span>
+    card.innerHTML = `
+      ${imgBanner}
+      <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+            <span>📅 ${a.date || ''}</span>
+            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+          </div>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">${a.title}</h4>
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">${a.content || ''}</p>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+          <button onclick="openReaderModal('article', ${a.id})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+            <span>قراءة المقال كاملاً</span>
+            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+          </button>
+          <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+        </div>
       </div>
     `;
     container.appendChild(card);
   });
 }
 
-// Render Subjects
+// Render Subjects (مواضيع رأي)
 function renderSubjects(subjects) {
   const container = document.getElementById('subjects-grid');
   if (!container) return;
   container.innerHTML = '';
 
+  if (subjects.length === 0) {
+    container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-sm">لا توجد مواضيع رأي مطابقة للبحث</div>`;
+    return;
+  }
+
   subjects.forEach(s => {
     const card = document.createElement('div');
-    card.className = 'card-interactive p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm';
+    card.className = 'card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group';
     
-    card.innerHTML = `
-      <div class="space-y-2.5">
-        <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-          <span>${s.date || ''}</span>
-          <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold">قضية مجتمعية</span>
-        </div>
-        <h4 class="text-lg font-bold text-slate-900 leading-snug">${s.title}</h4>
-        ${s.subtitle ? `<h5 class="text-xs font-semibold text-emerald-700">${s.subtitle}</h5>` : ''}
-        <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">${s.content || ''}</p>
+    const imgSrc = resolveAssetUrl(s.image || '');
+    const imgBanner = imgSrc ? `
+      <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+        <img src="${imgSrc}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+        <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+          قضية مجتمعية
+        </span>
       </div>
+    ` : '';
 
-      <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-        <button onclick="openReaderModal('subject', ${s.id})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group">
-          <span>قراءة الموضوع كاملاً</span>
-          <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-        </button>
+    card.innerHTML = `
+      ${imgBanner}
+      <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+            <span>📅 ${s.date || ''}</span>
+            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+          </div>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">${s.title}</h4>
+          ${s.subtitle ? `<h5 class="text-xs font-semibold text-emerald-700 break-words-safe">${s.subtitle}</h5>` : ''}
+          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">${s.content || ''}</p>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+          <button onclick="openReaderModal('subject', ${s.id})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+            <span>قراءة الموضوع كاملاً</span>
+            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+          </button>
+        </div>
       </div>
     `;
     container.appendChild(card);

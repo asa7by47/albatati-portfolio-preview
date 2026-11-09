@@ -126,49 +126,75 @@ for b in books:
       </div>''')
 books_html = '\n'.join(books_html_items)
 
-# Build Articles HTML
+# Build Articles HTML (With Featured Article Images)
 articles_html_items = []
 for a in articles:
+    img_clean = (a.get('image') or '').lstrip('/')
+    img_tag = f'''
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="{e(img_clean)}" alt="{e(a.get('title'))}" itemprop="image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-black/40 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            صحيفة البلاد
+          </span>
+        </div>''' if img_clean else ''
+
     articles_html_items.append(f'''
-      <article class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm" itemscope itemtype="https://schema.org/Article">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span itemprop="datePublished">📅 {e(a.get('date'))}</span>
-            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+      <article class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group" itemscope itemtype="https://schema.org/Article">
+        {img_tag}
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span itemprop="datePublished">📅 {e(a.get('date'))}</span>
+              <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">مقالة رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition" itemprop="headline">{e(a.get('title'))}</h4>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">{e(a.get('content'))}</p>
           </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe" itemprop="headline">{e(a.get('title'))}</h4>
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe" itemprop="articleBody">{e(a.get('content'))}</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('article', {a.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة المقال كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
-          <span class="text-[11px] text-slate-400 whitespace-nowrap">صحيفة البلاد</span>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('article', {a.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة المقال كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap">جريدة البلاد</span>
+          </div>
         </div>
       </article>''')
 articles_html = '\n'.join(articles_html_items)
 
-# Build Subjects HTML
+# Build Subjects HTML (With Featured Opinion Topic Images)
 subjects_html_items = []
 for s in subjects:
+    img_clean = (s.get('image') or '').lstrip('/')
     subtitle_h5 = f'<h5 class="text-xs font-semibold text-emerald-700 break-words-safe">{e(s.get("subtitle"))}</h5>' if s.get('subtitle') else ''
+    img_tag = f'''
+        <div class="h-44 sm:h-48 overflow-hidden bg-slate-100 relative shadow-inner">
+          <img src="{e(img_clean)}" alt="{e(s.get('title'))}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-white bg-emerald-900/60 backdrop-blur px-2.5 py-0.5 rounded-lg whitespace-nowrap">
+            قضية مجتمعية
+          </span>
+        </div>''' if img_clean else ''
+
     subjects_html_items.append(f'''
-      <div class="card-interactive p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 flex flex-col justify-between space-y-4 shadow-sm">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
-            <span>{e(s.get('date'))}</span>
-            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">قضية مجتمعية</span>
+      <div class="card-interactive rounded-2xl bg-white/80 border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm group">
+        {img_tag}
+        <div class="p-4 sm:p-5 space-y-3 flex-1 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+              <span>📅 {e(s.get('date'))}</span>
+              <span class="text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded text-[11px] font-semibold whitespace-nowrap">موضوع رأي</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe group-hover:text-emerald-800 transition">{e(s.get('title'))}</h4>
+            {subtitle_h5}
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">{e(s.get('content'))}</p>
           </div>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug break-words-safe">{e(s.get('title'))}</h4>
-          {subtitle_h5}
-          <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed break-words-safe">{e(s.get('content'))}</p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <button onclick="openReaderModal('subject', {s.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
-            <span>قراءة الموضوع كاملاً</span>
-            <span class="group-hover:-translate-x-1 transition duration-200">←</span>
-          </button>
+          <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+            <button onclick="openReaderModal('subject', {s.get('id')})" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 group whitespace-nowrap">
+              <span>قراءة الموضوع كاملاً</span>
+              <span class="group-hover:-translate-x-1 transition duration-200">←</span>
+            </button>
+          </div>
         </div>
       </div>''')
 subjects_html = '\n'.join(subjects_html_items)
@@ -853,8 +879,8 @@ html_content = f'''<!DOCTYPE html>
         </button>
       </div>
 
-      <div id="modal-image-wrapper" class="h-48 sm:h-56 rounded-2xl overflow-hidden bg-slate-100 hidden shadow-inner">
-        <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
+      <div id="modal-image-wrapper" class="h-56 sm:h-72 rounded-2xl overflow-hidden bg-slate-900/5 hidden shadow-inner border border-slate-100 p-1">
+        <img id="modal-image" src="" alt="" class="w-full h-full object-contain">
       </div>
 
       <div id="modal-content" class="text-xs sm:text-sm text-slate-700 leading-loose whitespace-pre-line font-normal break-words-safe">
